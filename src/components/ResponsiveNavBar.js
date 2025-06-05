@@ -87,7 +87,7 @@ const ResponsiveNavBar = ({
                     )}
 
                     {/* Right: Icon Buttons */}
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
                         {!isMobile &&
                             rightIcons.map((icon, index) => (
                                 <IconButton
@@ -105,7 +105,7 @@ const ResponsiveNavBar = ({
                                         src={icon.src}
                                         alt={icon.alt}
                                         sx={{
-                                            height: 25,         // or auto
+                                            height: 22,         // or auto
                                             width: "auto",      // maintain aspect ratio
 
                                             objectFit: "contain",
@@ -155,7 +155,7 @@ const ResponsiveNavBar = ({
                                     src={icon.src}
                                     alt={icon.alt}
                                     sx={{
-                                        height: 25,         // or auto
+                                        height: 22,         // or auto
                                         width: "auto",      // maintain aspect ratio
                                         mr: 2,
                                         objectFit: "contain",

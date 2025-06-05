@@ -42,4 +42,19 @@
     font-weight: bold;
     font-style: normal;
   }
+
+  /* Sora */
+  @font-face {
+    font-family: 'Sora';
+    src: url('./Sora-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Sora';
+    src: url('./Sora-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+  }
   

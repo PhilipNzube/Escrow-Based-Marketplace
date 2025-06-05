@@ -1,11 +1,12 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import ResponsiveNavBar from "../components/ResponsiveNavBar";
 import BgImg from "../images/Background_Img.png";
 import LogoIcon from "../images/Logo.png";
 import SearchIcon from "../images/Search.png";
 import CartIcon from "../images/Cart.png";
 import UserIcon from "../images/User.png";
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 
 const centerNavItems = [
@@ -33,39 +34,71 @@ const HomePage = () => {
       {/* Transparent AppBar */}
       <Box sx={{ position: "fixed", top: 0, width: "100%", zIndex: 10 }}>
         <ResponsiveNavBar
-        title="TrustPay"
-        logo={LogoIcon}
-        centerItems={centerNavItems}
-        rightIcons={rightIcons}
-      />
+          title="TrustPay"
+          logo={LogoIcon}
+          centerItems={centerNavItems}
+          rightIcons={rightIcons}
+        />
       </Box>
 
       {/* Hero Section with background image */}
       <Box
         sx={{
-          height: "90vh",
+          height: "150vh",
           width: "100%",
-          backgroundImage: "url('../images/Background_Img.png')",
+          backgroundImage: `url(${BgImg})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           position: "relative",
           display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          flexDirection: "column",
+          alignItems: "flex-start", // aligns items to the far left
+          justifyContent: "center", // centers vertically
+          pl: "25px", // left padding to prevent text touching edge
+          pb: "150px"
         }}
       >
         {/* Text overlay */}
         <Typography
-          variant="h3"
+          variant="h2"
           sx={{
-            color: "white",
+            width: "500px",
+            color: "#764D2E",
             fontWeight: "bold",
-            textShadow: "0 2px 6px rgba(0,0,0,0.6)",
             zIndex: 5,
+            mb: 2, // margin bottom
           }}
         >
-          First Escrow Based Marketplace
+          The First Nigerian Escrow-based Marketplace
         </Typography>
+
+        <Typography
+          variant="body1"
+          sx={{
+            width: "500px",
+            color: "#764D2E",
+            zIndex: 5,
+            mb: 3,
+          }}
+        >
+          Explore different categories. Find the best deal.
+        </Typography>
+
+        <Button
+          endIcon={<ArrowForwardIcon />}
+          variant="contained"
+          sx={{
+            mt: 3,
+            px: 4,
+            py: 1.5,
+            backgroundColor: "#764D2E",
+            '&:hover': {
+              backgroundColor: "#764d2e"
+            }
+          }}
+        >
+          Shop Now
+        </Button>
       </Box>
 
       {/* Other content */}
