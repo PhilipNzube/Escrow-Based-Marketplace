@@ -14,13 +14,22 @@ import {
 } from "@mui/material";
 import { ArrowBackIos, ArrowForwardIos, ArrowRightAlt } from '@mui/icons-material';
 import ResponsiveNavBar from "../components/ResponsiveNavBar";
+import ProductCard from '../components/ProductCard';
+import ProductFeatureCard from '../components/ProductFeatureCard';
+import DesProductFeatureCard from '../components/DesProductFeatureCard';
+import DropdownText from '../components/DropdownText';
 import BgImg from "../images/Background_Img.png";
 import CategoriesImg from "../images/Categories_1.png";
+import CategoriesImg2 from "../images/Categories_2.png";
 import ProductsImg from "../images/Products_1.png";
+import ProductsImg2 from "../images/Products_2.png";
+import ProductsImg3 from "../images/Products_3.png";
+import ProductsImg4 from "../images/Products_4.png";
 import LogoIcon from "../images/Logo.png";
 import SearchIcon from "../images/Search.png";
 import CartIcon from "../images/Cart.png";
 import UserIcon from "../images/User.png";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
@@ -56,13 +65,13 @@ const rightIcons = [
 
 const products = [
   { id: 1, image: ProductsImg, title: 'Blender', subtitle: 'Light Blender', price: '$142' },
-  { id: 2, image: 'path_to_img2', title: 'Toaster', subtitle: 'Modern Toaster', price: '$99' },
-  { id: 3, image: 'path_to_img3', title: 'Fan', subtitle: 'Silent Fan', price: '$75' },
-  { id: 4, image: 'path_to_img4', title: 'Lamp', subtitle: 'Bedside Lamp', price: '$39' },
+  { id: 2, image: ProductsImg2, title: 'Toaster', subtitle: 'Modern Toaster', price: '$99' },
+  { id: 3, image: ProductsImg3, title: 'Fan', subtitle: 'Silent Fan', price: '$75' },
+  { id: 4, image: ProductsImg4, title: 'Lamp', subtitle: 'Bedside Lamp', price: '$39' },
   { id: 5, image: ProductsImg, title: 'Blender', subtitle: 'Light Blender', price: '$142' },
-  { id: 6, image: 'path_to_img2', title: 'Toaster', subtitle: 'Modern Toaster', price: '$99' },
-  { id: 7, image: 'path_to_img3', title: 'Fan', subtitle: 'Silent Fan', price: '$75' },
-  { id: 8, image: 'path_to_img4', title: 'Lamp', subtitle: 'Bedside Lamp', price: '$39' },
+  { id: 6, image: ProductsImg2, title: 'Toaster', subtitle: 'Modern Toaster', price: '$99' },
+  { id: 7, image: ProductsImg3, title: 'Fan', subtitle: 'Silent Fan', price: '$75' },
+  { id: 8, image: ProductsImg4, title: 'Lamp', subtitle: 'Bedside Lamp', price: '$39' },
   // Add more...
 ];
 
@@ -323,35 +332,13 @@ const HomePage = () => {
           }}
         >
           {products.map((item) => (
-            <Card
+            <ProductCard
               key={item.id}
-              sx={{
-                minWidth: 180,
-                boxShadow: 3,
-                borderRadius: 2,
-                flexShrink: 0,
-              }}
-            >
-              <CardMedia
-                component="img"
-                height="140"
-                image={item.image}
-                alt={item.title}
-                sx={{ objectFit: "contain" }}
-              />
-
-              <CardContent>
-                <Typography variant="subtitle1" fontWeight="bold">
-                  {item.title}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {item.subtitle}
-                </Typography>
-                <Typography variant="subtitle2" color="primary" fontWeight="medium" mt={1}>
-                  {item.price}
-                </Typography>
-              </CardContent>
-            </Card>
+              image={item.image}
+              title={item.title}
+              subtitle={item.subtitle}
+              price={item.price}
+            />
           ))}
         </Box>
 
@@ -383,6 +370,59 @@ const HomePage = () => {
           >
             Explore All Items
           </Button>
+        </Box>
+      </Box>
+      <Box sx={{ px: 4, pt: 18, }}>
+        <Box sx={{ display: "flex", justifyContent: "center", pb: 10 }}>
+          <Typography variant="h3" sx={{ color: "#000", whiteSpace: "nowrap" }}>
+            Special Package
+          </Typography>
+        </Box>
+        <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "flex-start", gap: 5, }}>
+          <ProductFeatureCard
+            image={CategoriesImg2}
+            title="Larkin Wood Full Set"
+            price="$799.99"
+            rating={4}
+            onAddToCart={() => console.log("Added")}
+            onFullscreen={() => console.log("Fullscreen clicked")}
+          />
+
+          <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", width: "100%", }}>
+            <Typography
+              variant="h5"
+              sx={{
+                color: "#000",
+
+                mb: 3,
+              }}
+            >
+              Description
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                color: "#000",
+
+                mb: 3,
+              }}
+            >
+              Cast Aluminum Outdoor Chaise Lounge As an elegant and classic touch to your outdoor space, this cast Aluminum Chaise Lounge combines teh appearance, function and quality all together, offering you with the best experience.
+            </Typography>
+            <DropdownText label="See More" onClick={() => console.log("Clicked")} />
+            <Box sx={{
+              mt: 3,
+            }}>
+              <DesProductFeatureCard
+                image={CategoriesImg2}
+                title="Living Room Family Set"
+                price="$999.99"
+                rating={4}
+                onAddToCart={() => console.log("Added")}
+                onFullscreen={() => console.log("Fullscreen clicked")}
+              />
+            </Box>
+          </Box>
         </Box>
       </Box>
     </Box>
