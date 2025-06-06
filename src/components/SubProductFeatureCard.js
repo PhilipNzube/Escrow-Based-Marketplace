@@ -1,5 +1,5 @@
-import React from "react";
-import { Box, Typography, Button } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Typography, Button, Modal } from "@mui/material";
 import DropdownText from '../components/DropdownText';
 import FullscreenIcon from "@mui/icons-material/Fullscreen";
 import RatingStars from "./RatingStars";
@@ -14,6 +14,10 @@ const SubProductFeatureCard = ({
     onAddToCart,
     onFullscreen,
 }) => {
+    const [open, setOpen] = useState(false);
+
+    const handleFullscreenOpen = () => setOpen(true);
+    const handleFullscreenClose = () => setOpen(false);
     return (
         <Box
             sx={{
@@ -44,7 +48,7 @@ const SubProductFeatureCard = ({
             >
                 {/* Fullscreen icon */}
                 <Button
-                    onClick={onFullscreen}
+                    onClick={handleFullscreenOpen}
                     sx={{
                         position: "absolute",
                         bottom: 8,
@@ -71,22 +75,22 @@ const SubProductFeatureCard = ({
 
 
                 </Box>
-<Box
-            sx={{
-                display: "flex",
-                flexDirection: "row",
+                <Box
+                    sx={{
+                        display: "flex",
+                        flexDirection: "row",
                         justifyContent: "space-between",
-                alignItems: "flex-start",
-                width: "100%",
-                gap: 3,
-            }}
-        >
-                {/* Rating & Price */}
-                <RatingStars rating={rating} total={totalStars} />
-                <Typography variant="body1" sx={{ color: "#000", mb: 1 }}>
-                    {price}
+                        alignItems: "flex-start",
+                        width: "100%",
+                        gap: 3,
+                    }}
+                >
+                    {/* Rating & Price */}
+                    <RatingStars rating={rating} total={totalStars} />
+                    <Typography variant="body1" sx={{ color: "#000", mb: 1 }}>
+                        {price}
                     </Typography>
-                    </Box>
+                </Box>
                 <Typography
                     variant="body2"
                     sx={{
@@ -101,12 +105,42 @@ const SubProductFeatureCard = ({
                 >
                     {des}
                 </Typography>
-<Box sx={{
-              mb: 3,
-            }}>
-                <DropdownText label="See More" onClick={() => console.log("Clicked")} />
-</Box>
+                <Box sx={{
+                    mb: 3,
+                }}>
+                    <DropdownText label="See More" onClick={() => console.log("Clicked")} />
+                </Box>
             </Box>
+
+            {/* Fullscreen Overlay Modal */}
+            <Modal open={open} onClose={handleFullscreenClose}>
+                <Box
+                    onClick={handleFullscreenClose}
+                    sx={{
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        width: '100vw',
+                        height: '100vh',
+                        bgcolor: 'rgba(0,0,0,0.9)',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        cursor: 'zoom-out',
+                    }}
+                >
+                    <img
+                        src={image}
+                        alt="Fullscreen Preview"
+                        style={{
+                            maxWidth: '90%',
+                            maxHeight: '90%',
+                            objectFit: 'contain',
+                            borderRadius: 8,
+                        }}
+                    />
+                </Box>
+            </Modal>
         </Box>
     );
 };

@@ -1,5 +1,5 @@
-import React from "react";
-import { Box, Typography, Button } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Typography, Button, Modal } from "@mui/material";
 import FullscreenIcon from "@mui/icons-material/Fullscreen";
 import RatingStars from "./RatingStars";
 
@@ -12,6 +12,10 @@ const DesProductFeatureCard = ({
     onAddToCart,
     onFullscreen,
 }) => {
+    const [open, setOpen] = useState(false);
+
+    const handleFullscreenOpen = () => setOpen(true);
+    const handleFullscreenClose = () => setOpen(false);
     return (
         <Box
             sx={{
@@ -19,7 +23,7 @@ const DesProductFeatureCard = ({
                 flexDirection: "row",
                 justifyContent: "space-between",
                 width: "100%",
-                gap:3,
+                gap: 3,
             }}
         >
             {/* Image Box */}
@@ -42,7 +46,7 @@ const DesProductFeatureCard = ({
             >
                 {/* Fullscreen icon */}
                 <Button
-                    onClick={onFullscreen}
+                    onClick={handleFullscreenOpen}
                     sx={{
                         position: "absolute",
                         bottom: 8,
@@ -60,7 +64,7 @@ const DesProductFeatureCard = ({
                 </Button>
             </Box>
 
-            <Box sx={{ display: "flex", flexDirection: "column",width: "100%", }}>
+            <Box sx={{ display: "flex", flexDirection: "column", width: "100%", }}>
                 {/* Title & Button */}
                 <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
                     <Typography variant="h6" sx={{ color: "#000", mb: 1 }}>
@@ -79,6 +83,36 @@ const DesProductFeatureCard = ({
                     {price}
                 </Typography>
             </Box>
+
+            {/* Fullscreen Overlay Modal */}
+            <Modal open={open} onClose={handleFullscreenClose}>
+                <Box
+                    onClick={handleFullscreenClose}
+                    sx={{
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        width: '100vw',
+                        height: '100vh',
+                        bgcolor: 'rgba(0,0,0,0.9)',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        cursor: 'zoom-out',
+                    }}
+                >
+                    <img
+                        src={image}
+                        alt="Fullscreen Preview"
+                        style={{
+                            maxWidth: '90%',
+                            maxHeight: '90%',
+                            objectFit: 'contain',
+                            borderRadius: 8,
+                        }}
+                    />
+                </Box>
+            </Modal>
         </Box>
     );
 };
