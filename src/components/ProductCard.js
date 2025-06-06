@@ -26,7 +26,7 @@ const ProductCard = ({ image, title, subtitle, price }) => {
         <Typography variant="body2" color="text.secondary">
           {subtitle}
         </Typography>
-        <Typography variant="subtitle2" color="primary" fontWeight="medium" mt={1}>
+        <Typography variant="subtitle2" fontWeight="medium" mt={1}>
           {price}
         </Typography>
       </CardContent>

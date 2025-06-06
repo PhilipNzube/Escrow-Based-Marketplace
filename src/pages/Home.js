@@ -9,14 +9,13 @@ import {
   ListItem,
   ListItemText,
   Collapse,
-  Card, CardMedia, CardContent,
-  Divider,
 } from "@mui/material";
-import { ArrowBackIos, ArrowForwardIos, ArrowRightAlt } from '@mui/icons-material';
+import { ArrowBackIos, ArrowForwardIos} from '@mui/icons-material';
 import ResponsiveNavBar from "../components/ResponsiveNavBar";
 import ProductCard from '../components/ProductCard';
 import ProductFeatureCard from '../components/ProductFeatureCard';
 import DesProductFeatureCard from '../components/DesProductFeatureCard';
+import SubProductFeatureCard from '../components/SubProductFeatureCard';
 import DropdownText from '../components/DropdownText';
 import BgImg from "../images/Background_Img.png";
 import CategoriesImg from "../images/Categories_1.png";
@@ -29,12 +28,10 @@ import LogoIcon from "../images/Logo.png";
 import SearchIcon from "../images/Search.png";
 import CartIcon from "../images/Cart.png";
 import UserIcon from "../images/User.png";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 const categories = [
   "Furniture",
@@ -104,9 +101,6 @@ const HomePage = () => {
     scrollRef.current.scrollTo({ left: scrollRef.current.scrollWidth, behavior: 'smooth' });
   };
 
-  const handleItemClick = (item) => {
-    alert(`Clicked on: ${item.text}`);
-  };
 
   return (
     <Box sx={{ position: "relative", minHeight: "100vh" }}>
@@ -421,6 +415,33 @@ const HomePage = () => {
                 onAddToCart={() => console.log("Added")}
                 onFullscreen={() => console.log("Fullscreen clicked")}
               />
+            </Box>
+            <Box
+              ref={scrollRef}
+              sx={{ maxHeight: "300px", overflowY: "auto", mt: 3, borderRadius: 2 }}
+            >
+              <SubProductFeatureCard
+                image={CategoriesImg2}
+                title="Living Room Family Set"
+                des="Cast Aluminum Outdoor Chaise Lounge As an elegant and classic touch to your outdoor space, this cast Aluminum Chaise Lounge combines teh appearance, function and quality all together, offering you with the best experience."
+                price="$999.99"
+                rating={4}
+                onAddToCart={() => console.log("Added")}
+                onFullscreen={() => console.log("Fullscreen clicked")}
+              />
+              <SubProductFeatureCard
+                image={CategoriesImg2}
+                title="Living Room Family Set"
+                des="Cast Aluminum Outdoor Chaise Lounge As an elegant and classic touch to your outdoor space, this cast Aluminum Chaise Lounge combines teh appearance, function and quality all together, offering you with the best experience."
+                price="$999.99"
+                rating={4}
+                onAddToCart={() => console.log("Added")}
+                onFullscreen={() => console.log("Fullscreen clicked")}
+              />
+            </Box>
+            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1, mt: 1 }}>
+              <IconButton onClick={scrollToTop}><ArrowUpwardIcon /></IconButton>
+              <IconButton onClick={scrollToBottom}><ArrowDownwardIcon /></IconButton>
             </Box>
           </Box>
         </Box>

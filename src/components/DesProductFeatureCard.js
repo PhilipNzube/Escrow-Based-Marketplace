@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FullscreenIcon from "@mui/icons-material/Fullscreen";
 import RatingStars from "./RatingStars";
 
