@@ -9,6 +9,7 @@ import {
   ListItem,
   ListItemText,
   Collapse,
+  Divider
 } from "@mui/material";
 import Slider from "react-slick";
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
@@ -30,6 +31,7 @@ import ProductsImg3 from "../images/Products_3.png";
 import ProductsImg4 from "../images/Products_4.png";
 import SellerImg from "../images/Top_Sellers_1.png";
 import SellerImg2 from "../images/Top_Sellers_2.png";
+import SellerImg3 from "../images/Top_Sellers_3.png";
 import EscrowPayment from "../images/Escrow_Payment.png";
 import ReturnPolicy from "../images/Return_Policy.png";
 import CustomerSupport from "../images/Customer_Support.png";
@@ -83,7 +85,7 @@ const products = [
 
 const testimonialData = [
   {
-    image: SellerImg2,
+    image: SellerImg,
     body: "My experience with TrustPay is a complete success...",
     position: "Leona Paul",
     position2: "Businesswoman and CEO",
@@ -95,7 +97,7 @@ const testimonialData = [
     position2: "Online Entrepreneur",
   },
   {
-    image: SellerImg2,
+    image: SellerImg3,
     body: "TrustPay helped me scale my shop within 2 months.",
     position: "Amina Yusuf",
     position2: "Retail Business Owner",
@@ -690,10 +692,82 @@ const HomePage = () => {
                 </Box>
               ))}
             </Slider>
+            <Divider sx={{ mt: 5, borderColor: "#000", width: "100%" }} />
           </Box>
         </Box>
       </Box>
 
+      <Box sx={{ pt: 18 }}>
+        <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
+          <Box
+            sx={{
+              position: "relative",
+              height: 400,
+              width: "100%",
+              backgroundImage: `url(${CategoriesImg})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              borderRadius: 0,
+              overflow: "hidden",
+              cursor: "pointer",
+              '&:hover .overlay': {
+                opacity: 1,
+              },
+              mb: 3,
+            }}
+          ></Box>
+          <Box
+            sx={{
+              height: 400,
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "flex-start",
+              backgroundColor: "#CFAF89",
+              padding: 5
+            }}>
+            <Typography variant="h3" sx={{ color: "#000", whiteSpace: "nowrap", mt: 3 }}>
+              Join Our
+            </Typography>
+            <Typography variant="h2" sx={{ fontWeight: "bold", color: "#000", mb:1 }}>
+              Newsletter
+            </Typography>
+            <Typography variant="body1" sx={{ fontWeight: "bold", color: "#000", mb: 2 }}>
+              Receive exclusive deals, discounts and many offers.
+            </Typography>
+            <TextField
+              placeholder="Enter your email"
+              variant="standard"
+              fullWidth
+              InputProps={{
+                disableUnderline: false, // keep underline (default for standard)
+              }}
+              sx={{
+                mb: 2,
+                '& .MuiInput-underline:before': {
+                  borderBottomColor: '#764D2E', // your custom color
+                },
+                '& .MuiInput-underline:hover:before': {
+                  borderBottomColor: '#5d3c24', // hover color
+                },
+                '& .MuiInput-underline:after': {
+                  borderBottomColor: '#764D2E', // focused color
+                },
+                input: {
+                  color: '#000', // input text color
+                },
+              }}
+            />
+            <Button
+                    variant="contained"
+                    sx={{ backgroundColor: "#764D2E", color: "#fff", borderRadius:0.5  }}
+                  >
+                    Subscribe
+                  </Button>
+          </Box>
+        </Box>
+      </Box>
     </Box>
   );
 };
