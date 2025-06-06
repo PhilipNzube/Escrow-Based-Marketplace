@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const ExpenditureItem = ({
     image,
@@ -34,6 +34,10 @@ const ExpenditureItem = ({
                 variant="body1"
                 sx={{
                     color: "#fff",
+                    fontSize: {
+                        xs: '15px',
+                        md: '20px',
+                    },
                 }}
             >
                 {title}
@@ -42,7 +46,11 @@ const ExpenditureItem = ({
                 variant="body2"
                 sx={{
                     color: "#fff",
-                    width: "200px"
+                    width: "200px",
+                    fontSize: {
+                        xs: '10px',
+                        md: '13px',
+                    },
                 }}
             >
                 {body}

@@ -241,7 +241,11 @@ const HomePage = () => {
             color: "#764D2E",
             fontWeight: "bold",
             zIndex: 5,
-            mb: 2, // margin bottom
+            mb: 2, 
+            fontSize: {
+      xs: '50px',
+      md: '50px',
+    },
           }}
         >
           The First Nigerian Escrow-based Marketplace
@@ -474,7 +478,12 @@ const HomePage = () => {
             Special Package
           </Typography>
         </Box>
-        <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "flex-start", gap: 5, }}>
+        <Box sx={{
+          display: "flex", flexDirection: {
+            xs: "column",
+            md: "row",
+          }, justifyContent: "center", alignItems: "flex-start", gap: 5,
+        }}>
           <ProductFeatureCard
             image={CategoriesImg2}
             title="Larkin Wood Full Set"
@@ -626,14 +635,14 @@ const HomePage = () => {
             );
           })}
 
-
-
-
         </Box>
       </Box>
       <Box sx={{ px: 4, padding: 5, mt: 18, backgroundColor: "#764D2E", }}>
         <Box sx={{ display: "flex", justifyContent: "center", pb: 10 }}>
-          <Typography variant="h3" sx={{ color: "#fff", whiteSpace: "nowrap" }}>
+          <Typography variant="h3" sx={{ color: "#fff", whiteSpace: "nowrap", fontSize: {
+      xs: '25px',
+      md: '50px',
+    },}}>
             Benefits For Your Expenditure
           </Typography>
         </Box>
