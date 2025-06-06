@@ -9,11 +9,14 @@ import {
   ListItem,
   ListItemText,
   Collapse,
+  Card, CardMedia, CardContent,
   Divider,
 } from "@mui/material";
+import { ArrowBackIos, ArrowForwardIos, ArrowRightAlt } from '@mui/icons-material';
 import ResponsiveNavBar from "../components/ResponsiveNavBar";
 import BgImg from "../images/Background_Img.png";
 import CategoriesImg from "../images/Categories_1.png";
+import ProductsImg from "../images/Products_1.png";
 import LogoIcon from "../images/Logo.png";
 import SearchIcon from "../images/Search.png";
 import CartIcon from "../images/Cart.png";
@@ -51,6 +54,18 @@ const rightIcons = [
   { src: UserIcon, alt: "User", onClick: () => console.log("User") },
 ];
 
+const products = [
+  { id: 1, image: ProductsImg, title: 'Blender', subtitle: 'Light Blender', price: '$142' },
+  { id: 2, image: 'path_to_img2', title: 'Toaster', subtitle: 'Modern Toaster', price: '$99' },
+  { id: 3, image: 'path_to_img3', title: 'Fan', subtitle: 'Silent Fan', price: '$75' },
+  { id: 4, image: 'path_to_img4', title: 'Lamp', subtitle: 'Bedside Lamp', price: '$39' },
+  { id: 5, image: ProductsImg, title: 'Blender', subtitle: 'Light Blender', price: '$142' },
+  { id: 6, image: 'path_to_img2', title: 'Toaster', subtitle: 'Modern Toaster', price: '$99' },
+  { id: 7, image: 'path_to_img3', title: 'Fan', subtitle: 'Silent Fan', price: '$75' },
+  { id: 8, image: 'path_to_img4', title: 'Lamp', subtitle: 'Bedside Lamp', price: '$39' },
+  // Add more...
+];
+
 
 const HomePage = () => {
   const [openIndexes, setOpenIndexes] = React.useState([]);
@@ -70,6 +85,14 @@ const HomePage = () => {
   const scrollToBottom = () => {
     if (scrollRef.current)
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+  };
+
+  const horizontalScrollToStart = () => {
+    scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+  };
+
+  const horizontalScrollToEnd = () => {
+    scrollRef.current.scrollTo({ left: scrollRef.current.scrollWidth, behavior: 'smooth' });
   };
 
   const handleItemClick = (item) => {
@@ -96,7 +119,7 @@ const HomePage = () => {
           backgroundImage: `url(${BgImg})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          
+
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-start", // aligns items to the far left
@@ -149,139 +172,220 @@ const HomePage = () => {
       </Box>
 
 
-      <Box sx={{ px: 4, py: 18 }}>
-        <Box sx={{ display: "flex", justifyContent: "center", pb: 10}}>
-        <Typography variant="h3" sx={{ color: "#000", whiteSpace:"nowrap" }}>
-          Explore by Categories
+      <Box sx={{ px: 4, pt: 18 }}>
+        <Box sx={{ display: "flex", justifyContent: "center", pb: 10 }}>
+          <Typography variant="h3" sx={{ color: "#000", whiteSpace: "nowrap" }}>
+            Explore by Categories
           </Typography>
-          </Box>
+        </Box>
         <Box sx={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
-        {/* Left Side - Search and Category List */}
-        <Box sx={{ flex: "1 1 300px", maxWidth: "300px" }}>
-          <TextField
-            fullWidth
-            placeholder="Search..."
-            variant="outlined"
-            sx={{
-              '& .MuiOutlinedInput-root': {
-                backgroundColor: 'rgba(118, 77, 46, 0.3)',  // partially transparent brown
-                borderRadius: 1,
-                '& fieldset': {
-                  borderColor: 'transparent',   // remove border normally
-                },
-                '&:hover fieldset': {
-                  borderColor: 'transparent',   // no border on hover
-                },
-                '&.Mui-focused': {
-                  backgroundColor: 'rgba(118, 77, 46, 1)', // fully opaque brown when focused
+          {/* Left Side - Search and Category List */}
+          <Box sx={{ flex: "1 1 300px", maxWidth: "300px" }}>
+            <TextField
+              fullWidth
+              placeholder="Search..."
+              variant="outlined"
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  backgroundColor: 'rgba(118, 77, 46, 0.3)',  // partially transparent brown
+                  borderRadius: 1,
                   '& fieldset': {
-                    borderColor: 'transparent',  // still no border on focus
+                    borderColor: 'transparent',   // remove border normally
+                  },
+                  '&:hover fieldset': {
+                    borderColor: 'transparent',   // no border on hover
+                  },
+                  '&.Mui-focused': {
+                    backgroundColor: 'rgba(118, 77, 46, 1)', // fully opaque brown when focused
+                    '& fieldset': {
+                      borderColor: 'transparent',  // still no border on focus
+                    },
+                  },
+                  '& input': {
+                    color: '#fff',  // text color visible over brown bg
                   },
                 },
-                '& input': {
-                  color: '#fff',  // text color visible over brown bg
-                },
-              },
-            }}
-          />
+              }}
+            />
 
 
+            <Box
+              ref={scrollRef}
+              sx={{ maxHeight: "300px", overflowY: "auto", mt: 2, borderRadius: 2 }}
+            >
+              <List>
+                {categories.map((item, index) => (
+                  <React.Fragment key={index}>
+                    <ListItem
+                      button
+                      onClick={() => toggleOpen(index)}
+                      sx={{ display: "flex", justifyContent: "space-between" }}
+                    >
+                      <ListItemText primary={item} />
+                      <ExpandMoreIcon />
+                    </ListItem>
+                    <Collapse in={openIndexes.includes(index)} timeout="auto" unmountOnExit>
+                      <Typography sx={{ px: 2, py: 1, color: '#888' }}>
+                        Placeholder content...
+                      </Typography>
+                    </Collapse>
+                  </React.Fragment>
+                ))}
+              </List>
+            </Box>
+
+            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1, mt: 1 }}>
+              <IconButton onClick={scrollToTop}><ArrowUpwardIcon /></IconButton>
+              <IconButton onClick={scrollToBottom}><ArrowDownwardIcon /></IconButton>
+            </Box>
+
+            <Button
+              variant="contained"
+              endIcon={<ArrowForwardIcon />}
+              sx={{ backgroundColor: "#764D2E", mt: 2, width: "100%" }}
+            >
+              All Categories
+            </Button>
+          </Box>
+
+          {/* Right Side - Grid of Images */}
           <Box
-            ref={scrollRef}
-            sx={{ maxHeight: "300px", overflowY: "auto", mt: 2, borderRadius: 2 }}
+            sx={{
+              flex: "3 1 600px",
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
+              gap: 2,
+            }}
           >
-            <List>
-              {categories.map((item, index) => (
-                <React.Fragment key={index}>
-                  <ListItem
-                    button
-                    onClick={() => toggleOpen(index)}
-                    sx={{ display: "flex", justifyContent: "space-between" }}
+            {Array.from({ length: 6 }).map((_, i) => (
+              <Box
+                key={i}
+                sx={{
+                  position: "relative",
+                  height: 200,
+                  backgroundImage: `url(${CategoriesImg})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  overflow: "hidden",
+                  cursor: "pointer",
+                  '&:hover .overlay': {
+                    opacity: 1,
+                  },
+                }}
+              >
+                <Box
+                  className="overlay"
+                  sx={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    bgcolor: "rgba(0,0,0,0.5)",
+                    color: "white",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    opacity: 0,
+                    transition: "opacity 0.3s ease",
+                  }}
+                >
+                  <Typography variant="h5">Furniture</Typography>
+                  <Button
+                    variant="outlined"
+                    sx={{ backgroundColor: "white", color: "#764D2E", borderColor: "white", mt: 1 }}
                   >
-                    <ListItemText primary={item} />
-                    <ExpandMoreIcon />
-                  </ListItem>
-                  <Collapse in={openIndexes.includes(index)} timeout="auto" unmountOnExit>
-                    <Typography sx={{ px: 2, py: 1, color: '#888' }}>
-                      Placeholder content...
-                    </Typography>
-                  </Collapse>
-                </React.Fragment>
-              ))}
-            </List>
+                    Explore
+                  </Button>
+                </Box>
+              </Box>
+            ))}
           </Box>
+        </Box>
+      </Box>
+      <Box sx={{ px: 4, pt: 18 }}>
+        <Box sx={{ display: "flex", justifyContent: "center", pb: 10 }}>
+          <Typography variant="h3" sx={{ color: "#000", whiteSpace: "nowrap" }}>
+            Popular Products
+          </Typography>
+        </Box>
+        {/* Horizontal scrollable container */}
+        <Box
+          ref={scrollRef}
+          sx={{
+            display: 'flex',
+            overflowX: 'auto',
+            gap: 2,
+            pb: 2,
+            scrollBehavior: 'smooth',
+            '&::-webkit-scrollbar': { height: 5 },
+          }}
+        >
+          {products.map((item) => (
+            <Card
+              key={item.id}
+              sx={{
+                minWidth: 180,
+                boxShadow: 3,
+                borderRadius: 2,
+                flexShrink: 0,
+              }}
+            >
+              <CardMedia
+                component="img"
+                height="140"
+                image={item.image}
+                alt={item.title}
+                sx={{ objectFit: "contain" }}
+              />
 
-          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1, mt: 1 }}>
-            <IconButton onClick={scrollToTop}><ArrowUpwardIcon /></IconButton>
-            <IconButton onClick={scrollToBottom}><ArrowDownwardIcon /></IconButton>
-          </Box>
+              <CardContent>
+                <Typography variant="subtitle1" fontWeight="bold">
+                  {item.title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {item.subtitle}
+                </Typography>
+                <Typography variant="subtitle2" color="primary" fontWeight="medium" mt={1}>
+                  {item.price}
+                </Typography>
+              </CardContent>
+            </Card>
+          ))}
+        </Box>
 
+        {/* Scroll Arrows */}
+        <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mt: 2 }}>
+          <IconButton onClick={horizontalScrollToStart}>
+            <ArrowBackIos />
+          </IconButton>
+          <IconButton onClick={horizontalScrollToEnd}>
+            <ArrowForwardIos />
+          </IconButton>
+        </Box>
+
+        {/* Explore All Items Button */}
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
           <Button
             variant="contained"
             endIcon={<ArrowForwardIcon />}
-            sx={{ backgroundColor: "#764D2E", mt: 2, width: "100%" }}
+            sx={{
+              backgroundColor: '#764D2E',
+              '&:hover': {
+                backgroundColor: '#5d3c24',
+              },
+              px: 4,
+              py: 1.5,
+              borderRadius: 2,
+              color: '#fff',
+            }}
           >
-            Categories
+            Explore All Items
           </Button>
         </Box>
-
-        {/* Right Side - Grid of Images */}
-        <Box
-          sx={{
-            flex: "3 1 600px",
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
-            gap: 2,
-          }}
-        >
-          {Array.from({ length: 6 }).map((_, i) => (
-            <Box
-              key={i}
-              sx={{
-                position: "relative",
-                height: 200,
-                backgroundImage: `url(${CategoriesImg})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                overflow: "hidden",
-                cursor: "pointer",
-                '&:hover .overlay': {
-                  opacity: 1,
-                },
-              }}
-            >
-              <Box
-                className="overlay"
-                sx={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                  bgcolor: "rgba(0,0,0,0.5)",
-                  color: "white",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  opacity: 0,
-                  transition: "opacity 0.3s ease",
-                }}
-              >
-                <Typography variant="h5">Furniture</Typography>
-                <Button
-                  variant="outlined"
-                  sx={{ backgroundColor: "white", color: "#764D2E", borderColor: "white", mt: 1 }}
-                >
-                  Explore
-                </Button>
-              </Box>
-            </Box>
-          ))}
-        </Box>
       </Box>
-      </Box>
-      </Box>
+    </Box>
   );
 };
 
