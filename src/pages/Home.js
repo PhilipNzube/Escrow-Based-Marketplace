@@ -10,13 +10,15 @@ import {
   ListItemText,
   Collapse,
 } from "@mui/material";
-import { ArrowBackIos, ArrowForwardIos} from '@mui/icons-material';
+import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import ResponsiveNavBar from "../components/ResponsiveNavBar";
 import ProductCard from '../components/ProductCard';
 import ProductFeatureCard from '../components/ProductFeatureCard';
 import DesProductFeatureCard from '../components/DesProductFeatureCard';
 import SubProductFeatureCard from '../components/SubProductFeatureCard';
+import SellerCard from '../components/SellerCard';
 import DropdownText from '../components/DropdownText';
+import ExpenditureItem from '../components/ExpenditureItem';
 import BgImg from "../images/Background_Img.png";
 import CategoriesImg from "../images/Categories_1.png";
 import CategoriesImg2 from "../images/Categories_2.png";
@@ -24,6 +26,10 @@ import ProductsImg from "../images/Products_1.png";
 import ProductsImg2 from "../images/Products_2.png";
 import ProductsImg3 from "../images/Products_3.png";
 import ProductsImg4 from "../images/Products_4.png";
+import SellerImg from "../images/Top_Sellers_1.png";
+import EscrowPayment from "../images/Escrow_Payment.png";
+import ReturnPolicy from "../images/Return_Policy.png";
+import CustomerSupport from "../images/Customer_Support.png";
 import LogoIcon from "../images/Logo.png";
 import SearchIcon from "../images/Search.png";
 import CartIcon from "../images/Cart.png";
@@ -82,24 +88,79 @@ const HomePage = () => {
     );
   };
 
-  const scrollRef = React.useRef(null);
+  const categoryScrollRef = React.useRef(null);
+  const productScrollRef = React.useRef(null);
+  const descriptionScrollRef = React.useRef(null);
+  const sellerScrollRef = React.useRef(null);
 
-  const scrollToTop = () => {
-    if (scrollRef.current) scrollRef.current.scrollTop = 0;
+  const scrollCategoryToTop = () => {
+    if (categoryScrollRef.current) categoryScrollRef.current.scrollTop = 0;
+  };
+  const scrollCategoryToBottom = () => {
+    if (categoryScrollRef.current)
+      categoryScrollRef.current.scrollTop = categoryScrollRef.current.scrollHeight;
   };
 
-  const scrollToBottom = () => {
-    if (scrollRef.current)
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+
+  const scrollProductToStart = () => {
+    if (productScrollRef.current)
+      productScrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+  };
+  const scrollProductToEnd = () => {
+    if (productScrollRef.current)
+      productScrollRef.current.scrollTo({ left: productScrollRef.current.scrollWidth, behavior: 'smooth' });
   };
 
-  const horizontalScrollToStart = () => {
-    scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+
+  const scrollDescToTop = () => {
+    if (descriptionScrollRef.current) descriptionScrollRef.current.scrollTop = 0;
+  };
+  const scrollDescToBottom = () => {
+    if (descriptionScrollRef.current)
+      descriptionScrollRef.current.scrollTop = descriptionScrollRef.current.scrollHeight;
   };
 
-  const horizontalScrollToEnd = () => {
-    scrollRef.current.scrollTo({ left: scrollRef.current.scrollWidth, behavior: 'smooth' });
+  const scrollSellerToStart = () => {
+    if (sellerScrollRef.current)
+      sellerScrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
   };
+  const scrollSellerToEnd = () => {
+    if (sellerScrollRef.current)
+      sellerScrollRef.current.scrollTo({ left: sellerScrollRef.current.scrollWidth, behavior: 'smooth' });
+  };
+
+  const [focusedSellerIndex, setFocusedSellerIndex] = React.useState(0);
+  const [clickedSellerIndex, setClickedSellerIndex] = React.useState(null);
+
+
+  const handleSellerScroll = () => {
+    const container = sellerScrollRef.current;
+    if (!container) return;
+
+    const containerLeft = container.getBoundingClientRect().left;
+
+    let minDistance = Infinity;
+    let closestIndex = 0;
+
+    const children = Array.from(container.children);
+    children.forEach((child, index) => {
+      const rect = child.getBoundingClientRect();
+      const distance = Math.abs(rect.left - containerLeft);
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    // Update focus and clear click selection
+    setFocusedSellerIndex(closestIndex);
+    setClickedSellerIndex(null); // let scroll take over again
+  };
+
+
+
+
+
 
 
   return (
@@ -213,7 +274,7 @@ const HomePage = () => {
 
 
             <Box
-              ref={scrollRef}
+              ref={categoryScrollRef}
               sx={{ maxHeight: "300px", overflowY: "auto", mt: 2, borderRadius: 2 }}
             >
               <List>
@@ -238,8 +299,8 @@ const HomePage = () => {
             </Box>
 
             <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1, mt: 1 }}>
-              <IconButton onClick={scrollToTop}><ArrowUpwardIcon /></IconButton>
-              <IconButton onClick={scrollToBottom}><ArrowDownwardIcon /></IconButton>
+              <IconButton onClick={scrollCategoryToTop}><ArrowUpwardIcon /></IconButton>
+              <IconButton onClick={scrollCategoryToBottom}><ArrowDownwardIcon /></IconButton>
             </Box>
 
             <Button
@@ -315,7 +376,7 @@ const HomePage = () => {
         </Box>
         {/* Horizontal scrollable container */}
         <Box
-          ref={scrollRef}
+          ref={productScrollRef}
           sx={{
             display: 'flex',
             overflowX: 'auto',
@@ -338,10 +399,10 @@ const HomePage = () => {
 
         {/* Scroll Arrows */}
         <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mt: 2 }}>
-          <IconButton onClick={horizontalScrollToStart}>
+          <IconButton onClick={scrollDescToTop}>
             <ArrowBackIos />
           </IconButton>
-          <IconButton onClick={horizontalScrollToEnd}>
+          <IconButton onClick={scrollDescToBottom}>
             <ArrowForwardIos />
           </IconButton>
         </Box>
@@ -417,7 +478,7 @@ const HomePage = () => {
               />
             </Box>
             <Box
-              ref={scrollRef}
+              ref={descriptionScrollRef}
               sx={{ maxHeight: "300px", overflowY: "auto", mt: 3, borderRadius: 2 }}
             >
               <SubProductFeatureCard
@@ -440,10 +501,121 @@ const HomePage = () => {
               />
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1, mt: 1 }}>
-              <IconButton onClick={scrollToTop}><ArrowUpwardIcon /></IconButton>
-              <IconButton onClick={scrollToBottom}><ArrowDownwardIcon /></IconButton>
+              <IconButton onClick={scrollProductToStart}><ArrowUpwardIcon /></IconButton>
+              <IconButton onClick={scrollProductToEnd}><ArrowDownwardIcon /></IconButton>
             </Box>
           </Box>
+        </Box>
+      </Box>
+      <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', gap: 3, pt: 18 }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            borderBottomRightRadius: 40,
+            borderTopRightRadius: 40,
+            backgroundColor: "#C78757",
+            padding: 5
+          }}>
+          <Typography
+            variant="h2"
+            sx={{
+              color: "#fff",
+              mb: 3,
+            }}
+          >
+            Our
+            Top Sellers
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              color: "#fff",
+              mb: 3,
+            }}
+          >
+            For the Month of August
+          </Typography>
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mt: 2 }}>
+            <IconButton onClick={scrollSellerToStart} sx={{
+              color: "#fff",
+            }}>
+              <ArrowBackIos />
+            </IconButton>
+            <IconButton onClick={scrollSellerToEnd} sx={{
+              color: "#fff",
+            }}>
+              <ArrowForwardIos />
+            </IconButton>
+          </Box>
+        </Box>
+        <Box
+          ref={sellerScrollRef}
+          onScroll={handleSellerScroll}
+          sx={{
+            display: 'flex',
+            overflowX: 'auto',
+            overflowY: 'hidden',
+            gap: 2,
+            pb: 2,
+            scrollBehavior: 'smooth',
+            '&::-webkit-scrollbar': { height: 5 },
+          }}
+        >
+
+          {[...Array(6)].map((_, i) => {
+            const isActive = clickedSellerIndex !== null
+              ? i === clickedSellerIndex
+              : i === focusedSellerIndex;
+
+            return (
+              <Box
+                key={i}
+                onClick={() => setClickedSellerIndex(i)}
+                sx={{
+                  transform: isActive ? 'scale(1.1)' : 'scale(1)',
+                  transition: 'transform 0.3s ease',
+                  cursor: 'pointer',
+                }}
+              >
+                <SellerCard image={SellerImg} name="David Guetta" />
+              </Box>
+            );
+          })}
+
+
+
+
+        </Box>
+      </Box>
+      <Box sx={{ px: 4, padding: 5, mt: 18, backgroundColor: "#764D2E", }}>
+        <Box sx={{ display: "flex", justifyContent: "center", pb: 10 }}>
+          <Typography variant="h3" sx={{ color: "#fff", whiteSpace: "nowrap" }}>
+            Benefits For Your Expenditure
+          </Typography>
+        </Box>
+        <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "flex-start", gap: 7 }}>
+          <ExpenditureItem
+            image={EscrowPayment}
+            alt="EscrowPayment"
+            title="Escrow Based Payment"
+            body="We offer flexible escrow-based payment options, to make easier."
+          />
+
+          <ExpenditureItem
+            image={ReturnPolicy}
+            alt="ReturnPolicy"
+            title="Return Policy"
+            body="You can return a product within 30-days."
+          />
+          <ExpenditureItem
+            image={CustomerSupport}
+            alt="CustomerSupport"
+            title="Customer Support"
+            body="Our customer support is 24/7."
+          />
         </Box>
       </Box>
     </Box>
