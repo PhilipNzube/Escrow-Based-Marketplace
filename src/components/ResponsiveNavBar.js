@@ -104,9 +104,8 @@ const ResponsiveNavBar = ({
                                         src={icon.src}
                                         alt={icon.alt}
                                         sx={{
-                                            height: 22,         // or auto
-                                            width: "auto",      // maintain aspect ratio
-
+                                            height: 22,   
+                                            width: "auto",
                                             objectFit: "contain",
                                             opacity: selectedRightIndex === index ? 0.8 : 1,
                                             transition: "0.3s",

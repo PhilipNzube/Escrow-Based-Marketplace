@@ -9,7 +9,8 @@ import {
   ListItem,
   ListItemText,
   Collapse,
-  Divider
+  Divider,
+  InputAdornment
 } from "@mui/material";
 import Slider from "react-slick";
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
@@ -43,6 +44,9 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import FacebookIcon from "../images/logos_facebook.png";
+import InstaIcon from "../images/skill-icons_instagram.png";
+import TwitterIcon from "../images/prime_twitter.png";
 
 const categories = [
   "Furniture",
@@ -730,7 +734,7 @@ const HomePage = () => {
             <Typography variant="h3" sx={{ color: "#000", whiteSpace: "nowrap", mt: 3 }}>
               Join Our
             </Typography>
-            <Typography variant="h2" sx={{ fontWeight: "bold", color: "#000", mb:1 }}>
+            <Typography variant="h2" sx={{ fontWeight: "bold", color: "#000", mb: 1 }}>
               Newsletter
             </Typography>
             <Typography variant="body1" sx={{ fontWeight: "bold", color: "#000", mb: 2 }}>
@@ -760,12 +764,155 @@ const HomePage = () => {
               }}
             />
             <Button
-                    variant="contained"
-                    sx={{ backgroundColor: "#764D2E", color: "#fff", borderRadius:0.5  }}
-                  >
-                    Subscribe
-                  </Button>
+              variant="contained"
+              sx={{ backgroundColor: "#764D2E", color: "#fff", borderRadius: 0.5 }}
+            >
+              Subscribe
+            </Button>
           </Box>
+        </Box>
+      </Box>
+      <Box
+        sx={{
+          mx: 4,
+          mt: 18,
+          backgroundColor: "#764D2E",
+          borderTopRightRadius: 50,
+          borderTopLeftRadius: 50,
+          pt: 4,
+          pb: 2,
+        }}>
+        <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "flex-start", px: 5 }}>
+          <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 2, px: 5 }}>
+            <Typography variant="body1" sx={{ fontWeight: "bold", color: "#fff", mb: 2, mt: 3 }}>
+              Quick Links
+            </Typography>
+            <Typography variant="body2" sx={{ color: "#fff" }}>
+              Home
+            </Typography>
+            <Typography variant="body2" sx={{ color: "#fff" }}>
+              Buy
+            </Typography>
+            <Typography variant="body2" sx={{ color: "#fff" }}>
+              Sell
+            </Typography>
+            <Typography variant="body2" sx={{ color: "#fff" }}>
+              Categories
+            </Typography>
+            <Typography variant="body2" sx={{ color: "#fff" }}>
+              Deals
+            </Typography>
+          </Box>
+
+          <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 2, px: 5 }}>
+            <Typography variant="body1" sx={{ fontWeight: "bold", color: "#fff", mb: 2, mt: 3 }}>
+              Services
+            </Typography>
+            <Typography variant="body2" sx={{ color: "#fff" }}>
+              Escrow Payment
+            </Typography>
+            <Typography variant="body2" sx={{ color: "#fff" }}>
+              Selling & Buying
+            </Typography>
+          </Box>
+          <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 2, px: 5 }}>
+            <Typography variant="body1" sx={{ fontWeight: "bold", color: "#fff", mb: 2, mt: 3 }}>
+              Contact Us
+            </Typography>
+            <Typography variant="body2" sx={{ color: "#fff" }}>
+              contact@gmail.com
+            </Typography>
+            <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "flex-start", gap: 2 }}>
+              <Box
+                component="img"
+                src={FacebookIcon}
+                alt="FacebookIcon"
+                sx={{
+                  height: 22,
+                  width: "auto",
+                  objectFit: "contain",
+                  transition: "0.3s",
+                }}
+              />
+              <Box
+                component="img"
+                src={InstaIcon}
+                alt="InstaIcon"
+                sx={{
+                  height: 22,
+                  width: "auto",
+                  objectFit: "contain",
+                  transition: "0.3s",
+                }}
+              />
+              <Box
+                component="img"
+                src={TwitterIcon}
+                alt="TwitterIcon"
+                sx={{
+                  height: 22,
+                  width: "auto",
+                  objectFit: "contain",
+                  transition: "0.3s",
+                }}
+              />
+            </Box>
+            <TextField
+              placeholder="Email Address"
+              variant="outlined"
+              fullWidth
+              sx={{
+                borderRadius: 1,
+                backgroundColor: '#fff',
+                '& .MuiOutlinedInput-root': {
+                  backgroundColor: 'rgba(118, 77, 46, 0.3)',  // partially transparent brown
+                  borderRadius: 1,
+                  '& fieldset': {
+                    borderColor: 'transparent',   // remove border normally
+                  },
+                  '&:hover fieldset': {
+                    borderColor: 'transparent',   // no border on hover
+                  },
+                  '&.Mui-focused': {
+                    backgroundColor: '#fff', // fully opaque brown when focused
+                    '& fieldset': {
+                      borderColor: 'transparent',  // still no border on focus
+                    },
+                  },
+                  '& input': {
+                    color: '#000',  // text color visible over brown bg
+                  },
+                },
+              }}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <Button
+                      variant="contained"
+                      sx={{
+                        height: '100%',
+                        backgroundColor: '#764D2E',
+                        '&:hover': {
+                          backgroundColor: '#5d3c24',
+                        },
+                      }}
+                    >
+                      Subscribe
+                    </Button>
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Box>
+        </Box>
+        <Divider sx={{ mt: 5, borderColor: "#ccc", width: "100%" }} />
+        <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "flex-end", gap: 5, px: 5 }}>
+          <Typography variant="body1" sx={{ color: "#fff", mb: 2, mt: 3 }}>
+            Privacy Policy
+          </Typography>
+          <Typography variant="body1" sx={{ color: "#fff", mb: 2, mt: 3 }}>
+            Terms of Use
+          </Typography>
         </Box>
       </Box>
     </Box>
