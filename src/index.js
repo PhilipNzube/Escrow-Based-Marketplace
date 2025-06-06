@@ -19,6 +19,8 @@ import './fonts/fonts.css';
 import { SnackbarProvider } from 'notistack';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 function START() {
     const theme = createTheme({

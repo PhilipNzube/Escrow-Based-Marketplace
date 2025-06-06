@@ -10,6 +10,7 @@ import {
   ListItemText,
   Collapse,
 } from "@mui/material";
+import Slider from "react-slick";
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import ResponsiveNavBar from "../components/ResponsiveNavBar";
 import ProductCard from '../components/ProductCard';
@@ -19,6 +20,7 @@ import SubProductFeatureCard from '../components/SubProductFeatureCard';
 import SellerCard from '../components/SellerCard';
 import DropdownText from '../components/DropdownText';
 import ExpenditureItem from '../components/ExpenditureItem';
+import TestimonialCard from '../components/TestimonialCard';
 import BgImg from "../images/Background_Img.png";
 import CategoriesImg from "../images/Categories_1.png";
 import CategoriesImg2 from "../images/Categories_2.png";
@@ -27,6 +29,7 @@ import ProductsImg2 from "../images/Products_2.png";
 import ProductsImg3 from "../images/Products_3.png";
 import ProductsImg4 from "../images/Products_4.png";
 import SellerImg from "../images/Top_Sellers_1.png";
+import SellerImg2 from "../images/Top_Sellers_2.png";
 import EscrowPayment from "../images/Escrow_Payment.png";
 import ReturnPolicy from "../images/Return_Policy.png";
 import CustomerSupport from "../images/Customer_Support.png";
@@ -76,6 +79,27 @@ const products = [
   { id: 7, image: ProductsImg3, title: 'Fan', subtitle: 'Silent Fan', price: '$75' },
   { id: 8, image: ProductsImg4, title: 'Lamp', subtitle: 'Bedside Lamp', price: '$39' },
   // Add more...
+];
+
+const testimonialData = [
+  {
+    image: SellerImg2,
+    body: "My experience with TrustPay is a complete success...",
+    position: "Leona Paul",
+    position2: "Businesswoman and CEO",
+  },
+  {
+    image: SellerImg2,
+    body: "Smooth delivery and seamless buying experience.",
+    position: "Daniel Ekong",
+    position2: "Online Entrepreneur",
+  },
+  {
+    image: SellerImg2,
+    body: "TrustPay helped me scale my shop within 2 months.",
+    position: "Amina Yusuf",
+    position2: "Retail Business Owner",
+  },
 ];
 
 
@@ -159,6 +183,17 @@ const HomePage = () => {
 
 
 
+  const CustomNextArrow = ({ onClick }) => (
+    <IconButton onClick={onClick} sx={{ position: 'absolute', right: -30, top: '40%', color: '#000' }}>
+      <ArrowForwardIos />
+    </IconButton>
+  );
+
+  const CustomPrevArrow = ({ onClick }) => (
+    <IconButton onClick={onClick} sx={{ position: 'absolute', left: -30, top: '40%', color: '#000' }}>
+      <ArrowBackIos />
+    </IconButton>
+  );
 
 
 
@@ -399,10 +434,10 @@ const HomePage = () => {
 
         {/* Scroll Arrows */}
         <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mt: 2 }}>
-          <IconButton onClick={scrollDescToTop}>
+          <IconButton onClick={scrollProductToStart}>
             <ArrowBackIos />
           </IconButton>
-          <IconButton onClick={scrollDescToBottom}>
+          <IconButton onClick={scrollProductToEnd}>
             <ArrowForwardIos />
           </IconButton>
         </Box>
@@ -501,8 +536,8 @@ const HomePage = () => {
               />
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1, mt: 1 }}>
-              <IconButton onClick={scrollProductToStart}><ArrowUpwardIcon /></IconButton>
-              <IconButton onClick={scrollProductToEnd}><ArrowDownwardIcon /></IconButton>
+              <IconButton onClick={scrollDescToTop}><ArrowUpwardIcon /></IconButton>
+              <IconButton onClick={scrollDescToBottom}><ArrowDownwardIcon /></IconButton>
             </Box>
           </Box>
         </Box>
@@ -618,6 +653,47 @@ const HomePage = () => {
           />
         </Box>
       </Box>
+      <Box sx={{ px: 4, pt: 18 }}>
+        <Box sx={{ display: "flex", justifyContent: "center", pb: 10 }}>
+          <Box
+            sx={{
+              width: '100%',
+              maxWidth: 600,
+              position: 'relative',
+              textAlign: 'center',
+            }}
+          >
+            <Typography variant="h3" sx={{ color: "#000", whiteSpace: "nowrap", mb: 1 }}>
+              Testimonials
+            </Typography>
+            <Typography variant="body1" sx={{ color: "#000", mb: 5 }}>
+              Over 15,000 happy customers
+            </Typography>
+
+            <Slider
+              dots={false}
+              infinite={true}
+              speed={500}
+              slidesToShow={1}
+              slidesToScroll={1}
+              nextArrow={<CustomNextArrow />}
+              prevArrow={<CustomPrevArrow />}
+            >
+              {testimonialData.map((item, i) => (
+                <Box key={i} px={2}>
+                  <TestimonialCard
+                    image={item.image}
+                    body={item.body}
+                    position={item.position}
+                    position2={item.position2}
+                  />
+                </Box>
+              ))}
+            </Slider>
+          </Box>
+        </Box>
+      </Box>
+
     </Box>
   );
 };
