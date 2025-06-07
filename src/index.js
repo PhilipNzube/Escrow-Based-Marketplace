@@ -21,25 +21,26 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import theme from './theme';
 
 function START() {
-    const theme = createTheme({
-        palette: {
-            mode: 'light',
-            primary: {
-                main: '#1976d2',
-            },
-            secondary: {
-                main: '#ff9800',
-            },
-        },
-        shape: {
-            borderRadius: 12,
-        },
-        typography: {
-            fontFamily: 'Roboto, sans-serif',
-        },
-    });
+    // const theme = createTheme({
+    //     palette: {
+    //         mode: 'light',
+    //         primary: {
+    //             main: '#1976d2',
+    //         },
+    //         secondary: {
+    //             main: '#ff9800',
+    //         },
+    //     },
+    //     shape: {
+    //         borderRadius: 12,
+    //     },
+    //     typography: {
+    //         fontFamily: 'Roboto, sans-serif',
+    //     },
+    // });
     return (
         <>
 

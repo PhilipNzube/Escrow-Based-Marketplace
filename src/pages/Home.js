@@ -205,7 +205,7 @@ const HomePage = () => {
 
 
   return (
-    <Box sx={{ position: "relative", minHeight: "100vh" }}>
+    <Box sx={{ position: "relative", minHeight: "100vh", width: "100%" }}>
       {/* Transparent AppBar */}
       <Box sx={{ position: "fixed", top: 0, width: "100%", zIndex: 10 }}>
         <ResponsiveNavBar
@@ -235,17 +235,13 @@ const HomePage = () => {
       >
         {/* Text overlay */}
         <Typography
-          variant="h2"
+          variant="h1"
           sx={{
-            width: "500px",
+            maxWidth: '60vw',
             color: "#764D2E",
             fontWeight: "bold",
             zIndex: 5,
-            mb: 2, 
-            fontSize: {
-      xs: '50px',
-      md: '50px',
-    },
+            mb: 2,
           }}
         >
           The First Nigerian Escrow-based Marketplace
@@ -254,7 +250,7 @@ const HomePage = () => {
         <Typography
           variant="body1"
           sx={{
-            width: "500px",
+            maxWidth: '60vw',
             color: "#764D2E",
             zIndex: 5,
             mb: 3,
@@ -498,7 +494,6 @@ const HomePage = () => {
               variant="h5"
               sx={{
                 color: "#000",
-
                 mb: 3,
               }}
             >
@@ -557,7 +552,16 @@ const HomePage = () => {
           </Box>
         </Box>
       </Box>
-      <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', gap: 3, pt: 18 }}>
+      <Box sx={{
+        display: 'flex',
+        flexDirection: {
+          xs: "column",
+          md: "row",
+        },
+        justifyContent: 'space-between',
+        gap: 3,
+        pt: 18
+      }}>
         <Box
           sx={{
             display: "flex",
@@ -639,14 +643,23 @@ const HomePage = () => {
       </Box>
       <Box sx={{ px: 4, padding: 5, mt: 18, backgroundColor: "#764D2E", }}>
         <Box sx={{ display: "flex", justifyContent: "center", pb: 10 }}>
-          <Typography variant="h3" sx={{ color: "#fff", whiteSpace: "nowrap", fontSize: {
-      xs: '25px',
-      md: '50px',
-    },}}>
+          <Typography variant="h3" sx={{ color: "#fff" }}>
             Benefits For Your Expenditure
           </Typography>
         </Box>
-        <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "flex-start", gap: 7 }}>
+        <Box sx={{
+          display: "flex",
+          flexDirection: {
+            xs: "column",
+            md: "row",
+          },
+          justifyContent: "center",
+          alignItems: {
+            xs: "center",
+            md: "flex-start",
+          },
+          gap: 7
+        }}>
           <ExpenditureItem
             image={EscrowPayment}
             alt="EscrowPayment"
@@ -711,7 +724,14 @@ const HomePage = () => {
       </Box>
 
       <Box sx={{ pt: 18 }}>
-        <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
+        <Box sx={{
+          display: "flex",
+          flexDirection: {
+            xs: "column",
+            md: "row",
+          },
+          justifyContent: "center",
+        }}>
           <Box
             sx={{
               position: "relative",
@@ -726,7 +746,7 @@ const HomePage = () => {
               '&:hover .overlay': {
                 opacity: 1,
               },
-              mb: 3,
+
             }}
           ></Box>
           <Box
@@ -791,7 +811,17 @@ const HomePage = () => {
           pt: 4,
           pb: 2,
         }}>
-        <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "flex-start", px: 5 }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: {
+              xs: "column",
+              md: "row",
+            },
+            justifyContent: "space-between",
+            alignItems: "flex-start",
+            px: 5
+          }}>
           <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 2, px: 5 }}>
             <Typography variant="body1" sx={{ fontWeight: "bold", color: "#fff", mb: 2, mt: 3 }}>
               Quick Links

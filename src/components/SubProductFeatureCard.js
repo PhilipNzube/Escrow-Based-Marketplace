@@ -22,7 +22,10 @@ const SubProductFeatureCard = ({
         <Box
             sx={{
                 display: "flex",
-                flexDirection: "row",
+                flexDirection: {
+                    xs: "column",
+                    md: "row",
+                },
                 justifyContent: "space-between",
                 width: "100%",
                 gap: 3,

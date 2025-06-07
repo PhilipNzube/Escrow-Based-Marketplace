@@ -34,10 +34,6 @@ const ExpenditureItem = ({
                 variant="body1"
                 sx={{
                     color: "#fff",
-                    fontSize: {
-                        xs: '15px',
-                        md: '20px',
-                    },
                 }}
             >
                 {title}
@@ -47,10 +43,6 @@ const ExpenditureItem = ({
                 sx={{
                     color: "#fff",
                     width: "200px",
-                    fontSize: {
-                        xs: '10px',
-                        md: '13px',
-                    },
                 }}
             >
                 {body}

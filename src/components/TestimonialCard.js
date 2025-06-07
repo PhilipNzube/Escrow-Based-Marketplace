@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const TestimonialCard = ({
     image,
@@ -9,7 +9,16 @@ const TestimonialCard = ({
 }) => {
     return (
 
-        <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: 3 }}>
+        <Box sx={{
+            display: "flex",
+            flexDirection: {
+                xs: "column",
+                md: "row",
+            },
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: 3
+        }}>
             <Box
                 sx={{
 

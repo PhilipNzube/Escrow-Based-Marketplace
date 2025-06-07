@@ -104,7 +104,7 @@ const ResponsiveNavBar = ({
                                         src={icon.src}
                                         alt={icon.alt}
                                         sx={{
-                                            height: 22,   
+                                            height: 22,
                                             width: "auto",
                                             objectFit: "contain",
                                             opacity: selectedRightIndex === index ? 0.8 : 1,
@@ -133,10 +133,15 @@ const ResponsiveNavBar = ({
                                 key={index}
                                 selected={selectedCenterIndex === index}
                                 onClick={() => handleCenterItemClick(item, index)}
+                                sx={{
+                                    borderLeft: selectedCenterIndex === index ? '4px solid #764D2E' : '4px solid transparent',
+                                    pl: 2, // padding to align text nicely
+                                }}
                             >
                                 <ListItemText primary={item.text} />
                             </ListItem>
                         ))}
+
                         <ListItem sx={{ mt: 2 }}>
                             <ListItemText primary="Quick Access" />
                         </ListItem>
@@ -146,23 +151,27 @@ const ResponsiveNavBar = ({
                                 key={index}
                                 selected={selectedRightIndex === index}
                                 onClick={() => handleRightItemClick(icon, index)}
+                                sx={{
+                                    borderLeft: selectedRightIndex === index ? '4px solid #764D2E' : '4px solid transparent',
+                                    pl: 2,
+                                }}
                             >
-
                                 <Box
                                     component="img"
                                     src={icon.src}
                                     alt={icon.alt}
                                     sx={{
-                                        height: 22,         // or auto
-                                        width: "auto",      // maintain aspect ratio
+                                        height: 22,
+                                        width: 'auto',
                                         mr: 2,
-                                        objectFit: "contain",
+                                        objectFit: 'contain',
                                         opacity: selectedRightIndex === index ? 0.8 : 1,
-                                        transition: "0.3s",
+                                        transition: '0.3s',
                                     }}
                                 />
                                 <ListItemText primary={icon.alt} />
                             </ListItem>
+
                         ))}
                     </List>
                 </Box>
