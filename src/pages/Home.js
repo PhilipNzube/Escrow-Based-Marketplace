@@ -219,12 +219,14 @@ const HomePage = () => {
       {/* Hero Section with background image */}
       <Box
         sx={{
-          height: "150vh",
+          height: {
+            xs: "100vh",
+            md: "150vh",
+          },
           width: "100%",
           backgroundImage: `url(${BgImg})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-start", // aligns items to the far left
