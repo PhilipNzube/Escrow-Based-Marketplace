@@ -41,7 +41,7 @@ const LoginPage = () => {
           px: 4,
           width: {
             xs: '100%',
-            sm: '320px',
+            sm: '380px',
           },
           minHeight: "100vh",
           display: "flex",
@@ -95,6 +95,9 @@ const LoginPage = () => {
           textColor="#fff"
           hoverbg="#fff"
           hovertextColor="#764d2e"
+          onClick={() => {
+            navigate(`/dashboard`);
+          }}
         />
         <Typography
           variant="body2"

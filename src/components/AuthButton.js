@@ -6,10 +6,12 @@ const AuthButton = ({
     bg,
     textColor,
     hoverbg,
-    hovertextColor
+    hovertextColor,
+    onClick
 }) => {
     return (
         <Button
+            onClick={onClick}
             variant="contained"
             sx={{
                 mt: 3,

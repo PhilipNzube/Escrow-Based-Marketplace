@@ -8,16 +8,9 @@ import Step1 from './steps/Step1';
 import Step2 from './steps/Step2';
 import Step3 from './steps/Step3';
 import Step4 from './steps/Step4';
-import PropertyList from './pages/Properties.js';
-import PropertyDetails from './pages/PropertyDetails.js';
 import Dashboard from './pages/Dashboard.js';
-import MaintenancePage from './pages/Maintenance.js';
-import ReviewPage from './pages/Review.js';
-import RentHistoryPage from './pages/RentHistory.js';
-import LeaseAgreementPage from './pages/LeaseAgreementPage.js';
-import SublettingTerminationPage from './pages/SublettingTerminationPage.js';
-import InventoryChecklistPage from './pages/InventoryChecklistPage.js';
-import RentPolicyPage from './pages/RentPolicyPage.js';
+import ActivePage from './pages/ActivePage.js';
+import UserProfile from './pages/UserProfile.js';
 import './index.css';
 import './fonts/fonts.css';
 import { SnackbarProvider } from 'notistack';
@@ -60,16 +53,11 @@ function START() {
                             <Route path="step-3" element={<Step3 />} />
                             <Route path="step-4" element={<Step4 />} />
                         </Route>
-                        <Route path="/properties" element={<PropertyList />} />
-                        <Route path="/property/:id" element={<PropertyDetails />} />
-                        <Route path="/dashboard" element={<Dashboard />} />
-                        <Route path="/maintenance" element={<MaintenancePage />} />
-                        <Route path="/review" element={<ReviewPage />} />
-                        <Route path="/agreements" element={<LeaseAgreementPage />} />
-                        <Route path="/subletting" element={<SublettingTerminationPage />} />
-                        <Route path="/inventory" element={<InventoryChecklistPage />} />
-                        <Route path="/rent-policy" element={<RentPolicyPage />} />
-                        <Route path="/rent-history" element={<RentHistoryPage />} />
+                        <Route path="/dashboard" element={<Dashboard />}>
+                            <Route index element={<ActivePage />} />
+                            <Route path="profile" element={<UserProfile />} />
+                            {/* Add more as needed */}
+                        </Route>
                     </Routes>
                 </ThemeProvider>
             </BrowserRouter>

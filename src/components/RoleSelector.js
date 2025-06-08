@@ -53,10 +53,7 @@ const RoleSelector = (
                 flexDirection: isMobile ? 'column' : 'row',  // ⬅️ Stack on small screens
                 alignItems: "flex-start",
                 gap: 1.5,
-                width: {
-                    xs: '100%',
-                    sm: '320px',
-                },
+                width: '100%',
             }}
         >
             <Typography

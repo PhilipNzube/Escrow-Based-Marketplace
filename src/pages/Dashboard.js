@@ -1,98 +1,108 @@
-import React from "react";
-import { Box, Typography, Grid, Paper, Button, Card, CardContent, Divider } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import HomeIcon from '@mui/icons-material/Home';
-import BuildIcon from '@mui/icons-material/Build';
-import RateReviewIcon from '@mui/icons-material/RateReview';
-import DescriptionIcon from '@mui/icons-material/Description';
-import TransferWithinAStationIcon from '@mui/icons-material/TransferWithinAStation';
-import ChecklistIcon from '@mui/icons-material/Checklist';
-import PolicyIcon from '@mui/icons-material/Policy';
-import HistoryIcon from '@mui/icons-material/History';
+import React, { useState } from "react";
+import {
+  Box,
+  CssBaseline,
+  Drawer,
+  IconButton,
+  Typography,
+  InputBase,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import SearchIcon from "@mui/icons-material/Search";
+import { Outlet } from "react-router-dom";
+import LeftSidebar from "../components/LeftSidebar";
+import RightSidebar from "../components/RightSidebar";
 
-const DashboardPage = () => {
-  const navigate = useNavigate();
-
-  const features = [
-    {
-      title: "Manage Properties",
-      description: "Add, update, and monitor your listed properties.",
-      icon: <HomeIcon fontSize="large" color="primary" />,
-      action: () => navigate("/properties"),
-    },
-    {
-      title: "Maintenance Requests",
-      description: "Track and respond to tenant maintenance requests.",
-      icon: <BuildIcon fontSize="large" color="primary" />,
-      action: () => navigate("/maintenance"),
-    },
-    {
-      title: "View Reviews",
-      description: "Check feedback and ratings left by students.",
-      icon: <RateReviewIcon fontSize="large" color="primary" />,
-      action: () => navigate("/review"),
-    },
-    {
-      title: "Lease Agreements",
-      description: "Generate and manage flexible lease agreements.",
-      icon: <DescriptionIcon fontSize="large" color="primary" />,
-      action: () => navigate("/agreements"),
-    },
-    {
-      title: "Subletting & Terminations",
-      description: "List, transfer, or terminate rental agreements easily.",
-      icon: <TransferWithinAStationIcon fontSize="large" color="primary" />,
-      action: () => navigate("/subletting"),
-    },
-    {
-      title: "Inventory Checklist",
-      description: "Document conditions during move-in and move-out.",
-      icon: <ChecklistIcon fontSize="large" color="primary" />,
-      action: () => navigate("/inventory"),
-    },
-    {
-      title: "Rent Cap & Policies",
-      description: "Set and justify rental caps and increment policies.",
-      icon: <PolicyIcon fontSize="large" color="primary" />,
-      action: () => navigate("/rent-policy"),
-    },
-    {
-      title: "Rent History Tracker",
-      description: "Track and view the rental history of properties.",
-      icon: <HistoryIcon fontSize="large" color="primary" />,
-      action: () => navigate("/rent-history"),
-    }
-  ];
+const DashboardLayout = () => {
+  const [leftOpen, setLeftOpen] = useState(true);
+  const [rightOpen, setRightOpen] = useState(true);
 
   return (
-    <Box sx={{ minHeight: "100vh", bgcolor: "#f5f5f5", p: 4 }}>
-      <Typography variant="h4" fontWeight="bold" gutterBottom>
-        Welcome to Your Dashboard
-      </Typography>
-      <Divider sx={{ mb: 4 }} />
+    <Box sx={{ display: "flex", height: "100vh" }}>
+      <CssBaseline />
 
-      <Grid container spacing={4}>
-        {features.map((feature, index) => (
-          <Grid item xs={12} md={4} key={index}>
-            <Card elevation={3} sx={{ p: 2, height: "100%" }}>
-              <CardContent>
-                <Box display="flex" alignItems="center" justifyContent="center" mb={2}>
-                  {feature.icon}
-                </Box>
-                <Typography variant="h6" fontWeight="bold" gutterBottom>
-                  {feature.title}
-                </Typography>
-                <Typography variant="body2" color="text.secondary" gutterBottom>
-                  {feature.description}
-                </Typography>
-                <Button variant="outlined" fullWidth onClick={feature.action}>Go to {feature.title}</Button>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
+      <Drawer
+        variant="persistent"
+        open={leftOpen}
+        anchor="left"
+        sx={{
+          width: 260,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
+            width: 260,
+            boxSizing: 'border-box',
+            p: 2,
+          },
+        }}
+      >
+        <LeftSidebar />
+      </Drawer>
+
+      <Box sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            px: 3,
+            py: 2,
+            borderBottom: "1px solid #eee",
+            backgroundColor: "#fff"
+          }}
+        >
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <IconButton onClick={() => setLeftOpen(prev => !prev)}>
+              {leftOpen ? <ArrowBackIosIcon /> : <ArrowForwardIosIcon />}
+            </IconButton>
+            <Typography fontWeight={600} color="primary.main">
+              Selected Page
+            </Typography>
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                border: "1px solid #ccc",
+                borderRadius: 1,
+                px: 1,
+              }}
+            >
+              <SearchIcon fontSize="small" sx={{ mr: 1 }} />
+              <InputBase placeholder="Search…" sx={{ fontSize: 14 }} />
+            </Box>
+            <IconButton onClick={() => setRightOpen(prev => !prev)}>
+              <NotificationsIcon />
+            </IconButton>
+          </Box>
+        </Box>
+
+        <Box sx={{ flexGrow: 1, p: 3, overflowY: "auto", bgcolor: "#fafafa" }}>
+          <Outlet />
+        </Box>
+      </Box>
+
+      <Drawer
+        variant="persistent"
+        anchor="right"
+        open={rightOpen}
+        sx={{
+          width: 300,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
+            width: 300,
+            boxSizing: 'border-box',
+            p: 2,
+          },
+        }}
+      >
+        <RightSidebar />
+      </Drawer>
     </Box>
   );
 };
 
-export default DashboardPage;
+export default DashboardLayout;
