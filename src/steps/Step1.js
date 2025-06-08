@@ -59,7 +59,7 @@ const Step1 = () => {
                 <Typography variant="body1" align="center" sx={{ fontWeight: 600, color: "#000" }}>
                     Profile Photo
                 </Typography>
-                <Typography align="center" variant="body2" sx={{ mt: 2, color: "#000" }}>
+                <Typography variant="body2" sx={{ mt: 2, color: "#000" }}>
                     Let people know who you are. Add a photo.
                 </Typography>
                 <Box
