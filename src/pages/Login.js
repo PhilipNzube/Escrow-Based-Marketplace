@@ -109,8 +109,7 @@ const LoginPage = () => {
             }
           }}
           onClick={() => {
-            // Your navigation or action here
-            console.log("Navigate to Sign Up");
+            navigate(`/register`);
           }}
         >
           Don't have an account?
@@ -130,7 +129,7 @@ const LoginPage = () => {
           }}
           onClick={() => {
             // Your navigation or action here
-            console.log("Navigate to Sign Up");
+            console.log("Navigate to Forgot Password Page");
           }}
         >
           Forgot your password?

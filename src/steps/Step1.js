@@ -175,7 +175,7 @@ const Step1 = () => {
                 <Typography variant="body1" align="center" sx={{ fontWeight: 600, color: "#000" }}>
                     Name
                 </Typography>
-                <Typography align="center" variant="body2" sx={{ mt: 2, color: "#000" }}>
+                <Typography variant="body2" sx={{ mt: 2, color: "#000" }}>
                     Use your full name as it appears on your government issued ID
                 </Typography>
                 <AuthField

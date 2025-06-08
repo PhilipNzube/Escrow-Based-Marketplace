@@ -78,7 +78,7 @@ const RegisterPage = () => {
           </Box>
 
           {/* Step Title */}
-          <Typography align="center" variant="body2" sx={{ mb: 3, color: "#000" }}>
+          <Typography variant="body2" sx={{ mb: 3, color: "#000" }}>
             {stepInfo[currentStep]?.label || ''}
           </Typography>
         </Box>
