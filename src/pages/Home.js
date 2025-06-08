@@ -221,6 +221,7 @@ const HomePage = () => {
           logo={LogoIcon}
           centerItems={centerNavItems}
           rightIcons={rightIcons}
+          bg = "transparent"
         />
       </Box>
 

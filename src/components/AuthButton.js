@@ -4,7 +4,9 @@ import { Button } from "@mui/material";
 const AuthButton = ({
     text,
     bg,
-    textColor
+    textColor,
+    hoverbg,
+    hovertextColor
 }) => {
     return (
         <Button
@@ -20,8 +22,8 @@ const AuthButton = ({
                 backgroundColor: bg,
                 border: "1px solid #764D2E",
                 '&:hover': {
-                    backgroundColor: "#764d2e",
-                    color: "#fff"
+                    backgroundColor: hoverbg,
+                    color: hovertextColor
                 }
             }}
         >

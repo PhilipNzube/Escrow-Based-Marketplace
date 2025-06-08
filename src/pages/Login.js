@@ -17,13 +17,14 @@ const centerNavItems = [
 const LoginPage = () => {
   const navigate = useNavigate();
   return (
-    <Box sx={{ position: "relative", minHeight: "100vh", width: "100%" }}>
+    <Box sx={{ mt: 9, position: "relative", minHeight: "100vh", width: "100%" }}>
       <Box sx={{ position: "fixed", top: 0, width: "100%", zIndex: 10 }}>
         <ResponsiveNavBar
           title="TrustPay"
           logo={LogoIcon}
           centerItems={centerNavItems}
           logoutFunc={() => navigate(`/login`)}
+          bg="#fff"
         />
       </Box>
       <Box
@@ -40,18 +41,24 @@ const LoginPage = () => {
         </Typography>
         <AuthButton
           text="Continue with Google"
-          bg = "transparent"
-          textColor = "#764D2E"
+          bg="transparent"
+          textColor="#764D2E"
+          hoverbg="#764d2e"
+          hovertextColor="#fff"
         />
         <AuthButton
           text="Continue with Facebook"
           bg="transparent"
-          textColor = "#764D2E"
+          textColor="#764D2E"
+          hoverbg="#764d2e"
+          hovertextColor="#fff"
         />
         <AuthButton
           text="Continue with Apple"
           bg="transparent"
-          textColor = "#764D2E"
+          textColor="#764D2E"
+          hoverbg="#764d2e"
+          hovertextColor="#fff"
         />
 
         <Typography variant="body1" sx={{ mt: 3, mb: 2, fontWeight: "bold", color: "#000", whiteSpace: "nowrap" }}>
@@ -71,28 +78,50 @@ const LoginPage = () => {
         />
         <AuthButton
           text="Log In"
-          bg = "#764D2E"
-          textColor = "#fff"
+          bg="#764D2E"
+          textColor="#fff"
+          hoverbg="#fff"
+          hovertextColor="#764d2e"
         />
         <Typography
-  variant="body2"
+          variant="body2"
           sx={{
-    mt: 3,
-    textDecoration: 'underline',
-    color: '#000',
-    cursor: 'pointer',
-    fontWeight: 500,
-    '&:hover': {
-      color: '#5d3c24',
-    }
-  }}
-  onClick={() => {
-    // Your navigation or action here
-    console.log("Navigate to Sign Up");
-  }}
->
-  Don't have an account?
-</Typography>
+            mt: 5,
+            textDecoration: 'underline',
+            color: '#000',
+            cursor: 'pointer',
+            fontWeight: 500,
+            '&:hover': {
+              color: '#5d3c24',
+            }
+          }}
+          onClick={() => {
+            // Your navigation or action here
+            console.log("Navigate to Sign Up");
+          }}
+        >
+          Don't have an account?
+        </Typography>
+
+        <Typography
+          variant="body2"
+          sx={{
+            mt: 2,
+            textDecoration: 'underline',
+            color: '#000',
+            cursor: 'pointer',
+            fontWeight: 500,
+            '&:hover': {
+              color: '#5d3c24',
+            }
+          }}
+          onClick={() => {
+            // Your navigation or action here
+            console.log("Navigate to Sign Up");
+          }}
+        >
+          Forgot your password?
+        </Typography>
       </Box>
     </Box>
   );

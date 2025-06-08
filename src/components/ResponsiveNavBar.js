@@ -20,7 +20,8 @@ const ResponsiveNavBar = ({
     title,
     centerItems = [],
     rightIcons = [],
-    logoutFunc
+    logoutFunc,
+    bg
 }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -45,7 +46,7 @@ const ResponsiveNavBar = ({
 
     return (
         <>
-            <AppBar position="static" sx={{ bgcolor: "transparent" }}>
+            <AppBar position="static" sx={{ bgcolor: bg }}>
                 <Toolbar sx={{ justifyContent: "space-between" }}>
                     {/* Left: Logo + Title */}
                     <Box sx={{ display: "flex", alignItems: "center" }}>
