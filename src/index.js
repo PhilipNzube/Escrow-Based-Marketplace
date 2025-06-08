@@ -4,6 +4,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/Home.js';
 import LoginPage from './pages/Login.js';
 import RegisterPage from './pages/Register.js';
+import Step1 from './steps/Step1';
+import Step2 from './steps/Step2';
+import Step3 from './steps/Step3';
+import Step4 from './steps/Step4';
 import PropertyList from './pages/Properties.js';
 import PropertyDetails from './pages/PropertyDetails.js';
 import Dashboard from './pages/Dashboard.js';
@@ -50,7 +54,12 @@ function START() {
                     <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/login" element={<LoginPage />} />
-                        <Route path="/register" element={<RegisterPage />} />
+                        <Route path="/register" element={<RegisterPage />}>
+                            <Route index element={<Step1 />} />
+                            <Route path="step-2" element={<Step2 />} />
+                            <Route path="step-3" element={<Step3 />} />
+                            <Route path="step-4" element={<Step4 />} />
+                        </Route>
                         <Route path="/properties" element={<PropertyList />} />
                         <Route path="/property/:id" element={<PropertyDetails />} />
                         <Route path="/dashboard" element={<Dashboard />} />

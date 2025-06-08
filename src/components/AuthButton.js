@@ -13,10 +13,7 @@ const AuthButton = ({
             variant="contained"
             sx={{
                 mt: 3,
-                width: {
-                    xs: '100%',
-                    sm: '320px',
-                },
+                width: '100%',
                 boxShadow: 'none',
                 color: textColor,
                 backgroundColor: bg,

@@ -9,10 +9,7 @@ const AuthField = ({
         <Box
           sx={{
             mt: 2,
-            width: {
-              xs: '100%',
-              sm: '320px',
-            },
+            width: '100%',
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
