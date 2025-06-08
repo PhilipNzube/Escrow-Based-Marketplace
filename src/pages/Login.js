@@ -1,33 +1,29 @@
 import React, { useState } from "react";
-import { Box, Container, Typography, TextField, Button, Paper, Alert } from "@mui/material";
+import { Box, Typography, TextField, Button, Paper, Alert } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import LogoIcon from "../images/Logo.png";
+import ResponsiveNavBar from "../components/ResponsiveNavBar";
+
+const centerNavItems = [
+    { text: "How it works", fontWeight: "bold", onClick: () => console.log("Home clicked") },
+    { text: "Why TrustPay", onClick: () => console.log("Buy clicked") },
+    { text: "Pricing", onClick: () => console.log("Sell clicked") },
+    { text: "Resources", onClick: () => console.log("Categories clicked") },
+  ];
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
-  const handleLogin = () => {
-    if (!email || !password) {
-      setError("Please fill in all fields.");
-      return;
-    }
-    setError("");
-    // Simulate successful login
-    navigate("/dashboard");
-  };
-
   return (
-    <Container maxWidth="sm">
-      <Paper elevation={3} sx={{ mt: 8, p: 4 }}>
-        <Typography variant="h5" gutterBottom>Login</Typography>
-        {error && <Alert severity="error">{error}</Alert>}
-        <TextField label="Email" fullWidth margin="normal" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <TextField label="Password" type="password" fullWidth margin="normal" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <Button variant="contained" fullWidth sx={{ mt: 2 }} onClick={handleLogin}>Login</Button>
-      </Paper>
-    </Container>
+    <Box sx={{ position: "relative", minHeight: "100vh", width: "100%" }}>
+      <Box sx={{ position: "fixed", top: 0, width: "100%", zIndex: 10 }}>
+        <ResponsiveNavBar
+          title="TrustPay"
+          logo={LogoIcon}
+          centerItems={centerNavItems}
+          logoutFunc={() => navigate(`/login`)}
+        />
+      </Box>
+    </Box>
   );
 };
 

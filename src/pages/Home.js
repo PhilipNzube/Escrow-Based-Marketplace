@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Box,
   Typography,
@@ -48,68 +49,70 @@ import FacebookIcon from "../images/logos_facebook.png";
 import InstaIcon from "../images/skill-icons_instagram.png";
 import TwitterIcon from "../images/prime_twitter.png";
 
-const categories = [
-  "Furniture",
-  "Electronics",
-  "Fashion",
-  "Toys",
-  "Books",
-  "Sports",
-  "Groceries",
-  "Health",
-  "Automotive",
-];
 
-
-const centerNavItems = [
-  { text: "Home", onClick: () => console.log("Home clicked") },
-  { text: "Buy", onClick: () => console.log("Buy clicked") },
-  { text: "Sell", onClick: () => console.log("Sell clicked") },
-  { text: "Categories", onClick: () => console.log("Categories clicked") },
-  { text: "Deals", onClick: () => console.log("Deals clicked") },
-];
-
-const rightIcons = [
-  { src: SearchIcon, alt: "Search", onClick: () => console.log("Search") },
-  { src: CartIcon, alt: "Cart", onClick: () => console.log("Cart") },
-  { src: UserIcon, alt: "User", onClick: () => console.log("User") },
-];
-
-const products = [
-  { id: 1, image: ProductsImg, title: 'Blender', subtitle: 'Light Blender', price: '$142' },
-  { id: 2, image: ProductsImg2, title: 'Toaster', subtitle: 'Modern Toaster', price: '$99' },
-  { id: 3, image: ProductsImg3, title: 'Fan', subtitle: 'Silent Fan', price: '$75' },
-  { id: 4, image: ProductsImg4, title: 'Lamp', subtitle: 'Bedside Lamp', price: '$39' },
-  { id: 5, image: ProductsImg, title: 'Blender', subtitle: 'Light Blender', price: '$142' },
-  { id: 6, image: ProductsImg2, title: 'Toaster', subtitle: 'Modern Toaster', price: '$99' },
-  { id: 7, image: ProductsImg3, title: 'Fan', subtitle: 'Silent Fan', price: '$75' },
-  { id: 8, image: ProductsImg4, title: 'Lamp', subtitle: 'Bedside Lamp', price: '$39' },
-  // Add more...
-];
-
-const testimonialData = [
-  {
-    image: SellerImg,
-    body: "My experience with TrustPay is a complete success...",
-    position: "Leona Paul",
-    position2: "Businesswoman and CEO",
-  },
-  {
-    image: SellerImg2,
-    body: "Smooth delivery and seamless buying experience.",
-    position: "Daniel Ekong",
-    position2: "Online Entrepreneur",
-  },
-  {
-    image: SellerImg3,
-    body: "TrustPay helped me scale my shop within 2 months.",
-    position: "Amina Yusuf",
-    position2: "Retail Business Owner",
-  },
-];
 
 
 const HomePage = () => {
+  const navigate = useNavigate();
+  const categories = [
+    "Furniture",
+    "Electronics",
+    "Fashion",
+    "Toys",
+    "Books",
+    "Sports",
+    "Groceries",
+    "Health",
+    "Automotive",
+  ];
+
+
+  const centerNavItems = [
+    { text: "Home", onClick: () => console.log("Home clicked") },
+    { text: "Buy", onClick: () => console.log("Buy clicked") },
+    { text: "Sell", onClick: () => console.log("Sell clicked") },
+    { text: "Categories", onClick: () => console.log("Categories clicked") },
+    { text: "Deals", onClick: () => console.log("Deals clicked") },
+  ];
+
+  const rightIcons = [
+    { src: SearchIcon, alt: "Search", onClick: () => console.log("Search") },
+    { src: CartIcon, alt: "Cart", onClick: () => console.log("Cart") },
+    { src: UserIcon, alt: "User", onClick: () => navigate(`/login`) },
+  ];
+
+  const products = [
+    { id: 1, image: ProductsImg, title: 'Blender', subtitle: 'Light Blender', price: '$142' },
+    { id: 2, image: ProductsImg2, title: 'Toaster', subtitle: 'Modern Toaster', price: '$99' },
+    { id: 3, image: ProductsImg3, title: 'Fan', subtitle: 'Silent Fan', price: '$75' },
+    { id: 4, image: ProductsImg4, title: 'Lamp', subtitle: 'Bedside Lamp', price: '$39' },
+    { id: 5, image: ProductsImg, title: 'Blender', subtitle: 'Light Blender', price: '$142' },
+    { id: 6, image: ProductsImg2, title: 'Toaster', subtitle: 'Modern Toaster', price: '$99' },
+    { id: 7, image: ProductsImg3, title: 'Fan', subtitle: 'Silent Fan', price: '$75' },
+    { id: 8, image: ProductsImg4, title: 'Lamp', subtitle: 'Bedside Lamp', price: '$39' },
+    // Add more...
+  ];
+
+  const testimonialData = [
+    {
+      image: SellerImg,
+      body: "My experience with TrustPay is a complete success...",
+      position: "Leona Paul",
+      position2: "Businesswoman and CEO",
+    },
+    {
+      image: SellerImg2,
+      body: "Smooth delivery and seamless buying experience.",
+      position: "Daniel Ekong",
+      position2: "Online Entrepreneur",
+    },
+    {
+      image: SellerImg3,
+      body: "TrustPay helped me scale my shop within 2 months.",
+      position: "Amina Yusuf",
+      position2: "Retail Business Owner",
+    },
+  ];
   const [openIndexes, setOpenIndexes] = React.useState([]);
 
   const toggleOpen = (index) => {

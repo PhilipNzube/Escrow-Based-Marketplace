@@ -11,6 +11,7 @@ import {
     Box,
     useTheme,
     useMediaQuery,
+    Button
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
@@ -19,6 +20,7 @@ const ResponsiveNavBar = ({
     title,
     centerItems = [],
     rightIcons = [],
+    logoutFunc
 }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -74,8 +76,9 @@ const ResponsiveNavBar = ({
                                     variant="button"
                                     sx={{
                                         cursor: "pointer",
-                                        borderBottom: selectedCenterIndex === index ? '2px solid #764D2E' : 'none',
+                                        borderBottom: rightIcons == null && selectedCenterIndex === index ? '2px solid #764D2E' : 'none',
                                         pb: 0.5,
+                                        fontWeight: item.fontWeight ?? 'normal',
                                     }}
                                     onClick={() => handleCenterItemClick(item, index)}
                                 >
@@ -87,8 +90,26 @@ const ResponsiveNavBar = ({
 
                     {/* Right: Icon Buttons */}
                     <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-                        {!isMobile &&
-                            rightIcons.map((icon, index) => (
+                        {(!isMobile && (rightIcons == null || rightIcons.length === 0)) ? (
+                            <Button
+                                onClick={logoutFunc}
+                                variant="contained"
+                                sx={{
+                                    px: 4,
+                                    py: 1.5,
+                                    color: "#764D2E",
+                                    backgroundColor: "transparent",
+                                    border: "1px solid #764D2E",
+                                    '&:hover': {
+                                        backgroundColor: "#764d2e",
+                                        color: "#fff"
+                                    }
+                                }}
+                            >
+                                Sign Up
+                            </Button>
+                        ) : (
+                            !isMobile && rightIcons.map((icon, index) => (
                                 <IconButton
                                     key={index}
                                     onClick={() => handleRightItemClick(icon, index)}
@@ -98,7 +119,6 @@ const ResponsiveNavBar = ({
                                         p: 0.5,
                                     }}
                                 >
-
                                     <Box
                                         component="img"
                                         src={icon.src}
@@ -112,13 +132,17 @@ const ResponsiveNavBar = ({
                                         }}
                                     />
                                 </IconButton>
-                            ))}
+                            ))
+                        )}
+
                         {isMobile && (
                             <IconButton onClick={toggleDrawer} color="#764D2E">
                                 <MenuIcon />
                             </IconButton>
                         )}
                     </Box>
+
+
                 </Toolbar>
             </AppBar>
 
@@ -134,7 +158,7 @@ const ResponsiveNavBar = ({
                                 selected={selectedCenterIndex === index}
                                 onClick={() => handleCenterItemClick(item, index)}
                                 sx={{
-                                    borderLeft: selectedCenterIndex === index ? '4px solid #764D2E' : '4px solid transparent',
+                                    borderLeft: rightIcons == null && selectedCenterIndex === index ? '4px solid #764D2E' : '4px solid transparent',
                                     pl: 2, // padding to align text nicely
                                 }}
                             >
@@ -142,37 +166,79 @@ const ResponsiveNavBar = ({
                             </ListItem>
                         ))}
 
-                        <ListItem sx={{ mt: 2 }}>
-                            <ListItemText primary="Quick Access" />
-                        </ListItem>
-                        {rightIcons.map((icon, index) => (
-                            <ListItem
-                                button
-                                key={index}
-                                selected={selectedRightIndex === index}
-                                onClick={() => handleRightItemClick(icon, index)}
+                        {rightIcons == null && (
+                            <Button
+                                onClick={logoutFunc}
+                                variant="contained"
                                 sx={{
-                                    borderLeft: selectedRightIndex === index ? '4px solid #764D2E' : '4px solid transparent',
-                                    pl: 2,
+                                    mt: 3,
+                                    px: 4,
+                                    py: 1.5,
+                                    color: "#764D2E",
+                                    backgroundColor: "transparent",
+                                    borderColor: "#764D2E",
+                                    '&:hover': {
+                                        backgroundColor: "#764d2e"
+                                    }
                                 }}
                             >
-                                <Box
-                                    component="img"
-                                    src={icon.src}
-                                    alt={icon.alt}
-                                    sx={{
-                                        height: 22,
-                                        width: 'auto',
-                                        mr: 2,
-                                        objectFit: 'contain',
-                                        opacity: selectedRightIndex === index ? 0.8 : 1,
-                                        transition: '0.3s',
-                                    }}
-                                />
-                                <ListItemText primary={icon.alt} />
-                            </ListItem>
+                                Sign Up
+                            </Button>
+                        )}
+                        {(rightIcons == null || rightIcons.length === 0) ? (
+                            <Button
+                                onClick={logoutFunc}
+                                variant="contained"
+                                sx={{
+                                    mt: 3,
+                                    px: 4,
+                                    py: 1.5,
+                                    color: "#764D2E",
+                                    backgroundColor: "transparent",
+                                    border: "1px solid #764D2E",
+                                    '&:hover': {
+                                        backgroundColor: "#764d2e",
+                                        color: "#fff"
+                                    }
+                                }}
+                            >
+                                Sign Up
+                            </Button>
+                        ) : (
+                            <>
+                                <ListItem sx={{ mt: 2 }}>
+                                    <ListItemText primary="Quick Access" />
+                                </ListItem>
+                                {rightIcons.map((icon, index) => (
+                                    <ListItem
+                                        button
+                                        key={index}
+                                        selected={selectedRightIndex === index}
+                                        onClick={() => handleRightItemClick(icon, index)}
+                                        sx={{
+                                            borderLeft: selectedRightIndex === index ? '4px solid #764D2E' : '4px solid transparent',
+                                            pl: 2,
+                                        }}
+                                    >
+                                        <Box
+                                            component="img"
+                                            src={icon.src}
+                                            alt={icon.alt}
+                                            sx={{
+                                                height: 22,
+                                                width: 'auto',
+                                                mr: 2,
+                                                objectFit: 'contain',
+                                                opacity: selectedRightIndex === index ? 0.8 : 1,
+                                                transition: '0.3s',
+                                            }}
+                                        />
+                                        <ListItemText primary={icon.alt} />
+                                    </ListItem>
+                                ))}
+                            </>
+                        )}
 
-                        ))}
                     </List>
                 </Box>
             </Drawer>
