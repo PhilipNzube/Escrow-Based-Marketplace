@@ -906,71 +906,30 @@ const HomePage = () => {
                 }}
               />
             </Box>
-{isMobile ? (
-        // 🟢 MOBILE VIEW: Stacked input and button
-        <Box sx={{ display: 'flex', flexDirection: 'column'}}>
-          <TextField
-            placeholder="Email Address"
-            variant="outlined"
-            fullWidth
-            sx={{
-              borderRadius: 1,
-              backgroundColor: '#fff',
-              '& .MuiOutlinedInput-root': {
-                borderRadius: 1,
-                '& fieldset': { borderColor: 'transparent' },
-                '&:hover fieldset': { borderColor: 'transparent' },
-                '&.Mui-focused fieldset': { borderColor: 'transparent' },
-                '& input': { color: '#000' },
-              },
-            }}
-          />
-          <Button
-            variant="contained"
-            fullWidth
-            sx={{
-              backgroundColor: '#764D2E',
-              '&:hover': {
-                backgroundColor: '#5d3c24',
-              },
-            }}
-          >
-            Subscribe
-          </Button>
-        </Box>
-      ) : (
-        // 🟤 DESKTOP VIEW: Input with inline button
-        <TextField
-          placeholder="Email Address"
-          variant="outlined"
-          fullWidth
-          sx={{
-            borderRadius: 1,
-            backgroundColor: '#fff',
-            '& .MuiOutlinedInput-root': {
-              backgroundColor: 'rgba(118, 77, 46, 0.3)',
-              borderRadius: 1,
-              '& fieldset': { borderColor: 'transparent' },
-              '&:hover fieldset': { borderColor: 'transparent' },
-              '&.Mui-focused': {
-                backgroundColor: '#fff',
-                '& fieldset': { borderColor: 'transparent' },
-              },
-              '& input': {
-                color: '#000',
-                pr: 1,
-              },
-            },
-          }}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
+            {isMobile ? (
+              // 🟢 MOBILE VIEW: Stacked input and button
+              <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                <TextField
+                  placeholder="Email Address"
+                  variant="outlined"
+                  fullWidth
+                  sx={{
+                    borderRadius: 1,
+                    backgroundColor: '#fff',
+                    '& .MuiOutlinedInput-root': {
+                      borderRadius: 1,
+                      '& fieldset': { borderColor: 'transparent' },
+                      '&:hover fieldset': { borderColor: 'transparent' },
+                      '&.Mui-focused fieldset': { borderColor: 'transparent' },
+                      '& input': { color: '#000' },
+                    },
+                  }}
+                />
                 <Button
                   variant="contained"
+                  fullWidth
                   sx={{
                     backgroundColor: '#764D2E',
-                    height: '100%',
-                    px: 2,
                     '&:hover': {
                       backgroundColor: '#5d3c24',
                     },
@@ -978,11 +937,52 @@ const HomePage = () => {
                 >
                   Subscribe
                 </Button>
-              </InputAdornment>
-            ),
-          }}
-        />
-      )}
+              </Box>
+            ) : (
+              // 🟤 DESKTOP VIEW: Input with inline button
+              <TextField
+                placeholder="Email Address"
+                variant="outlined"
+                fullWidth
+                sx={{
+                  borderRadius: 1,
+                  backgroundColor: '#fff',
+                  '& .MuiOutlinedInput-root': {
+                    backgroundColor: 'rgba(118, 77, 46, 0.3)',
+                    borderRadius: 1,
+                    '& fieldset': { borderColor: 'transparent' },
+                    '&:hover fieldset': { borderColor: 'transparent' },
+                    '&.Mui-focused': {
+                      backgroundColor: '#fff',
+                      '& fieldset': { borderColor: 'transparent' },
+                    },
+                    '& input': {
+                      color: '#000',
+                      pr: 1,
+                    },
+                  },
+                }}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <Button
+                        variant="contained"
+                        sx={{
+                          backgroundColor: '#764D2E',
+                          height: '100%',
+                          px: 2,
+                          '&:hover': {
+                            backgroundColor: '#5d3c24',
+                          },
+                        }}
+                      >
+                        Subscribe
+                      </Button>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            )}
           </Box>
         </Box>
         <Divider sx={{ mt: 5, borderColor: "#ccc", width: "100%" }} />

@@ -3,6 +3,9 @@ import { Box, Typography, TextField, Button, Paper, Alert } from "@mui/material"
 import { useNavigate } from "react-router-dom";
 import LogoIcon from "../images/Logo.png";
 import ResponsiveNavBar from "../components/ResponsiveNavBar";
+import AuthButton from "../components/AuthButton";
+import AuthField from "../components/AuthField";
+import RoleSelector from "../components/RoleSelector";
 
 const centerNavItems = [
   { text: "How it works", fontWeight: "bold", onClick: () => console.log("Home clicked") },
@@ -35,66 +38,61 @@ const LoginPage = () => {
         <Typography variant="h6" sx={{ fontWeight: "bold", color: "#000", whiteSpace: "nowrap" }}>
           Log In or Sign Up to TrustPay
         </Typography>
-        <Button
-          variant="contained"
+        <AuthButton
+          text="Continue with Google"
+          bg = "transparent"
+          textColor = "#764D2E"
+        />
+        <AuthButton
+          text="Continue with Facebook"
+          bg="transparent"
+          textColor = "#764D2E"
+        />
+        <AuthButton
+          text="Continue with Apple"
+          bg="transparent"
+          textColor = "#764D2E"
+        />
+
+        <Typography variant="body1" sx={{ mt: 3, mb: 2, fontWeight: "bold", color: "#000", whiteSpace: "nowrap" }}>
+          Or use your email address
+        </Typography>
+
+        <AuthField
+          labelText="Email Address"
+          placeholderText="Enter your email address"
+        />
+        <AuthField
+          labelText="Password"
+          placeholderText="Enter your password"
+        />
+        <RoleSelector
+          defaultText="Buyer"
+        />
+        <AuthButton
+          text="Log In"
+          bg = "#764D2E"
+          textColor = "#fff"
+        />
+        <Typography
+  variant="body2"
           sx={{
-            mt: 3,
-            width: {
-              xs: '100%',
-              sm: '320px',
-            },
-            boxShadow: 'none',
-            color: "#764D2E",
-            backgroundColor: "transparent",
-            border: "1px solid #764D2E",
-            '&:hover': {
-              backgroundColor: "#764d2e",
-              color: "#fff"
-            }
-          }}
-        >
-          Continue with Google
-        </Button>
-        <Button
-          variant="contained"
-          sx={{
-            mt: 3,
-            width: {
-              xs: '100%',
-              sm: '320px',
-            },
-            boxShadow: 'none',
-            color: "#764D2E",
-            backgroundColor: "transparent",
-            border: "1px solid #764D2E",
-            '&:hover': {
-              backgroundColor: "#764d2e",
-              color: "#fff"
-            }
-          }}
-        >
-          Continue with Facebook
-        </Button>
-        <Button
-          variant="contained"
-          sx={{
-            mt: 3,
-            width: {
-              xs: '100%',
-              sm: '320px',
-            },
-            boxShadow: 'none',
-            color: "#764D2E",
-            backgroundColor: "transparent",
-            border: "1px solid #764D2E",
-            '&:hover': {
-              backgroundColor: "#764d2e",
-              color: "#fff"
-            }
-          }}
-        >
-          Continue with Apple
-        </Button>
+    mt: 3,
+    textDecoration: 'underline',
+    color: '#000',
+    cursor: 'pointer',
+    fontWeight: 500,
+    '&:hover': {
+      color: '#5d3c24',
+    }
+  }}
+  onClick={() => {
+    // Your navigation or action here
+    console.log("Navigate to Sign Up");
+  }}
+>
+  Don't have an account?
+</Typography>
       </Box>
     </Box>
   );
