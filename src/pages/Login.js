@@ -17,10 +17,16 @@ const centerNavItems = [
 const LoginPage = () => {
   const navigate = useNavigate();
   return (
-    <Box sx={{ display: "flex",
+    <Box sx={{
+      display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          alignItems: "center",mt: 9, position: "relative", minHeight: "100vh", width: "100%" }}>
+      alignItems: "center",
+      mt: 9,
+      position: "relative",
+      minHeight: "100vh",
+      width: "100%"
+    }}>
       <Box sx={{ position: "fixed", top: 0, width: "100%", zIndex: 10 }}>
         <ResponsiveNavBar
           title="TrustPay"
@@ -32,7 +38,7 @@ const LoginPage = () => {
       </Box>
       <Box
         sx={{
-          mx: 4,
+          px: 4,
           width: {
             xs: '100%',
             sm: '320px',
