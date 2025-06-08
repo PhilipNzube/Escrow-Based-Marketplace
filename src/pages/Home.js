@@ -11,7 +11,9 @@ import {
   ListItemText,
   Collapse,
   Divider,
-  InputAdornment
+  InputAdornment,
+  useMediaQuery,
+  useTheme
 } from "@mui/material";
 import Slider from "react-slick";
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
@@ -204,6 +206,9 @@ const HomePage = () => {
     </IconButton>
   );
 
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
 
 
@@ -901,52 +906,83 @@ const HomePage = () => {
                 }}
               />
             </Box>
-            <TextField
-              placeholder="Email Address"
-              variant="outlined"
-              fullWidth
-              sx={{
+{isMobile ? (
+        // 🟢 MOBILE VIEW: Stacked input and button
+        <Box sx={{ display: 'flex', flexDirection: 'column'}}>
+          <TextField
+            placeholder="Email Address"
+            variant="outlined"
+            fullWidth
+            sx={{
+              borderRadius: 1,
+              backgroundColor: '#fff',
+              '& .MuiOutlinedInput-root': {
                 borderRadius: 1,
+                '& fieldset': { borderColor: 'transparent' },
+                '&:hover fieldset': { borderColor: 'transparent' },
+                '&.Mui-focused fieldset': { borderColor: 'transparent' },
+                '& input': { color: '#000' },
+              },
+            }}
+          />
+          <Button
+            variant="contained"
+            fullWidth
+            sx={{
+              backgroundColor: '#764D2E',
+              '&:hover': {
+                backgroundColor: '#5d3c24',
+              },
+            }}
+          >
+            Subscribe
+          </Button>
+        </Box>
+      ) : (
+        // 🟤 DESKTOP VIEW: Input with inline button
+        <TextField
+          placeholder="Email Address"
+          variant="outlined"
+          fullWidth
+          sx={{
+            borderRadius: 1,
+            backgroundColor: '#fff',
+            '& .MuiOutlinedInput-root': {
+              backgroundColor: 'rgba(118, 77, 46, 0.3)',
+              borderRadius: 1,
+              '& fieldset': { borderColor: 'transparent' },
+              '&:hover fieldset': { borderColor: 'transparent' },
+              '&.Mui-focused': {
                 backgroundColor: '#fff',
-                '& .MuiOutlinedInput-root': {
-                  backgroundColor: 'rgba(118, 77, 46, 0.3)',  // partially transparent brown
-                  borderRadius: 1,
-                  '& fieldset': {
-                    borderColor: 'transparent',   // remove border normally
-                  },
-                  '&:hover fieldset': {
-                    borderColor: 'transparent',   // no border on hover
-                  },
-                  '&.Mui-focused': {
-                    backgroundColor: '#fff', // fully opaque brown when focused
-                    '& fieldset': {
-                      borderColor: 'transparent',  // still no border on focus
+                '& fieldset': { borderColor: 'transparent' },
+              },
+              '& input': {
+                color: '#000',
+                pr: 1,
+              },
+            },
+          }}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: '#764D2E',
+                    height: '100%',
+                    px: 2,
+                    '&:hover': {
+                      backgroundColor: '#5d3c24',
                     },
-                  },
-                  '& input': {
-                    color: '#000',  // text color visible over brown bg
-                  },
-                },
-              }}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <Button
-                      variant="contained"
-                      sx={{
-                        height: '100%',
-                        backgroundColor: '#764D2E',
-                        '&:hover': {
-                          backgroundColor: '#5d3c24',
-                        },
-                      }}
-                    >
-                      Subscribe
-                    </Button>
-                  </InputAdornment>
-                ),
-              }}
-            />
+                  }}
+                >
+                  Subscribe
+                </Button>
+              </InputAdornment>
+            ),
+          }}
+        />
+      )}
           </Box>
         </Box>
         <Divider sx={{ mt: 5, borderColor: "#ccc", width: "100%" }} />

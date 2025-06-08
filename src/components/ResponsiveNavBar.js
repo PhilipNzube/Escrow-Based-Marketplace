@@ -171,9 +171,8 @@ const ResponsiveNavBar = ({
                                 onClick={logoutFunc}
                                 variant="contained"
                                 sx={{
-                                    mt: 3,
                                     px: 4,
-                                    py: 1.5,
+                                    py: 1,
                                     color: "#764D2E",
                                     backgroundColor: "transparent",
                                     borderColor: "#764D2E",
