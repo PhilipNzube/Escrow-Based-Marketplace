@@ -7,7 +7,6 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  Divider,
   Collapse,
 } from "@mui/material";
 import { NavLink, useLocation } from "react-router-dom";
@@ -15,7 +14,6 @@ import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PersonIcon from '@mui/icons-material/Person';
 import ListIcon from '@mui/icons-material/List';
@@ -30,51 +28,70 @@ export default function LeftSidebar() {
 
   const isActive = (path) => location.pathname === path;
 
+  const navItemStyle = (path) => ({
+    '&.Mui-selected': {
+      backgroundColor: 'primary.light',
+      '& .MuiListItemText-primary': {
+        color: 'primary.main',
+        fontWeight: 'bold',
+      },
+    },
+  });
+
   return (
     <Box>
       {/* Profile Section */}
-      <Box sx={{ textAlign: 'center', mb: 2 }}>
-        <Avatar sx={{ width: 64, height: 64, mx: 'auto', mb: 1 }}>P</Avatar>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          gap: 2,
+          alignItems: "center",
+          textAlign: 'center',
+          mb: 2
+        }}
+      >
+        <Avatar sx={{ width: 24, height: 24 }}>P</Avatar>
         <Typography variant="subtitle1" fontWeight={600}>Philip</Typography>
       </Box>
 
       {/* Favourites */}
       <Typography variant="caption" sx={{ ml: 2, mb: 1 }}>Favourites</Typography>
       <List>
-        <ListItem button component={NavLink} to="/dashboard" selected={isActive('/dashboard/active')}>
-          <ListItemIcon><FiberManualRecordIcon fontSize="small" color="disabled" /></ListItemIcon>
-          <ListItemText primary="Active" />
+        <ListItem button component={NavLink} to="/dashboard" selected={isActive('/dashboard')} sx={navItemStyle('/dashboard')}>
+          <ListItemIcon><FiberManualRecordIcon fontSize="small" /></ListItemIcon>
+          <ListItemText primary="Active" primaryTypographyProps={{ sx: { color: 'black' } }} />
         </ListItem>
-        <ListItem button component={NavLink} to="/dashboard/pending" selected={isActive('/dashboard/pending')}>
-          <ListItemIcon><FiberManualRecordIcon fontSize="small" color="disabled" /></ListItemIcon>
-          <ListItemText primary="Pending" />
+        <ListItem button component={NavLink} to="/dashboard/pending" selected={isActive('/dashboard/pending')} sx={navItemStyle('/dashboard/pending')}>
+          <ListItemIcon><FiberManualRecordIcon fontSize="small" /></ListItemIcon>
+          <ListItemText primary="Pending" primaryTypographyProps={{ sx: { color: 'black' } }} />
         </ListItem>
       </List>
 
       {/* Dashboards */}
       <Typography variant="caption" sx={{ ml: 2, mt: 2, mb: 1 }}>Dashboards</Typography>
       <List>
-        <ListItem button component={NavLink} to="/dashboard/active-dash" selected={isActive('/dashboard/active-dash')}>
+        <ListItem button component={NavLink} to="/dashboard/active-dash" selected={isActive('/dashboard/active-dash')} sx={navItemStyle('/dashboard/active-dash')}>
           <ListItemIcon><NotificationsActiveIcon /></ListItemIcon>
-          <ListItemText primary="Active" />
+          <ListItemText primary="Active" primaryTypographyProps={{ sx: { color: 'black' } }} />
         </ListItem>
-        <ListItem button component={NavLink} to="/dashboard/pending-dash" selected={isActive('/dashboard/pending-dash')}>
+        <ListItem button component={NavLink} to="/dashboard/pending-dash" selected={isActive('/dashboard/pending-dash')} sx={navItemStyle('/dashboard/pending-dash')}>
           <ListItemIcon><HourglassEmptyIcon /></ListItemIcon>
-          <ListItemText primary="Pending" />
+          <ListItemText primary="Pending" primaryTypographyProps={{ sx: { color: 'black' } }} />
         </ListItem>
-        <ListItem button component={NavLink} to="/dashboard/completed" selected={isActive('/dashboard/completed')}>
+        <ListItem button component={NavLink} to="/dashboard/completed" selected={isActive('/dashboard/completed')} sx={navItemStyle('/dashboard/completed')}>
           <ListItemIcon><DoneAllIcon /></ListItemIcon>
-          <ListItemText primary="Completed" />
+          <ListItemText primary="Completed" primaryTypographyProps={{ sx: { color: 'black' } }} />
         </ListItem>
         <ListItem button onClick={() => setOpenAll(!openAll)}>
           <ListItemIcon><ExpandMoreIcon /></ListItemIcon>
-          <ListItemText primary="All" />
+          <ListItemText primary="All" primaryTypographyProps={{ sx: { color: 'black' } }} />
         </ListItem>
         <Collapse in={openAll} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             <ListItem button sx={{ pl: 4 }} component={NavLink} to="/dashboard/all-stats" selected={isActive('/dashboard/all-stats')}>
               <ListItemIcon><ListIcon /></ListItemIcon>
-              <ListItemText primary="All Stats" />
+              <ListItemText primary="All Stats" primaryTypographyProps={{ sx: { color: 'black' } }} />
             </ListItem>
           </List>
         </Collapse>
@@ -85,31 +102,31 @@ export default function LeftSidebar() {
       <List>
         <ListItem button onClick={() => setOpenProfile(!openProfile)}>
           <ListItemIcon><ExpandMoreIcon /></ListItemIcon>
-          <ListItemText primary="User Profile" />
+          <ListItemText primary="User Profile" primaryTypographyProps={{ sx: { color: 'black' } }} />
         </ListItem>
         <Collapse in={openProfile} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             <ListItem button sx={{ pl: 4 }} component={NavLink} to="/dashboard/profile" selected={isActive('/dashboard/profile')}>
               <ListItemIcon><PersonIcon /></ListItemIcon>
-              <ListItemText primary="Profile Info" />
+              <ListItemText primary="Profile Info" primaryTypographyProps={{ sx: { color: 'black' } }} />
             </ListItem>
           </List>
         </Collapse>
-        <ListItem button component={NavLink} to="/dashboard/listings" selected={isActive('/dashboard/listings')}>
+        <ListItem button component={NavLink} to="/dashboard/listings" selected={isActive('/dashboard/listings')} sx={navItemStyle('/dashboard/listings')}>
           <ListItemIcon><ListIcon /></ListItemIcon>
-          <ListItemText primary="Listings" />
+          <ListItemText primary="Listings" primaryTypographyProps={{ sx: { color: 'black' } }} />
         </ListItem>
-        <ListItem button component={NavLink} to="/dashboard/resources" selected={isActive('/dashboard/resources')}>
+        <ListItem button component={NavLink} to="/dashboard/resources" selected={isActive('/dashboard/resources')} sx={navItemStyle('/dashboard/resources')}>
           <ListItemIcon><LibraryBooksIcon /></ListItemIcon>
-          <ListItemText primary="Resources" />
+          <ListItemText primary="Resources" primaryTypographyProps={{ sx: { color: 'black' } }} />
         </ListItem>
-        <ListItem button component={NavLink} to="/dashboard/orders" selected={isActive('/dashboard/orders')}>
+        <ListItem button component={NavLink} to="/dashboard/orders" selected={isActive('/dashboard/orders')} sx={navItemStyle('/dashboard/orders')}>
           <ListItemIcon><ShoppingCartIcon /></ListItemIcon>
-          <ListItemText primary="Orders" />
+          <ListItemText primary="Orders" primaryTypographyProps={{ sx: { color: 'black' } }} />
         </ListItem>
-        <ListItem button component={NavLink} to="/dashboard/create-offer" selected={isActive('/dashboard/create-offer')}>
+        <ListItem button component={NavLink} to="/dashboard/create-offer" selected={isActive('/dashboard/create-offer')} sx={navItemStyle('/dashboard/create-offer')}>
           <ListItemIcon><LocalOfferIcon /></ListItemIcon>
-          <ListItemText primary="Create Offer" />
+          <ListItemText primary="Create Offer" primaryTypographyProps={{ sx: { color: 'black' } }} />
         </ListItem>
       </List>
     </Box>
