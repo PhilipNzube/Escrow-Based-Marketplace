@@ -56,7 +56,7 @@ const Step1 = () => {
                     justifyContent: "center",
                     alignItems: "flex-start",
                 }}>
-                <Typography variant="body1" align="center" sx={{ fontWeight: 600, color: "#000" }}>
+                <Typography variant="body1" sx={{ fontWeight: 600, color: "#000" }}>
                     Profile Photo
                 </Typography>
                 <Typography variant="body2" sx={{ mt: 2, color: "#000" }}>
