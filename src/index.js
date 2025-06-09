@@ -2,23 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/Home.js';
-import LoginPage from './pages/Login.js';
-import RegisterPage from './pages/Register.js';
-import Step1 from './steps/Step1';
-import Step2 from './steps/Step2';
-import Step3 from './steps/Step3';
-import Step4 from './steps/Step4';
-import Dashboard from './pages/Dashboard.js';
-import ActivePage from './pages/ActivePage.js';
-import UserProfile from './pages/UserProfile.js';
+import LoginPage from './authpages/Login.js';
+import RegisterPage from './authpages/Register.js';
+import Step1 from './authpages/steps/Step1';
+import Step2 from './authpages/steps/Step2';
+import Step3 from './authpages/steps/Step3';
+import Step4 from './authpages/steps/Step4';
+import Dashboard from './dashboardpages/Dashboard.js';
+import ActivePage from './dashboardpages/ActivePage.js';
+import Listing from './dashboardpages/Listing.js';
+import UserProfile from './dashboardpages/UserProfile.js';
 import './index.css';
 import './fonts/fonts.css';
 import { SnackbarProvider } from 'notistack';
 import CssBaseline from '@mui/material/CssBaseline';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider} from '@mui/material/styles';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import theme from './theme';
+import theme from './theme.js';
 
 function START() {
     // const theme = createTheme({
@@ -55,6 +56,7 @@ function START() {
                         </Route>
                         <Route path="/dashboard" element={<Dashboard />}>
                             <Route index element={<ActivePage />} />
+                            <Route path="listing" element={<Listing />} />
                             <Route path="profile" element={<UserProfile />} />
                             {/* Add more as needed */}
                         </Route>

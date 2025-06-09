@@ -129,7 +129,7 @@ export default function LeftSidebar() {
             </ListItem>
           </List>
         </Collapse>
-        <ListItem button component={NavLink} to="/dashboard/listings" selected={isActive('/dashboard/listings')} sx={navItemStyle('/dashboard/listings')}>
+        <ListItem button component={NavLink} to="/dashboard/listing" selected={isActive('/dashboard/listing')} sx={navItemStyle('/dashboard/listing')}>
           <ListItemIcon><ListIcon /></ListItemIcon>
           <ListItemText primary="Listings" primaryTypographyProps={{ sx: { color: 'black' } }} />
         </ListItem>

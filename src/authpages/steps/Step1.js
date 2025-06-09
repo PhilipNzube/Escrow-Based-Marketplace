@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
-import AuthField from "../components/AuthField";
+import AuthField from "../../components/AuthField";
 
 const Step1 = () => {
     const navigate = useNavigate();

@@ -120,7 +120,7 @@ const DashboardLayout = () => {
             <IconButton onClick={() => setLeftOpen(prev => !prev)}>
               {leftOpen ? <KeyboardDoubleArrowLeftIcon /> : <MenuIcon />}
             </IconButton>
-            <Typography fontWeight={600} color="primary.main" fontSize="1.1rem" whiteSpace="nowrap">
+            <Typography fontWeight={600} color="#764D2E" fontSize="1.1rem" whiteSpace="nowrap">
               Selected Page
             </Typography>
           </Box>
