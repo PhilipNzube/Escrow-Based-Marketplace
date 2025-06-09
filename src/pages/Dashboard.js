@@ -4,6 +4,7 @@ import {
   CssBaseline,
   Drawer,
   IconButton,
+  Badge,
   Typography,
   InputBase,
   useMediaQuery,
@@ -13,6 +14,7 @@ import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrow
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from "@mui/icons-material/Search";
+import NotificationsIcon from '@mui/icons-material/Notifications';
 import { Outlet } from "react-router-dom";
 import LeftSidebar from "../components/LeftSidebar";
 import RightSidebar from "../components/RightSidebar";
@@ -112,7 +114,7 @@ const DashboardLayout = () => {
           <Box sx={{
             display: "flex",
             alignItems: "center",
-            gap: 1, 
+            gap: 1,
             flexShrink: 0
           }}>
             <IconButton onClick={() => setLeftOpen(prev => !prev)}>
@@ -140,7 +142,12 @@ const DashboardLayout = () => {
 
             {/* Right Sidebar Toggle */}
             <IconButton onClick={() => setRightOpen(prev => !prev)}>
-              {rightOpen ? <KeyboardDoubleArrowRightIcon /> : <MenuIcon />}
+              {rightOpen ? <KeyboardDoubleArrowRightIcon /> : <IconButton aria-label="notifications">
+                <Badge badgeContent={4} color="error">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+              }
             </IconButton>
           </Box>
         </Box>

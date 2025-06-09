@@ -29,12 +29,29 @@ export default function LeftSidebar() {
   const isActive = (path) => location.pathname === path;
 
   const navItemStyle = (path) => ({
+    position: 'relative',
+    pl: 3,
+    borderRadius: 1,
+    transition: 'background-color 0.3s, color 0.3s',
     '&.Mui-selected': {
-      backgroundColor: 'primary.light',
+      backgroundColor: '#f0f4ff',
       '& .MuiListItemText-primary': {
         color: 'primary.main',
-        fontWeight: 'bold',
+        fontWeight: 600,
       },
+      '&::before': {
+        content: '""',
+        position: 'absolute',
+        left: 0,
+        top: 6,
+        bottom: 6,
+        width: '4px',
+        borderRadius: '0 4px 4px 0',
+        backgroundColor: '#1976d2',
+      },
+    },
+    '&:hover': {
+      backgroundColor: '#f5f5f5',
     },
   });
 
@@ -59,11 +76,11 @@ export default function LeftSidebar() {
       <Typography variant="caption" sx={{ ml: 2, mb: 1 }}>Favourites</Typography>
       <List>
         <ListItem button component={NavLink} to="/dashboard" selected={isActive('/dashboard')} sx={navItemStyle('/dashboard')}>
-          <ListItemIcon><FiberManualRecordIcon fontSize="small" /></ListItemIcon>
+          <ListItemIcon><FiberManualRecordIcon fontSize="small" sx={{ color: isActive('/dashboard') ? 'primary.main' : '#ccc' }} /></ListItemIcon>
           <ListItemText primary="Active" primaryTypographyProps={{ sx: { color: 'black' } }} />
         </ListItem>
         <ListItem button component={NavLink} to="/dashboard/pending" selected={isActive('/dashboard/pending')} sx={navItemStyle('/dashboard/pending')}>
-          <ListItemIcon><FiberManualRecordIcon fontSize="small" /></ListItemIcon>
+          <ListItemIcon><FiberManualRecordIcon fontSize="small" sx={{ color: isActive('/dashboard/pending') ? 'primary.main' : '#ccc' }} /></ListItemIcon>
           <ListItemText primary="Pending" primaryTypographyProps={{ sx: { color: 'black' } }} />
         </ListItem>
       </List>
@@ -71,7 +88,7 @@ export default function LeftSidebar() {
       {/* Dashboards */}
       <Typography variant="caption" sx={{ ml: 2, mt: 2, mb: 1 }}>Dashboards</Typography>
       <List>
-        <ListItem button component={NavLink} to="/dashboard/active-dash" selected={isActive('/dashboard/active-dash')} sx={navItemStyle('/dashboard/active-dash')}>
+        <ListItem button component={NavLink} to="/dashboard" selected={isActive('/dashboard')} sx={navItemStyle('/dashboard')}>
           <ListItemIcon><NotificationsActiveIcon /></ListItemIcon>
           <ListItemText primary="Active" primaryTypographyProps={{ sx: { color: 'black' } }} />
         </ListItem>
@@ -89,7 +106,7 @@ export default function LeftSidebar() {
         </ListItem>
         <Collapse in={openAll} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItem button sx={{ pl: 4 }} component={NavLink} to="/dashboard/all-stats" selected={isActive('/dashboard/all-stats')}>
+            <ListItem button component={NavLink} to="/dashboard/all-stats" selected={isActive('/dashboard/all-stats')} sx={{ pl: 4, ...navItemStyle('/dashboard/all-stats') }}>
               <ListItemIcon><ListIcon /></ListItemIcon>
               <ListItemText primary="All Stats" primaryTypographyProps={{ sx: { color: 'black' } }} />
             </ListItem>
@@ -106,7 +123,7 @@ export default function LeftSidebar() {
         </ListItem>
         <Collapse in={openProfile} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItem button sx={{ pl: 4 }} component={NavLink} to="/dashboard/profile" selected={isActive('/dashboard/profile')}>
+            <ListItem button component={NavLink} to="/dashboard/profile" selected={isActive('/dashboard/profile')} sx={{ pl: 4, ...navItemStyle('/dashboard/profile') }}>
               <ListItemIcon><PersonIcon /></ListItemIcon>
               <ListItemText primary="Profile Info" primaryTypographyProps={{ sx: { color: 'black' } }} />
             </ListItem>
