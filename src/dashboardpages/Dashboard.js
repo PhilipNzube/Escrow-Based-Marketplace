@@ -53,6 +53,8 @@ const DashboardLayout = () => {
   // Optional: Reset the flag when returning to desktop view
   useEffect(() => {
     if (!isMobile) {
+      setRightOpen(true);
+      setLeftOpen(true);
       hasClosedRightForMobile.current = false;
     }
   }, [isMobile]);
