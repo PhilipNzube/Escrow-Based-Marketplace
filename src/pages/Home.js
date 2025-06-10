@@ -230,7 +230,7 @@ const HomePage = () => {
         sx={{
           height: {
             xs: "100vh",
-            md: "150vh",
+            md: "120vh",
           },
           width: "100%",
           backgroundImage: `url(${BgImg})`,

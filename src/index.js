@@ -11,15 +11,19 @@ import Step4 from './authpages/steps/Step4';
 import Dashboard from './dashboardpages/Dashboard.js';
 import ActivePage from './dashboardpages/ActivePage.js';
 import Listing from './dashboardpages/Listing.js';
+import Transaction from './dashboardpages/Transaction.js';
 import UserProfile from './dashboardpages/UserProfile.js';
 import './index.css';
 import './fonts/fonts.css';
 import { SnackbarProvider } from 'notistack';
 import CssBaseline from '@mui/material/CssBaseline';
-import { ThemeProvider} from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import theme from './theme.js';
+import ActiveOrders from './dashboardpages/ActiveOrder.js';
+import Messages from './dashboardpages/Messages.js';
+import NotFoundPage from './pages/NotFoundPage.js';
 
 function START() {
     // const theme = createTheme({
@@ -56,10 +60,15 @@ function START() {
                         </Route>
                         <Route path="/dashboard" element={<Dashboard />}>
                             <Route index element={<ActivePage />} />
+                            <Route path="active-order" element={<ActiveOrders />} />
                             <Route path="listing" element={<Listing />} />
+                            <Route path="transaction" element={<Transaction />} />
+                            <Route path="messages" element={<Messages />} />
                             <Route path="profile" element={<UserProfile />} />
                             {/* Add more as needed */}
                         </Route>
+                        {/* Catch-all route for 404 */}
+                        <Route path="*" element={<NotFoundPage />} />
                     </Routes>
                 </ThemeProvider>
             </BrowserRouter>

@@ -123,7 +123,7 @@ const DashboardLayout = () => {
               {leftOpen ? <KeyboardDoubleArrowLeftIcon /> : <MenuIcon />}
             </IconButton>
             <Typography fontWeight={600} color="#764D2E" fontSize="1.1rem" whiteSpace="nowrap">
-              Selected Page
+              Dashboard
             </Typography>
           </Box>
 

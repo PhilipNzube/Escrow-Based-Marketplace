@@ -20,40 +20,55 @@ import ListIcon from '@mui/icons-material/List';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+
 
 export default function LeftSidebar() {
-  const location = useLocation();
   const [openAll, setOpenAll] = React.useState(false);
   const [openProfile, setOpenProfile] = React.useState(false);
 
-  const isActive = (path) => location.pathname === path;
+  const allItems = [
+    { text: "All Stats", path: "/dashboard/all-stats", icon: <ListIcon /> },
+    { text: "Analytics", path: "/dashboard/analytics", icon: <ListIcon /> },
+  ];
 
-  const navItemStyle = (path) => ({
-    position: 'relative',
+  const profileItems = [
+    { text: "Profile Info", path: "/dashboard/profile", icon: <PersonIcon /> },
+    { text: "Security Settings", path: "/dashboard/security", icon: <PersonIcon /> },
+  ];
+
+
+  const navItemStyle = (active) => ({
+    position: "relative",
     pl: 3,
     borderRadius: 1,
-    transition: 'background-color 0.3s, color 0.3s',
-    '&.Mui-selected': {
-      backgroundColor: '#f0f4ff',
-      '& .MuiListItemText-primary': {
-        color: 'primary.main',
-        fontWeight: 600,
-      },
-      '&::before': {
+    transition: "background-color 0.3s, color 0.3s",
+    backgroundColor: active ? "rgba(118, 77, 46, 0.1)" : "transparent",
+    "& .MuiListItemText-primary": {
+      color: active ? "#764D2E" : "black",
+      fontWeight: active ? 600 : 400,
+    },
+    "& .MuiListItemIcon-root": {
+      color: active ? "#764D2E" : "black",
+    },
+    "&::before": active
+      ? {
         content: '""',
-        position: 'absolute',
+        position: "absolute",
         left: 0,
         top: 6,
         bottom: 6,
-        width: '4px',
-        borderRadius: '0 4px 4px 0',
-        backgroundColor: '#1976d2',
-      },
-    },
-    '&:hover': {
-      backgroundColor: '#f5f5f5',
+        width: "4px",
+        borderRadius: "0 4px 4px 0",
+        backgroundColor: "#764D2E",
+      }
+      : {},
+    "&:hover": {
+      backgroundColor: "rgba(118, 77, 46, 0.1)",
     },
   });
+
 
   return (
     <Box>
@@ -74,77 +89,97 @@ export default function LeftSidebar() {
 
       {/* Favourites */}
       <Typography variant="caption" sx={{ ml: 2, mb: 1 }}>Favourites</Typography>
-      <List>
-        <ListItem button component={NavLink} to="/dashboard" selected={isActive('/dashboard')} sx={navItemStyle('/dashboard')}>
-          <ListItemIcon><FiberManualRecordIcon fontSize="small" sx={{ color: isActive('/dashboard') ? 'primary.main' : '#ccc' }} /></ListItemIcon>
-          <ListItemText primary="Active" primaryTypographyProps={{ sx: { color: 'black' } }} />
-        </ListItem>
-        <ListItem button component={NavLink} to="/dashboard/pending" selected={isActive('/dashboard/pending')} sx={navItemStyle('/dashboard/pending')}>
-          <ListItemIcon><FiberManualRecordIcon fontSize="small" sx={{ color: isActive('/dashboard/pending') ? 'primary.main' : '#ccc' }} /></ListItemIcon>
-          <ListItemText primary="Pending" primaryTypographyProps={{ sx: { color: 'black' } }} />
-        </ListItem>
-      </List>
 
+      <List>
+        {[{ text: "Active", icon: <FiberManualRecordIcon fontSize="small" />, path: "/dashboard/active-order" },
+        { text: "Pending", icon: <FiberManualRecordIcon fontSize="small" />, path: "/dashboard/pending" }].map(({ text, icon, path }) => (
+          <NavLink to={path} style={{ textDecoration: 'none' }}>
+            {({ isActive }) => (
+              <ListItem button sx={navItemStyle(isActive)}>
+                <ListItemIcon sx={{ color: isActive ? '#764D2E' : "black" }}>{icon}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            )}
+          </NavLink>
+        ))}
+      </List>
       {/* Dashboards */}
       <Typography variant="caption" sx={{ ml: 2, mt: 2, mb: 1 }}>Dashboards</Typography>
       <List>
-        <ListItem button component={NavLink} to="/dashboard" selected={isActive('/dashboard')} sx={navItemStyle('/dashboard')}>
-          <ListItemIcon><NotificationsActiveIcon /></ListItemIcon>
-          <ListItemText primary="Active" primaryTypographyProps={{ sx: { color: 'black' } }} />
-        </ListItem>
-        <ListItem button component={NavLink} to="/dashboard/pending-dash" selected={isActive('/dashboard/pending-dash')} sx={navItemStyle('/dashboard/pending-dash')}>
-          <ListItemIcon><HourglassEmptyIcon /></ListItemIcon>
-          <ListItemText primary="Pending" primaryTypographyProps={{ sx: { color: 'black' } }} />
-        </ListItem>
-        <ListItem button component={NavLink} to="/dashboard/completed" selected={isActive('/dashboard/completed')} sx={navItemStyle('/dashboard/completed')}>
-          <ListItemIcon><DoneAllIcon /></ListItemIcon>
-          <ListItemText primary="Completed" primaryTypographyProps={{ sx: { color: 'black' } }} />
-        </ListItem>
+        {[{ text: "Active", icon: <NotificationsActiveIcon />, path: "/dashboard" },
+        { text: "Pending", icon: <HourglassEmptyIcon />, path: "/dashboard/pending-dash" },
+        { text: "Completed", icon: <DoneAllIcon />, path: "/dashboard/completed" },
+        { text: "Transaction", icon: <ReceiptLongIcon />, path: "/dashboard/transaction" }].map(({ text, icon, path }) => (
+          <NavLink to={path} style={{ textDecoration: 'none' }}>
+            {({ isActive }) => (
+              <ListItem button sx={navItemStyle(isActive)}>
+                <ListItemIcon sx={{ color: isActive ? '#764D2E' : "black" }}>{icon}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            )}
+          </NavLink>
+        ))}
+
+        {/* All Section (Dynamic) */}
         <ListItem button onClick={() => setOpenAll(!openAll)}>
           <ListItemIcon><ExpandMoreIcon /></ListItemIcon>
-          <ListItemText primary="All" primaryTypographyProps={{ sx: { color: 'black' } }} />
+          <ListItemText primary="All" />
         </ListItem>
         <Collapse in={openAll} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItem button component={NavLink} to="/dashboard/all-stats" selected={isActive('/dashboard/all-stats')} sx={{ pl: 4, ...navItemStyle('/dashboard/all-stats') }}>
-              <ListItemIcon><ListIcon /></ListItemIcon>
-              <ListItemText primary="All Stats" primaryTypographyProps={{ sx: { color: 'black' } }} />
-            </ListItem>
+            {allItems.map(({ path, icon, text }) => (
+              <NavLink key={path} to={path} style={{ textDecoration: 'none' }}>
+                {({ isActive }) => (
+                  <ListItem button sx={navItemStyle(isActive)}>
+                    <ListItemIcon>{icon}</ListItemIcon>
+                    <ListItemText primary={text} />
+                  </ListItem>
+                )}
+              </NavLink>
+            ))}
           </List>
         </Collapse>
       </List>
 
       {/* Pages */}
       <Typography variant="caption" sx={{ ml: 2, mt: 2, mb: 1 }}>Pages</Typography>
+
       <List>
+        {/* Profile Section (Dynamic) */}
         <ListItem button onClick={() => setOpenProfile(!openProfile)}>
           <ListItemIcon><ExpandMoreIcon /></ListItemIcon>
-          <ListItemText primary="User Profile" primaryTypographyProps={{ sx: { color: 'black' } }} />
+          <ListItemText primary="User Profile" />
         </ListItem>
         <Collapse in={openProfile} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItem button component={NavLink} to="/dashboard/profile" selected={isActive('/dashboard/profile')} sx={{ pl: 4, ...navItemStyle('/dashboard/profile') }}>
-              <ListItemIcon><PersonIcon /></ListItemIcon>
-              <ListItemText primary="Profile Info" primaryTypographyProps={{ sx: { color: 'black' } }} />
-            </ListItem>
+            {profileItems.map(({ path, icon, text }) => (
+              <NavLink key={path} to={path} style={{ textDecoration: 'none' }}>
+                {({ isActive }) => (
+                  <ListItem button sx={navItemStyle(isActive)}>
+                    <ListItemIcon>{icon}</ListItemIcon>
+                    <ListItemText primary={text} />
+                  </ListItem>
+                )}
+              </NavLink>
+            ))}
           </List>
         </Collapse>
-        <ListItem button component={NavLink} to="/dashboard/listing" selected={isActive('/dashboard/listing')} sx={navItemStyle('/dashboard/listing')}>
-          <ListItemIcon><ListIcon /></ListItemIcon>
-          <ListItemText primary="Listings" primaryTypographyProps={{ sx: { color: 'black' } }} />
-        </ListItem>
-        <ListItem button component={NavLink} to="/dashboard/resources" selected={isActive('/dashboard/resources')} sx={navItemStyle('/dashboard/resources')}>
-          <ListItemIcon><LibraryBooksIcon /></ListItemIcon>
-          <ListItemText primary="Resources" primaryTypographyProps={{ sx: { color: 'black' } }} />
-        </ListItem>
-        <ListItem button component={NavLink} to="/dashboard/orders" selected={isActive('/dashboard/orders')} sx={navItemStyle('/dashboard/orders')}>
-          <ListItemIcon><ShoppingCartIcon /></ListItemIcon>
-          <ListItemText primary="Orders" primaryTypographyProps={{ sx: { color: 'black' } }} />
-        </ListItem>
-        <ListItem button component={NavLink} to="/dashboard/create-offer" selected={isActive('/dashboard/create-offer')} sx={navItemStyle('/dashboard/create-offer')}>
-          <ListItemIcon><LocalOfferIcon /></ListItemIcon>
-          <ListItemText primary="Create Offer" primaryTypographyProps={{ sx: { color: 'black' } }} />
-        </ListItem>
+
+
+        {[{ text: "Messages", icon: <ChatBubbleOutlineIcon />, path: "/dashboard/messages" },
+        { text: "Listings", icon: <ListIcon />, path: "/dashboard/listing" },
+        { text: "Resources", icon: <LibraryBooksIcon />, path: "/dashboard/resources" },
+        { text: "Orders", icon: <ShoppingCartIcon />, path: "/dashboard/orders" },
+        { text: "Create Offer", icon: <LocalOfferIcon />, path: "/dashboard/create-offer" }].map(({ text, icon, path }) => (
+          <NavLink key={path} to={path} style={{ textDecoration: 'none' }}>
+            {({ isActive }) => (
+              <ListItem button sx={navItemStyle(isActive)}>
+                <ListItemIcon sx={{ color: isActive ? '#764D2E' : "black" }}>{icon}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            )}
+          </NavLink>
+        ))}
       </List>
     </Box>
   );
