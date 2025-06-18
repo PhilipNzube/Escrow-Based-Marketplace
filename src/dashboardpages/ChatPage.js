@@ -32,6 +32,7 @@ import ChatBubble from "../components/ChatBubble";
 import Tooltip from '@mui/material/Tooltip';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import EmojiPicker from "emoji-picker-react";
+import ClickAwayListener from '@mui/material/ClickAwayListener';
 
 const dummyChats = [
     {
@@ -156,6 +157,10 @@ export default function ChatPage() {
             if (file) alert(`Selected file: ${file.name}`);
         };
         input.click();
+    };
+
+    const handleClickAway = () => {
+        setShowAttachOptions(false);
     };
 
     const attachActions = [
@@ -358,32 +363,48 @@ export default function ChatPage() {
                                 sx={{
                                     position: "absolute",
                                     bottom: 70,
-                                    right: 40,
+                                    ...(isMobile
+                                        ? { left: "50%", transform: "translateX(-50%)", maxWidth: "90vw" }
+                                        : { right: 40 }),
                                     background: "white",
                                     borderRadius: 2,
                                     p: 1,
                                     display: "flex",
                                     gap: 2,
                                     flexWrap: "wrap",
+                                    zIndex: 101,
                                 }}
                             >
-                                {attachActions.map((action, index) => (
+                                <ClickAwayListener onClickAway={handleClickAway}>
                                     <Box
-                                        key={index}
-                                        onClick={action.onClick}
                                         sx={{
                                             display: "flex",
-                                            flexDirection: "column",
-                                            alignItems: "center",
-                                            cursor: "pointer",
-                                            width: 80,
-                                            m: 1,
+                                            gap: 2,
+                                            flexWrap: "wrap",
                                         }}
                                     >
-                                        <IconButton color="primary">{action.icon}</IconButton>
-                                        <Typography variant="caption">{action.label}</Typography>
+                                        {attachActions.map((action, index) => (
+                                            <Box
+                                                key={index}
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    action.onClick();
+                                                }}
+                                                sx={{
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                    alignItems: "center",
+                                                    cursor: "pointer",
+                                                    width: 80,
+                                                    m: 1,
+                                                }}
+                                            >
+                                                <IconButton color="primary">{action.icon}</IconButton>
+                                                <Typography variant="caption">{action.label}</Typography>
+                                            </Box>
+                                        ))}
                                     </Box>
-                                ))}
+                                </ClickAwayListener>
                             </Paper>
                         </Slide>
 
@@ -430,6 +451,6 @@ export default function ChatPage() {
 
                 </Box>
             </Box>
-        </Box>
+        </Box >
     );
 }
