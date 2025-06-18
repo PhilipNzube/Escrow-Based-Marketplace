@@ -161,7 +161,7 @@ const DashboardLayout = () => {
 
       {/* Right Sidebar */}
       <Drawer
-        variant={isMobile ? "temporary" : "persistent"}
+        variant="temporary"
         anchor="right"
         open={rightOpen}
         onClose={() => setRightOpen(false)}

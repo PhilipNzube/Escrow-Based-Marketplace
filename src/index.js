@@ -13,6 +13,7 @@ import ActivePage from './dashboardpages/ActivePage.js';
 import Listing from './dashboardpages/Listing.js';
 import Transaction from './dashboardpages/Transaction.js';
 import UserProfile from './dashboardpages/UserProfile.js';
+import ChatPage from './dashboardpages/ChatPage.js';
 import './index.css';
 import './fonts/fonts.css';
 import { SnackbarProvider } from 'notistack';
@@ -22,27 +23,9 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import theme from './theme.js';
 import ActiveOrders from './dashboardpages/ActiveOrder.js';
-import Messages from './dashboardpages/Messages.js';
 import NotFoundPage from './pages/NotFoundPage.js';
 
 function START() {
-    // const theme = createTheme({
-    //     palette: {
-    //         mode: 'light',
-    //         primary: {
-    //             main: '#1976d2',
-    //         },
-    //         secondary: {
-    //             main: '#ff9800',
-    //         },
-    //     },
-    //     shape: {
-    //         borderRadius: 12,
-    //     },
-    //     typography: {
-    //         fontFamily: 'Roboto, sans-serif',
-    //     },
-    // });
     return (
         <>
 
@@ -63,7 +46,7 @@ function START() {
                             <Route path="active-order" element={<ActiveOrders />} />
                             <Route path="listing" element={<Listing />} />
                             <Route path="transaction" element={<Transaction />} />
-                            <Route path="messages" element={<Messages />} />
+                            <Route path="messages" element={<ChatPage />} />
                             <Route path="profile" element={<UserProfile />} />
                             {/* Add more as needed */}
                         </Route>
