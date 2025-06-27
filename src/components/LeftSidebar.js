@@ -23,6 +23,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
+import HomeIcon from '@mui/icons-material/Home';
 
 export default function LeftSidebar() {
   const [isOnline, setIsOnline] = React.useState(true);
@@ -88,7 +89,7 @@ export default function LeftSidebar() {
       <Typography variant="caption" sx={{ ml: 2, mb: 1, color: 'text.secondary' }}>MAIN</Typography>
       <List>
         {[
-          { text: "Dashboard", icon: <NotificationsActiveIcon />, path: "/dashboard" },
+          { text: "Dashboard", icon: <HomeIcon />, path: "/dashboard" },
           { text: "Active", icon: <NotificationsActiveIcon />, path: "/dashboard/active" },
           { text: "Pending", icon: <HourglassEmptyIcon />, path: "/dashboard/pending" },
           { text: "Completed", icon: <DoneAllIcon />, path: "/dashboard/completed" },
