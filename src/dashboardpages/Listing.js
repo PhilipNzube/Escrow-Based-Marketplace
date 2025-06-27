@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Box,
   Typography,
@@ -12,6 +12,7 @@ import {
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { usePageMetadata } from "../PageContext.js";
 
 const categories = ["Art", "Crafts", "Jewelry", "Clothing", "Home Goods"];
 const tags = ["Vintage", "Handmade", "Boho", "Minimalist", "Eco-friendly", "Customizable"];
@@ -22,6 +23,7 @@ export default function Listing() {
   const [delivery, setDelivery] = useState("1 Day");
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
+  const { setPageMetadata } = usePageMetadata();
 
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
@@ -37,6 +39,19 @@ export default function Listing() {
   const toggleSelection = (item, list, setList) => {
     setList(list.includes(item) ? list.filter(i => i !== item) : [...list, item]);
   };
+
+    // Set page metadata when component mounts
+    useEffect(() => {
+      setPageMetadata({
+        title: "My Listings",
+        subtitle: "Manage your products and ",
+      });
+  
+      // Reset metadata when component unmounts (optional, to avoid stale data)
+      return () => {
+        setPageMetadata({ title: "Dashboard", subtitle: "" });
+      };
+    }, [setPageMetadata]);
 
   return (
     <Box sx={{

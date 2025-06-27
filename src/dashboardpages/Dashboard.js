@@ -18,6 +18,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { Outlet } from "react-router-dom";
 import LeftSidebar from "../components/LeftSidebar";
 import RightSidebar from "../components/RightSidebar";
+import { usePageMetadata } from "../PageContext.js";
 
 const DashboardLayout = () => {
   const [leftOpen, setLeftOpen] = useState(true);
@@ -28,6 +29,8 @@ const DashboardLayout = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   const topNavRef = useRef();
+
+  const { pageMetadata } = usePageMetadata();
 
   useEffect(() => {
     const el = topNavRef.current;
@@ -122,9 +125,14 @@ const DashboardLayout = () => {
             <IconButton onClick={() => setLeftOpen(prev => !prev)}>
               {leftOpen ? <KeyboardDoubleArrowLeftIcon /> : <MenuIcon />}
             </IconButton>
-            <Typography fontWeight={600} color="#764D2E" fontSize="1.1rem" whiteSpace="nowrap">
-              Dashboard
-            </Typography>
+            <Box sx={{}}>
+              <Typography variant="h5" fontWeight={600} color="#764D2E" fontSize="1.2rem">
+                {pageMetadata.title}
+              </Typography>
+              <Typography variant="subtitle2" color="grey.600" fontSize="0.875rem">
+                {pageMetadata.subtitle || 'Manage your content here'}
+              </Typography>
+            </Box>
           </Box>
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 2, flexGrow: 1, justifyContent: "flex-end" }}>

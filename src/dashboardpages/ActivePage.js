@@ -1,10 +1,27 @@
+import { useEffect } from "react";
 import {
   Box,
   Typography,
 } from "@mui/material";
-import AnalyticsCard from "../components/AnalyticsCard";
+import TransactionItemCard from "../components/TransactionItemCard";
+import Product from "../images/Products_1.png"
+import { usePageMetadata } from "../PageContext.js";
 
 const ActivePage = () => {
+  const { setPageMetadata } = usePageMetadata();
+  
+    // Set page metadata when component mounts
+    useEffect(() => {
+      setPageMetadata({
+        title: "Active Escrows",
+        subtitle: "Monitor your ongoing transactions",
+      });
+  
+      // Reset metadata when component unmounts (optional, to avoid stale data)
+      return () => {
+        setPageMetadata({ title: "Dashboard", subtitle: "" });
+      };
+    }, [setPageMetadata]);
   return (
     <>
       <Box
@@ -17,41 +34,41 @@ const ActivePage = () => {
           justifyContent: "center",
           alignItems: "flex-start",
         }}>
-        <Typography variant="body1" sx={{ fontWeight: 600, color: "#000" }}>
-          Overview
+
+        <Typography
+          variant="h5"
+          fontWeight={600}
+          sx={{ color: "#000" }}>
+          Active Orders
         </Typography>
-        <Box
-          sx={{
-            mt: 3,
-            width: '100%',
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            flexWrap: "wrap",
-            gap:3
-          }}>
-          <AnalyticsCard
-            title="Views"
-            value="7, 265"
-            percentage="+11.01%"
-          />
-          <AnalyticsCard
-            title="Sales"
-            value="17, 265"
-            percentage="-11.01%"
-          />
-          <AnalyticsCard
-            title="New Users"
-            value="27, 265"
-            percentage="+21.01%"
-          />
-          <AnalyticsCard
-            title="Active Users"
-            value="37, 265"
-            percentage="-21.01%"
-          />
-        </Box>
+        <Typography variant="body2" sx={{ mt: 2, color: "#000" }}>
+          View and manage your active orders
+        </Typography>
+        
+        <TransactionItemCard
+          imageSrc={Product}
+          title="Coffee Beans"
+          subtitle="200g Premium Roast"
+          date="June 9, 2025"
+          price="₦4,500"
+        />
+
+        <TransactionItemCard
+          imageSrc={Product}
+          title="Coffee Beans"
+          subtitle="200g Premium Roast"
+          date="June 9, 2025"
+          price="₦4,500"
+        />
+
+        <TransactionItemCard
+          imageSrc={Product}
+          title="Coffee Beans"
+          subtitle="200g Premium Roast"
+          date="June 9, 2025"
+          price="₦4,500"
+        />
+
       </Box>
     </>
   );

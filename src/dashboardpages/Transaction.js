@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   Box,
   Typography,
@@ -5,8 +6,23 @@ import {
 import TransactionCard from "../components/TransactionCard";
 import TransactionItemCard from "../components/TransactionItemCard";
 import Product from "../images/Products_1.png"
+import { usePageMetadata } from "../PageContext.js";
 
 const Transaction = () => {
+    const { setPageMetadata } = usePageMetadata();
+    
+      // Set page metadata when component mounts
+      useEffect(() => {
+        setPageMetadata({
+          title: "All Transactions",
+          subtitle: "Coompleted transaction history & management",
+        });
+    
+        // Reset metadata when component unmounts (optional, to avoid stale data)
+        return () => {
+          setPageMetadata({ title: "Dashboard", subtitle: "" });
+        };
+      }, [setPageMetadata]);
   return (
     <>
       <Box

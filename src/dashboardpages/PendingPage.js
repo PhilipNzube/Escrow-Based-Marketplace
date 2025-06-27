@@ -1,11 +1,27 @@
+import { useEffect } from "react";
 import {
   Box,
   Typography,
 } from "@mui/material";
 import TransactionItemCard from "../components/TransactionItemCard";
 import Product from "../images/Products_1.png"
+import { usePageMetadata } from "../PageContext.js";
 
-const ActiveOrders = () => {
+const PendingPage = () => {
+  const { setPageMetadata } = usePageMetadata();
+  
+    // Set page metadata when component mounts
+    useEffect(() => {
+      setPageMetadata({
+        title: "Pending Reviews",
+        subtitle: "Items requiring your attention",
+      });
+  
+      // Reset metadata when component unmounts (optional, to avoid stale data)
+      return () => {
+        setPageMetadata({ title: "Dashboard", subtitle: "" });
+      };
+    }, [setPageMetadata]);
   return (
     <>
       <Box
@@ -58,4 +74,4 @@ const ActiveOrders = () => {
   );
 };
 
-export default ActiveOrders;
+export default PendingPage;

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
     Avatar,
     Badge,
@@ -33,6 +33,7 @@ import Tooltip from '@mui/material/Tooltip';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import EmojiPicker from "emoji-picker-react";
 import ClickAwayListener from '@mui/material/ClickAwayListener';
+import { usePageMetadata } from "../PageContext.js";
 
 const dummyChats = [
     {
@@ -115,6 +116,7 @@ export default function ChatPage() {
     const [emojiAnchorEl, setEmojiAnchorEl] = useState(null);
     const [showAttachOptions, setShowAttachOptions] = useState(false);
     const hasClosedRightForMobile = useRef(false);
+    const { setPageMetadata } = usePageMetadata();    
 
 
     useEffect(() => {
@@ -170,6 +172,19 @@ export default function ChatPage() {
         { icon: <LocationOn />, label: "Location", onClick: () => alert("Location sharing not supported yet.") },
         { icon: <Person />, label: "Contact", onClick: () => alert("Contact upload not implemented.") },
     ];
+
+      // Set page metadata when component mounts
+      useEffect(() => {
+        setPageMetadata({
+          title: "Messages",
+          subtitle: "Communicate with escrow participants",
+        });
+    
+        // Reset metadata when component unmounts (optional, to avoid stale data)
+        return () => {
+          setPageMetadata({ title: "Dashboard", subtitle: "" });
+        };
+      }, [setPageMetadata]);
 
     return (
         <Box sx={{
