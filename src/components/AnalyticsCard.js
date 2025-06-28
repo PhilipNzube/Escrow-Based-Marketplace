@@ -10,6 +10,7 @@ const AnalyticsCard = ({
     chartColor,
     numColumns = 2,
     noTrendIcon = false,
+    bgColor = "#CACAFF"
 }) => {
     return (
         <BgCard
@@ -30,7 +31,7 @@ const AnalyticsCard = ({
                             sx={{
                                 padding: 1,
                                 borderRadius: 50,
-                                backgroundColor: "#CACAFF",
+                                backgroundColor: bgColor,
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "center",

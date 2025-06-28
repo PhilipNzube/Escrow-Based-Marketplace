@@ -23,7 +23,12 @@ const DashTools = ({
                             cursor: "pointer",
                         }}>
                         {icon}
-                        <Typography variant="h6" sx={{ fontWeight: 600, color: textColor }}>
+                        <Typography variant="h6"
+                            sx={{
+                                fontWeight: 600,
+                                color: textColor,
+                                textAlign: "center",
+                            }}>
                             {title}
                         </Typography>
                     </Box>

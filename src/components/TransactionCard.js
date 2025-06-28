@@ -9,8 +9,12 @@ import {
 import BgCard from "./BgCard";
 import PeopleIcon from '@mui/icons-material/PeopleOutlined';
 import MoreIcon from '@mui/icons-material/MoreHoriz';
+import WarningAmberIcon from "@mui/icons-material/WarningAmber";
+import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
 
 const TransactionCard = ({
+    iconType,
     id,
     from,
     to,
@@ -47,16 +51,42 @@ const TransactionCard = ({
                                 sx={{
                                     padding: 1,
                                     borderRadius: 50,
-                                    backgroundColor: "#CACAFF",
+                                    backgroundColor: iconType === "Pending"
+                                        ? "#FEF9C3"
+                                        : iconType === "Urgent"
+                                            ? "#F6BFBF"
+                                            : iconType === "Completed"
+                                                ? "#DCFCE7"
+                                                : "#CACAFF",
                                     display: "flex",
                                     alignItems: "center",
                                     justifyContent: "center",
                                 }}>
-                                <PeopleIcon
-                                    sx={{
-                                        fontSize: 30,
-                                        color: "#0000FF",
-                                    }} />
+                                {iconType === "Pending" ?
+                                    <HourglassEmptyIcon
+                                        sx={{
+                                            fontSize: 30,
+                                            color: "#A35D35",
+                                        }} />
+
+                                    : iconType === "Urgent" ?
+                                        <WarningAmberIcon
+                                            sx={{
+                                                fontSize: 30,
+                                                color: "#FF0000",
+                                            }} />
+                                        : iconType === "Completed" ?
+                                            <DoneAllIcon
+                                                sx={{
+                                                    fontSize: 30,
+                                                    color: "#008000",
+                                                }} />
+                                            : <PeopleIcon
+                                                sx={{
+                                                    fontSize: 30,
+                                                    color: "#0000FF",
+                                                }} />
+                                }
                             </Box>
                             <Box
                                 sx={{
