@@ -71,7 +71,7 @@ const Transaction = () => {
                 md: 'nowrap'
               }
             }
-            }>Active Transactions (4)</Typography>
+            }>Transaction History (9)</Typography>
           <Box
             sx={{
               width: '100%',
