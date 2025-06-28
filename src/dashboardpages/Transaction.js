@@ -12,6 +12,7 @@ import FileUploadIcon from '@mui/icons-material/FileUpload';
 import BgCard from "../components/BgCard.js";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterList from '@mui/icons-material/FilterList';
+import TransactionTable from "../components/TransactionTable.js";
 
 const Transaction = () => {
   const theme = useTheme();
@@ -120,7 +121,13 @@ const Transaction = () => {
             </Box>
           </Box>
         </Box>
-        <BgCard />
+        <BgCard
+          content={
+            <>
+              <TransactionTable/>
+            </>
+          }
+        />
       </Box>
     </>
   );
