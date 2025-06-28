@@ -7,7 +7,9 @@ const AnalyticsCard = ({
     title,
     value,
     percentage,
-    chartColor
+    chartColor,
+    numColumns = 2,
+    noTrendIcon = false,
 }) => {
     return (
         <BgCard
@@ -49,13 +51,14 @@ const AnalyticsCard = ({
                             gap: 1,
                         }}>
 
-                        <TrendingUpIcon sx={{ color: chartColor }} />
+                        {!noTrendIcon && <TrendingUpIcon sx={{ color: chartColor }} />}
                         <Typography variant="body2" sx={{ color: chartColor }}>
                             {percentage}
                         </Typography>
 
                     </Box>
                 </>}
+            numColumns={numColumns}
         />
 
     );

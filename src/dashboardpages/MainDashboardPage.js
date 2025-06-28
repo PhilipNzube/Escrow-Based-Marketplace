@@ -2,14 +2,12 @@ import { useEffect } from "react";
 import {
   Box,
   Typography,
-  IconButton,
 } from "@mui/material";
 import AnalyticsCard from "../components/AnalyticsCard.js";
 import Button from "../components/Button.js";
 import { usePageMetadata } from "../PageContext.js";
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
+import NotificationsIcon from '@mui/icons-material/NotificationsOutlined';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
@@ -179,7 +177,7 @@ const MainDashboardPage = () => {
             }}>
             <Button
               icon={
-                <FileUploadIcon
+                <FilterList
                   sx={{
                     fontSize: 20,
                     color: "#000"
@@ -191,8 +189,7 @@ const MainDashboardPage = () => {
             />
 
             <Button
-              icon={
-                <FilterList
+              icon={<TrendingUpIcon
                   sx={{
                     fontSize: 20,
                     color: "#000"
@@ -252,7 +249,7 @@ const MainDashboardPage = () => {
             <>
               <DashTools
                 icon={
-                  <NotificationsOutlinedIcon
+                  <NotificationsIcon
                   sx={{
                     fontSize: 30,
                     color: "#fff"

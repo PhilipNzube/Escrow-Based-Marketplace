@@ -7,6 +7,7 @@ const BgCard = ({
     marginTop = 3,
     padding = 4,
     bgColor = "transparent",
+    numColumns = 2, 
 }) => {
     return (
         <Box
@@ -24,7 +25,8 @@ const BgCard = ({
                 borderRadius: 2,
                 flex: {
                     xs: '100%',     // 1 per row on extra-small (mobile)
-                    md: 'calc(50% - 24px)', // 2 per row on medium and up
+                    md: numColumns == 2 ? 'calc(50% - 24px)'
+                        : 'calc(25% - 24px)', // 2 per row on medium and up
                 },
                 boxSizing: 'border-box',
             }}>
