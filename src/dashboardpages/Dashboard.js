@@ -105,7 +105,7 @@ const DashboardLayout = () => {
             justifyContent: "space-between",
             flexWrap: "nowrap",
             px: 2,
-            py: 1,
+            py: 2,
             borderBottom: "1px solid #eee",
             backgroundColor: "#fff",
             overflowX: "auto",

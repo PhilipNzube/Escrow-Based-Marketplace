@@ -132,9 +132,18 @@ const ActivePage = () => {
             mt: 5,
             width: '100%',
             display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
+            flexDirection: {
+              xs: "column",
+              md: "row",
+            },
+            justifyContent: {
+              xs: "flex-start",
+              md: "space-between",
+            },
+            alignItems: {
+              xs: "flex-start",
+              md: "center",
+            },
             gap: 1
           }}>
           <Typography
@@ -225,6 +234,7 @@ const ActivePage = () => {
               />
             </>
           }
+          overflowX="scroll"
         />
 
       </Box>

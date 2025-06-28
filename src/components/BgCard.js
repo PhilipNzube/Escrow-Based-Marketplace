@@ -8,13 +8,15 @@ const BgCard = ({
     padding = 4,
     bgColor = "transparent",
     numColumns = 2, 
+    overflowX = "hidden",
+    width = "100%",
 }) => {
     return (
         <Box
             sx={{
                 mt: marginTop,
                 padding: padding,
-                width: '100%',
+                width: width,
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
@@ -29,6 +31,8 @@ const BgCard = ({
                         : 'calc(25% - 24px)', // 2 per row on medium and up
                 },
                 boxSizing: 'border-box',
+                overflowX: overflowX,
+                '&::-webkit-scrollbar': { height: 5 },
             }}>
             {content}
         </Box>

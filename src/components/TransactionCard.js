@@ -1,5 +1,11 @@
 import React from "react";
-import { Box, Typography, IconButton } from "@mui/material";
+import {
+    Box,
+    Typography,
+    IconButton,
+    useMediaQuery,
+    useTheme
+} from "@mui/material";
 import BgCard from "./BgCard";
 import PeopleIcon from '@mui/icons-material/PeopleOutlined';
 import MoreIcon from '@mui/icons-material/MoreHoriz';
@@ -12,8 +18,11 @@ const TransactionCard = ({
     amount,
     status,
     marginTop = 0,
-    padding = 4
+    padding = 4,
+    width = "100%",
 }) => {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     return (
         <BgCard
             content={
@@ -60,18 +69,18 @@ const TransactionCard = ({
                                     {id}
                                 </Typography>
                                 <Box
-                                sx={{
-                                    display: "flex",
-                                    flexDirection: "column",
+                                    sx={{
+                                        display: "flex",
+                                        flexDirection: "column",
                                         alignItems: "flex-start",
-                                }}>
-                                <Typography variant="body1" sx={{ color: "#000" }}>
-                                    {from} -&gt; {to}
+                                    }}>
+                                    <Typography variant="body1" sx={{ color: "#000" }}>
+                                        {from} -&gt; {to}
                                     </Typography>
                                     <Typography variant="body2" sx={{ fontSize: 12, color: "#000" }}>
-                                    {timeStamp}
+                                        {timeStamp}
                                     </Typography>
-                                    </Box>
+                                </Box>
                             </Box>
                         </Box>
 
@@ -122,18 +131,19 @@ const TransactionCard = ({
                                 </Box>
                             </Box>
                             <IconButton>
-                            <MoreIcon
-                                sx={{
-                                    fontSize: 30,
-                                    color: "#000",
+                                <MoreIcon
+                                    sx={{
+                                        fontSize: 30,
+                                        color: "#000",
                                     }} />
-                                </IconButton>
+                            </IconButton>
                         </Box>
                     </Box>
                 </>
             }
             marginTop={marginTop}
             padding={padding}
+            width={isMobile ? "750px" : width}
         />
     );
 };
