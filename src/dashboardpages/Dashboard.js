@@ -136,7 +136,7 @@ const DashboardLayout = () => {
           </Box>
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 2, flexGrow: 1, justifyContent: "flex-end" }}>
-            <Box
+            {/* <Box
               sx={{
                 display: "flex",
                 alignItems: "center",
@@ -148,7 +148,7 @@ const DashboardLayout = () => {
             >
               <SearchIcon fontSize="small" sx={{ mr: 1 }} />
               <InputBase placeholder="Search…" sx={{ fontSize: 14, flex: 1 }} />
-            </Box>
+            </Box> */}
 
             {/* Right Sidebar Toggle */}
             <IconButton onClick={() => setRightOpen(prev => !prev)}>
