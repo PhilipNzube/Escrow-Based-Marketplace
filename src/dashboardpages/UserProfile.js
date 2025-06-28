@@ -213,11 +213,9 @@ const UserProfile = () => {
             </>
           }
         />
-        <BgCard
-          content={
+        
             <ProfileTabs />
-          }
-        />
+         
       </Box>
     </>
   );
