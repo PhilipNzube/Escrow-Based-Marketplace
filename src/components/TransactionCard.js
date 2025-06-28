@@ -1,38 +1,140 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, IconButton } from "@mui/material";
+import BgCard from "./BgCard";
+import PeopleIcon from '@mui/icons-material/PeopleOutlined';
+import MoreIcon from '@mui/icons-material/MoreHoriz';
 
 const TransactionCard = ({
-    title,
-    value
+    id,
+    from,
+    to,
+    timeStamp,
+    amount,
+    status,
+    marginTop = 0,
+    padding = 4
 }) => {
     return (
-        <Box
-            sx={{
-                mt: 3,
-                padding: 4,
-                width: '100%',
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                gap: 2,
-                backgroundColor: "transparent",
-                borderRadius: 1,
-                boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.25)",
-                flex: {
-                    xs: '100%',     // 1 per row on extra-small (mobile)
-                    md: 'calc(50% - 24px)', // 2 per row on medium and up
-                },
-                boxSizing: 'border-box',
-            }}>
-            <Typography variant="h6" sx={{ fontWeight: 600, color: "#000" }}>
-                {value}
-            </Typography>
-            <Typography variant="body1" sx={{ color: "#000" }}>
-                {title}
-            </Typography>
+        <BgCard
+            content={
+                <>
+                    <Box
+                        sx={{
+                            width: '100%',
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "space-between",
+                            alignItems: "center",
+                        }}>
+                        <Box
+                            sx={{
+                                display: "flex",
+                                flexDirection: "row",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                gap: 1
+                            }}>
+                            <Box
+                                sx={{
+                                    padding: 1,
+                                    borderRadius: 50,
+                                    backgroundColor: "#CACAFF",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                }}>
+                                <PeopleIcon
+                                    sx={{
+                                        fontSize: 30,
+                                        color: "#0000FF",
+                                    }} />
+                            </Box>
+                            <Box
+                                sx={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    justifyContent: "space-between",
+                                    alignItems: "flex-start",
+                                }}>
+                                <Typography variant="h6" sx={{ fontWeight: 600, color: "#000" }}>
+                                    {id}
+                                </Typography>
+                                <Box
+                                sx={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                        alignItems: "flex-start",
+                                }}>
+                                <Typography variant="body1" sx={{ color: "#000" }}>
+                                    {from} -&gt; {to}
+                                    </Typography>
+                                    <Typography variant="body2" sx={{ fontSize: 12, color: "#000" }}>
+                                    {timeStamp}
+                                    </Typography>
+                                    </Box>
+                            </Box>
+                        </Box>
 
-        </Box>
+
+                        <Box
+                            sx={{
+                                display: "flex",
+                                flexDirection: "row",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                gap: 2
+                            }}>
+                            <Box
+                                sx={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                }}>
+                                <Typography variant="h6" sx={{ fontWeight: 600, color: "#000" }}>
+                                    {amount}
+                                </Typography>
+                                <Box
+                                    sx={{
+                                        padding: 1,
+                                        borderRadius: 5,
+                                        backgroundColor:
+                                            status == "Active" ? "#CACAFF"
+                                                : status == "Pending" ? "#FEF9C3"
+                                                    : status == "Urgent" ? "#F6BFBF"
+                                                        : status == "Completed" ? "#DCFCE7"
+                                                            : "#CACAFF",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                    }}>
+                                    <Typography
+                                        variant="body2"
+                                        sx={{
+                                            color: status == "Active" ? "#0000FF"
+                                                : status == "Pending" ? "#A35D35"
+                                                    : status == "Urgent" ? "#FF0000"
+                                                        : status == "Completed" ? "#008000"
+                                                            : "#000",
+                                        }}>
+                                        {status}
+                                    </Typography>
+                                </Box>
+                            </Box>
+                            <IconButton>
+                            <MoreIcon
+                                sx={{
+                                    fontSize: 30,
+                                    color: "#000",
+                                    }} />
+                                </IconButton>
+                        </Box>
+                    </Box>
+                </>
+            }
+            marginTop={marginTop}
+            padding={padding}
+        />
     );
 };
 

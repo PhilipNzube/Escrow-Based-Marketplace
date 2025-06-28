@@ -9,13 +9,17 @@ import Button from "../components/Button.js";
 import { usePageMetadata } from "../PageContext.js";
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import PeopleIcon from '@mui/icons-material/People';
+import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import FilterList from '@mui/icons-material/FilterList';
+import BgCard from "../components/BgCard.js";
+import TransactionCard from "../components/TransactionCard.js";
+import DashTools from "../components/DashTools.js";
+import PeopleIcon from '@mui/icons-material/PeopleOutlined';
 
 const MainDashboardPage = () => {
   const { setPageMetadata } = usePageMetadata();
@@ -36,7 +40,7 @@ const MainDashboardPage = () => {
     <>
       <Box
         sx={{
-          mt: 3,
+          mt: 0,
           px: 2,
           width: '100%',
           display: "flex",
@@ -201,6 +205,91 @@ const MainDashboardPage = () => {
             />
           </Box>
         </Box>
+        <BgCard
+          content={
+            <>
+              <TransactionCard
+                id="ESC-001"
+                from="John Mitchell"
+                to="Sarah John"
+                timeStamp="2 Hours Ago"
+                amount="$2,450.00"
+                status="Active"
+                padding={2}
+              />
+              <TransactionCard
+                id="ESC-001"
+                from="John Mitchell"
+                to="Sarah John"
+                timeStamp="2 Hours Ago"
+                amount="$2,450.00"
+                status="Pending"
+                padding={2}
+              />
+              <TransactionCard
+                id="ESC-001"
+                from="John Mitchell"
+                to="Sarah John"
+                timeStamp="2 Hours Ago"
+                amount="$2,450.00"
+                status="Urgent"
+                padding={2}
+              />
+              <TransactionCard
+                id="ESC-001"
+                from="John Mitchell"
+                to="Sarah John"
+                timeStamp="2 Hours Ago"
+                amount="$2,450.00"
+                status="Completed"
+                padding={2}
+              />
+            </>
+          }
+        />
+        <BgCard
+          content={
+            <>
+              <DashTools
+                icon={
+                  <NotificationsOutlinedIcon
+                  sx={{
+                    fontSize: 30,
+                    color: "#fff"
+                  }}
+                  />
+                }
+                title="Create New Escrow"
+                textColor="#fff"
+                bgColor="#0000FF"
+              />
+
+              <DashTools
+                icon={
+                  <PeopleIcon
+                  sx={{
+                    fontSize: 30,
+                    color: "#008000"
+                  }}
+                  />
+                }
+                title="Invite Participants"
+              />
+
+              <DashTools
+                icon={
+                  <TrendingUpIcon
+                  sx={{
+                    fontSize: 30,
+                    color: "#800080"
+                  }}
+                  />
+                }
+                title="View Reports"
+              />
+            </>
+          }
+        />
       </Box>
     </>
   );

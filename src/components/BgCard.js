@@ -5,19 +5,21 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 const BgCard = ({
     content,
     marginTop = 3,
+    padding = 4,
+    bgColor = "transparent",
 }) => {
     return (
         <Box
             sx={{
                 mt: marginTop,
-                padding: 4,
+                padding: padding,
                 width: '100%',
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "flex-start",
                 gap: 5,
-                backgroundColor: "transparent",
+                backgroundColor: bgColor,
                 boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.25)",
                 borderRadius: 2,
                 flex: {
