@@ -2,32 +2,39 @@ import { useEffect } from "react";
 import {
   Box,
   Typography,
+  InputBase,
+  useMediaQuery,
+  useTheme
 } from "@mui/material";
-import TransactionCard from "../components/TransactionCard";
-import TransactionItemCard from "../components/TransactionItemCard";
-import Product from "../images/Products_1.png"
+import Button from "../components/Button.js";
 import { usePageMetadata } from "../PageContext.js";
+import FileUploadIcon from '@mui/icons-material/FileUpload';
+import BgCard from "../components/BgCard.js";
+import SearchIcon from "@mui/icons-material/Search";
+import FilterList from '@mui/icons-material/FilterList';
 
 const Transaction = () => {
-    const { setPageMetadata } = usePageMetadata();
-    
-      // Set page metadata when component mounts
-      useEffect(() => {
-        setPageMetadata({
-          title: "All Transactions",
-          subtitle: "Coompleted transaction history & management",
-        });
-    
-        // Reset metadata when component unmounts (optional, to avoid stale data)
-        return () => {
-          setPageMetadata({ title: "Dashboard", subtitle: "" });
-        };
-      }, [setPageMetadata]);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const { setPageMetadata } = usePageMetadata();
+
+  // Set page metadata when component mounts
+  useEffect(() => {
+    setPageMetadata({
+      title: "All Transactions",
+      subtitle: "Coompleted transaction history & management",
+    });
+
+    // Reset metadata when component unmounts (optional, to avoid stale data)
+    return () => {
+      setPageMetadata({ title: "Dashboard", subtitle: "" });
+    };
+  }, [setPageMetadata]);
   return (
     <>
       <Box
         sx={{
-          mt: 3,
+          mt: 0,
           px: 2,
           width: '100%',
           display: "flex",
@@ -35,64 +42,85 @@ const Transaction = () => {
           justifyContent: "center",
           alignItems: "flex-start",
         }}>
-
-        <Typography
-          variant="h5"
-          fontWeight={600}
-          sx={{ color: "#000" }}>
-          Transactional Dashboard
-        </Typography>
-        <Typography variant="body2" sx={{ mt: 2, color: "#000" }}>
-          View and manage your transaction and escrow funds
-        </Typography>
         <Box
           sx={{
-            mt: 3,
+            mt: 5,
             width: '100%',
             display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            flexWrap: "wrap",
-            gap: 3
+            flexDirection: {
+              xs: "column",
+              md: "row",
+            },
+            justifyContent: {
+              xs: "flex-start",
+              md: "space-between",
+            },
+            alignItems: {
+              xs: "flex-start",
+              md: "center",
+            },
+            gap: 1
           }}>
-          <TransactionCard
-            title="Escrow Balance"
-            value="$5000"
-          />
-          <TransactionCard
-            title="Active Transactions"
-            value="2"
-          />
-          <TransactionCard
-            title="Completed Transactions"
-            value="10"
-          />
+          <Typography
+            variant="h6"
+            fontWeight={600}
+            mb={3}
+            sx={{
+              whiteSpace: {
+                md: 'nowrap'
+              }
+            }
+            }>Active Transactions (4)</Typography>
+          <Box
+            sx={{
+              width: '100%',
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "flex-end",
+              alignItems: "center",
+              gap: 1
+            }}>
+            <Button
+              icon={
+                <FilterList
+                  sx={{
+                    fontSize: 20,
+                    color: "#000"
+                  }}
+                />
+              }
+              title="All"
+              textColor="#000"
+            />
+            <Button
+              icon={
+                <FileUploadIcon
+                  sx={{
+                    fontSize: 20,
+                    color: "#000"
+                  }}
+                />
+              }
+              title="Export"
+              textColor="#000"
+            />
+
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                border: "1px solid #ccc",
+                borderRadius: 1,
+                px: 1,
+                minWidth: isMobile ? '100px' : '200px',
+              }}
+            >
+              <SearchIcon fontSize="small" sx={{ mr: 1 }} />
+              <InputBase placeholder="Search…" sx={{ fontSize: 14, flex: 1 }} />
+            </Box>
+          </Box>
         </Box>
-        <TransactionItemCard
-          imageSrc={Product}
-          title="Coffee Beans"
-          subtitle="200g Premium Roast"
-          date="June 9, 2025"
-          price="₦4,500"
-        />
-
-        <TransactionItemCard
-          imageSrc={Product}
-          title="Coffee Beans"
-          subtitle="200g Premium Roast"
-          date="June 9, 2025"
-          price="₦4,500"
-        />
-
-        <TransactionItemCard
-          imageSrc={Product}
-          title="Coffee Beans"
-          subtitle="200g Premium Roast"
-          date="June 9, 2025"
-          price="₦4,500"
-        />
-
+        <BgCard />
       </Box>
     </>
   );
