@@ -10,11 +10,9 @@ import AnalyticsCard from "../components/AnalyticsCard.js";
 import { usePageMetadata } from "../PageContext.js";
 import ListIcon from '@mui/icons-material/List';
 import VisibilityIcon from '@mui/icons-material/VisibilityOutlined';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from "@mui/icons-material/DeleteOutlined";
 import AddIcon from '@mui/icons-material/Add';
 import BgCard from "../components/BgCard.js";
-import TransactionCard from "../components/TransactionCard.js";
+import ListingCard from "../components/ListingCard.js";
 
 const ListingPage = () => {
     const theme = useTheme();
@@ -103,13 +101,13 @@ const ListingPage = () => {
                             <VisibilityIcon
                                 sx={{
                                     fontSize: 30,
-                                    color: "#0000FF",
+                                    color: "#008000",
                                 }} />
                         }
                         title="Active Listings"
                         value="2"
                         percentage="Currently Published"
-                        chartColor="#FF0000"
+                        chartColor="#0000FF"
                         numColumns={3}
                     />
                     <AnalyticsCard
@@ -117,7 +115,7 @@ const ListingPage = () => {
                             <VisibilityIcon
                                 sx={{
                                     fontSize: 30,
-                                    color: "#0000FF",
+                                    color: "#008000",
                                 }} />
                         }
                         title="Total Views"
@@ -161,37 +159,41 @@ const ListingPage = () => {
                 <BgCard
                     content={
                         <>
-                            <TransactionCard
+                            <ListingCard
+                                name="Vintage Watch Collection"
+                                details="Rare vintage watches from the 1950s."
                                 id="ESC-001"
-                                from="John Mitchell"
-                                to="Sarah John"
+                                views = "150"
                                 timeStamp="2 Hours Ago"
                                 amount="$2,450.00"
                                 status="Active"
                                 padding={2}
                             />
-                            <TransactionCard
+                            <ListingCard
+                                name="Vintage Watch Collection"
+                                details="Rare vintage watches from the 1950s."
                                 id="ESC-001"
-                                from="John Mitchell"
-                                to="Sarah John"
+                                views = "150"
                                 timeStamp="2 Hours Ago"
                                 amount="$2,450.00"
                                 status="Pending"
                                 padding={2}
                             />
-                            <TransactionCard
+                            <ListingCard
+                                name="Vintage Watch Collection"
+                                details="Rare vintage watches from the 1950s."
                                 id="ESC-001"
-                                from="John Mitchell"
-                                to="Sarah John"
+                                views = "150"
                                 timeStamp="2 Hours Ago"
                                 amount="$2,450.00"
                                 status="Urgent"
                                 padding={2}
                             />
-                            <TransactionCard
+                            <ListingCard
+                                name="Vintage Watch Collection"
+                                details="Rare vintage watches from the 1950s."
                                 id="ESC-001"
-                                from="John Mitchell"
-                                to="Sarah John"
+                                views = "150"
                                 timeStamp="2 Hours Ago"
                                 amount="$2,450.00"
                                 status="Completed"
