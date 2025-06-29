@@ -15,8 +15,6 @@ import BgCard from "../components/BgCard.js";
 import ListingCard from "../components/ListingCard.js";
 
 const ListingPage = () => {
-    const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const { setPageMetadata } = usePageMetadata();
 
     // Set page metadata when component mounts
