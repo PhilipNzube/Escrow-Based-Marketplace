@@ -72,7 +72,7 @@ const PendingPage = () => {
             chartColor="#A35D35"
             numColumns={3}
             noTrendIcon={true}
-            bgColor="#FEF9C3"
+            iconBgColor="#FEF9C3"
           />
           <AnalyticsCard
             icon={
@@ -88,7 +88,7 @@ const PendingPage = () => {
             chartColor="#FF0000"
             numColumns={3}
             noTrendIcon={true}
-            bgColor="#F6BFBF"
+            iconBgColor="#F6BFBF"
           />
           <AnalyticsCard
             icon={
