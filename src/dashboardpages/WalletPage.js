@@ -8,9 +8,8 @@ import { usePageMetadata } from "../PageContext.js";
 import VisibilityIcon from '@mui/icons-material/VisibilityOutlined';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
-import DoneAllIcon from '@mui/icons-material/DoneAll';
 import BgCard from "../components/BgCard.js";
-import OrderCard from "../components/OrderCard.js";
+import WalletTransactionCard from "../components/WalletTransactionCard.js";
 
 const WalletPage = () => {
   const { setPageMetadata } = usePageMetadata();
@@ -135,48 +134,44 @@ const WalletPage = () => {
         <BgCard
           content={
             <>
-              <OrderCard
-                iconType="Processing"
+              <WalletTransactionCard
+                iconType="Credit"
                 name="Mac Book Pro 16"
                 from="Tech Store Pro"
                 id="ORD-001"
-                orderTimeStamp="1-1-2025 10:00 AM"
-                deliveryTimeStamp="2-1-2025 10:00 AM"
+                timeStamp="1-1-2025 10:00 AM"
                 amount="$2,450.00"
-                status="Processing"
+                status="Pending"
                 padding={2}
               />
-              <OrderCard
-                iconType="In Progress"
+              <WalletTransactionCard
+                iconType="Debit"
                 name="Mac Book Pro 16"
-                from="Tech Store Pro"
+                from="Bank Transfer"
                 id="ORD-001"
-                orderTimeStamp="1-1-2025 10:00 AM"
-                deliveryTimeStamp="2-1-2025 10:00 AM"
+                timeStamp="1-1-2025 10:00 AM"
                 amount="$2,450.00"
-                status="In Progress"
+                status="Completed"
                 padding={2}
               />
-              <OrderCard
-                iconType="Shipped"
+              <WalletTransactionCard
+                iconType="Credit"
                 name="Mac Book Pro 16"
                 from="Tech Store Pro"
                 id="ORD-001"
-                orderTimeStamp="1-1-2025 10:00 AM"
-                deliveryTimeStamp="2-1-2025 10:00 AM"
+                timeStamp="1-1-2025 10:00 AM"
                 amount="$2,450.00"
-                status="Shipped"
+                status="Completed"
                 padding={2}
               />
-              <OrderCard
-                iconType="Delivered"
+              <WalletTransactionCard
+                iconType="Debit"
                 name="Mac Book Pro 16"
                 from="Tech Store Pro"
                 id="ORD-001"
-                orderTimeStamp="1-1-2025 10:00 AM"
-                deliveryTimeStamp="2-1-2025 10:00 AM"
+                timeStamp="1-1-2025 10:00 AM"
                 amount="$2,450.00"
-                status="Delivered"
+                status="Pending"
                 padding={2}
               />
             </>
