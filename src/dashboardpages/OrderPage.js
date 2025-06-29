@@ -75,7 +75,7 @@ const OrderPage = () => {
             value="2"
             percentage="Active Orders"
             chartColor="#FF543E"
-            bgColor="#FFDAD5"
+            iconBgColor="#FFDAD5"
           />
           <AnalyticsCard
             icon={
@@ -90,7 +90,7 @@ const OrderPage = () => {
             percentage="In Transit"
             chartColor="#800080"
             noTrendIcon={true}
-            bgColor="#FFD2FF"
+            iconBgColor="#FFD2FF"
           />
           <AnalyticsCard
             icon={
@@ -105,7 +105,7 @@ const OrderPage = () => {
             percentage="Completed Orders"
             chartColor="#008000"
             noTrendIcon={true}
-            bgColor="#C3FFC3"
+            iconBgColor="#C3FFC3"
           />
         </Box>
         <Box
@@ -164,6 +164,17 @@ const OrderPage = () => {
                 padding={2}
               />
               <OrderCard
+                iconType="Shipped"
+                name="Mac Book Pro 16"
+                from="Tech Store Pro"
+                id="ORD-001"
+                orderTimeStamp="1-1-2025 10:00 AM"
+                deliveryTimeStamp="2-1-2025 10:00 AM"
+                amount="$2,450.00"
+                status="Shipped"
+                padding={2}
+              />
+              <OrderCard
                 iconType="Delivered"
                 name="Mac Book Pro 16"
                 from="Tech Store Pro"
@@ -172,17 +183,6 @@ const OrderPage = () => {
                 deliveryTimeStamp="2-1-2025 10:00 AM"
                 amount="$2,450.00"
                 status="Delivered"
-                padding={2}
-              />
-              <OrderCard
-                iconType="Completed"
-                name="Mac Book Pro 16"
-                from="Tech Store Pro"
-                id="ORD-001"
-                orderTimeStamp="1-1-2025 10:00 AM"
-                deliveryTimeStamp="2-1-2025 10:00 AM"
-                amount="$2,450.00"
-                status="Completed"
                 padding={2}
               />
             </>

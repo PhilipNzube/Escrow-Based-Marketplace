@@ -10,7 +10,10 @@ const AnalyticsCard = ({
     chartColor,
     numColumns = 2,
     noTrendIcon = false,
-    bgColor = "#CACAFF"
+    iconBgColor = "#CACAFF",
+    bgColor = "transparent",
+    titleColor = "#000",
+    valueColor = "#000",
 }) => {
     return (
         <BgCard
@@ -24,14 +27,14 @@ const AnalyticsCard = ({
                             justifyContent: "space-between",
                             alignItems: "center",
                         }}>
-                        <Typography variant="body1" sx={{ color: "#000" }}>
+                        <Typography variant="body1" sx={{ color: titleColor }}>
                             {title}
                         </Typography>
                         <Box
                             sx={{
                                 padding: 1,
                                 borderRadius: 50,
-                                backgroundColor: bgColor,
+                                backgroundColor: iconBgColor,
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "center",
@@ -39,7 +42,7 @@ const AnalyticsCard = ({
                             {icon}
                         </Box>
                     </Box>
-                    <Typography variant="h5" sx={{ fontWeight: 600, color: "#000" }}>
+                    <Typography variant="h5" sx={{ fontWeight: 600, color: valueColor }}>
                         {value}
                     </Typography>
                     <Box
@@ -60,6 +63,7 @@ const AnalyticsCard = ({
                     </Box>
                 </>}
             numColumns={numColumns}
+            bgColor = {bgColor}
         />
 
     );
