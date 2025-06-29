@@ -16,7 +16,8 @@ import CompletedPage from './dashboardpages/CompletedPage.js';
 import Transaction from './dashboardpages/Transaction.js';
 import UserProfile from './dashboardpages/UserProfile.js';
 import ChatPage from './dashboardpages/ChatPage.js';
-import Listing from './dashboardpages/Listing.js';
+import ListingPage from './dashboardpages/ListingPage.js';
+import CreateListing from './dashboardpages/CreateListing.js';
 import './index.css';
 import './fonts/fonts.css';
 import { SnackbarProvider } from 'notistack';
@@ -56,7 +57,8 @@ function START() {
                                 <Route path="transactions" element={<Transaction />} />
                                 <Route path="profile" element={<UserProfile />} />
                                 <Route path="messages" element={<ChatPage />} />
-                                <Route path="listing" element={<Listing />} />
+                                <Route path="listing" element={<ListingPage />} />
+                                <Route path="create-listing" element={<CreateListing />} />
                                 <Route path="wallet" element={<WalletPage />} />
                                 <Route path="orders" element={<OrderPage />} />
                             </Route>

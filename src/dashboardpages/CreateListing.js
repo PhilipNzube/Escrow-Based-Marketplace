@@ -17,7 +17,7 @@ import { usePageMetadata } from "../PageContext.js";
 const categories = ["Art", "Crafts", "Jewelry", "Clothing", "Home Goods"];
 const tags = ["Vintage", "Handmade", "Boho", "Minimalist", "Eco-friendly", "Customizable"];
 
-export default function Listing() {
+export default function CreateListing() {
   const [images, setImages] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const [delivery, setDelivery] = useState("1 Day");
@@ -43,7 +43,7 @@ export default function Listing() {
     // Set page metadata when component mounts
     useEffect(() => {
       setPageMetadata({
-        title: "My Listings",
+        title: "My CreateListings",
         subtitle: "Manage your products and ",
       });
   
@@ -63,7 +63,7 @@ export default function Listing() {
       justifyContent: "center",
       alignItems: "flex-start",
     }}>
-      <Typography variant="h5" fontWeight={600} mb={3}>Create a listing</Typography>
+      <Typography variant="h5" fontWeight={600} mb={3}>Create a Createlisting</Typography>
 
       {/* Title Field */}
       <TextField
