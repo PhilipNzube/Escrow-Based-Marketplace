@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Box, Tabs, Tab, Typography } from "@mui/material";
 import BgCard from "../components/BgCard.js";
 import RecentActivity from "../components/RecentActivity.js";
+import TabTransaction from "./TabTransaction.js";
 
 // dummy data for different tab content
 const overviewContent = (
@@ -88,24 +89,24 @@ const overviewContent = (
         <BgCard
             content={
                 <>
-                        <Typography
-                            variant="body1"
-                            fontWeight={600}
-                            mb={2}>
-                            Recent Activity
-                        </Typography>
-                        <RecentActivity
-                            activityId="Completed ESC-003"
-                            timeStamp="2 hours ago"
-                        />
-                        <RecentActivity
-                            activityId="Started ESC-002"
-                            timeStamp="1 day ago"
-                        />
-                        <RecentActivity
-                            activityId="Profile Updated"
-                            timeStamp="3 days ago"
-                        />
+                    <Typography
+                        variant="body1"
+                        fontWeight={600}
+                        mb={2}>
+                        Recent Activity
+                    </Typography>
+                    <RecentActivity
+                        activityId="Completed ESC-003"
+                        timeStamp="2 hours ago"
+                    />
+                    <RecentActivity
+                        activityId="Started ESC-002"
+                        timeStamp="1 day ago"
+                    />
+                    <RecentActivity
+                        activityId="Profile Updated"
+                        timeStamp="3 days ago"
+                    />
                 </>
             }
         />
@@ -113,15 +114,97 @@ const overviewContent = (
 );
 
 const activeContent = (
-    <Typography>Active transactions will appear here.</Typography>
+    <BgCard
+        content={
+            <>
+                <Typography
+                    variant="body1"
+                    fontWeight={600}
+                    mb={2}
+                >
+                    Active Transactions.
+                </Typography>
+                <TabTransaction
+                    id="ESC-003"
+                    amount="$2,400.90"
+                    status="Active"
+                />
+                <TabTransaction
+                    id="ESC-003"
+                    amount="$2,400.90"
+                    status="Active"
+                />
+                <TabTransaction
+                    id="ESC-003"
+                    amount="$2,400.90"
+                    status="Active"
+                />
+
+            </>
+        }
+    />
 );
 
 const pendingContent = (
-    <Typography>Pending transactions will appear here.</Typography>
+    <BgCard
+        content={
+            <>
+                <Typography
+                    variant="body1"
+                    fontWeight={600}
+                    mb={2}
+                >
+                    Pending Transactions
+                </Typography>
+                <TabTransaction
+                    id="ESC-003"
+                    amount="$2,400.90"
+                    status="Pending"
+                />
+                <TabTransaction
+                    id="ESC-003"
+                    amount="$2,400.90"
+                    status="Pending"
+                />
+                <TabTransaction
+                    id="ESC-003"
+                    amount="$2,400.90"
+                    status="Pending"
+                />
+            </>
+        }
+    />
 );
 
 const soldContent = (
-    <Typography>Sold transactions will appear here.</Typography>
+    <BgCard
+        content={
+            <>
+                <Typography
+                    variant="body1"
+                    fontWeight={600}
+                    mb={2}
+                >
+                    Completed Sales
+                </Typography>
+                <TabTransaction
+                    id="ESC-003"
+                    amount="$2,400.90"
+                    status="Completed"
+                />
+                <TabTransaction
+                    id="ESC-003"
+                    amount="$2,400.90"
+                    status="Completed"
+                />
+                <TabTransaction
+                    id="ESC-003"
+                    amount="$2,400.90"
+                    status="Completed"
+                />
+            </>
+        }
+    />
 );
 
 const ProfileTabs = () => {
@@ -139,8 +222,16 @@ const ProfileTabs = () => {
                     flexDirection: "column",
                     justifyContent: "center",
                     alignItems: "center",
+                    width: "100%",
                 }}>
-                <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                <Box
+                    sx={{
+                        borderBottom: 1,
+                        borderColor: "divider",
+                        overflowX: "auto",
+                        whiteSpace: "nowrap",
+                        width: "100%",
+                    }}>
                     <Tabs
                         value={selectedTab}
                         onChange={handleChange}
@@ -148,6 +239,7 @@ const ProfileTabs = () => {
                         indicatorColor="primary"
                         aria-label="profile tabs"
                         variant="scrollable"
+                        scrollButtons="auto"
                     >
                         <Tab label="Overview" />
                         <Tab label="Active" />
@@ -160,6 +252,7 @@ const ProfileTabs = () => {
                     {{
                         p: 2,
                         width: "100%",
+                        overflow: "hidden",
                     }}>
                     {selectedTab === 0 && overviewContent}
                     {selectedTab === 1 && activeContent}
