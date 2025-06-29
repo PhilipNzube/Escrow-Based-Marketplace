@@ -2,12 +2,18 @@ import { useEffect } from "react";
 import {
   Box,
   Typography,
+  TextField,
+  Button,
+    Divider,
 } from "@mui/material";
 import AnalyticsCard from "../components/AnalyticsCard.js";
 import { usePageMetadata } from "../PageContext.js";
 import VisibilityIcon from '@mui/icons-material/VisibilityOutlined';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import BgCard from "../components/BgCard.js";
 import WalletTransactionCard from "../components/WalletTransactionCard.js";
 
@@ -36,7 +42,6 @@ const WalletPage = () => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          alignItems: "flex-start",
         }}>
         <Box
           sx={{
@@ -129,7 +134,7 @@ const WalletPage = () => {
                 md: 'nowrap'
               }
             }
-            }>Recent Orders</Typography>
+            }>Recent Transaction</Typography>
         </Box>
         <BgCard
           content={
@@ -150,7 +155,7 @@ const WalletPage = () => {
                 from="Bank Transfer"
                 id="ORD-001"
                 timeStamp="1-1-2025 10:00 AM"
-                amount="$2,450.00"
+                amount="-$2,450.00"
                 status="Completed"
                 padding={2}
               />
@@ -170,7 +175,7 @@ const WalletPage = () => {
                 from="Tech Store Pro"
                 id="ORD-001"
                 timeStamp="1-1-2025 10:00 AM"
-                amount="$2,450.00"
+                amount="-$2,450.00"
                 status="Pending"
                 padding={2}
               />
@@ -178,7 +183,117 @@ const WalletPage = () => {
           }
           overflowX="scroll"
         />
-
+        <BgCard
+          content={
+            <>
+              <Box
+                sx={{
+                  width: '100%',
+                }}>
+                <Box display="flex" alignItems="center" gap={1} mb={1}>
+                  <AddCircleOutlineIcon color="success" />
+                  <Typography variant="h6" fontWeight="bold">Add Funds</Typography>
+                </Box>
+                <TextField
+                  fullWidth
+                  variant="outlined"
+                  size="small"
+                  placeholder="$ 0.00"
+                  InputProps={{ sx: { borderRadius: 2 } }}
+                />
+                <Box display="flex" gap={1} mt={1}>
+                  {["100", "500", "1000"].map((amount) => (
+                    <Button
+                      key={amount}
+                      variant="outlined"
+                      sx={{ flex: 1, borderRadius: 2 }}
+                    >
+                      ${amount}
+                    </Button>
+                  ))}
+                </Box>
+                <Button
+                  variant="contained"
+                  color="success"
+                  fullWidth
+                  startIcon={<AccountBalanceWalletIcon />}
+                  sx={{ mt: 1, borderRadius: 2 }}
+                >
+                  Add Funds
+                </Button>
+              </Box>
+            </>
+          }
+        />
+        <BgCard
+          content={
+            <>
+              <Box
+                sx={{
+                  width: '100%',
+                }}>
+                <Box display="flex" alignItems="center" gap={1} mb={1}>
+                  <RemoveCircleOutlineIcon sx={{ color: 'error.main' }} />
+                  <Typography variant="h6" fontWeight="bold">Withdraw Funds</Typography>
+                </Box>
+                <TextField
+                  fullWidth
+                  variant="outlined"
+                  size="small"
+                  placeholder="$ 0.00"
+                  InputProps={{ sx: { borderRadius: 2 } }}
+                />
+                <Typography variant="body2" color="text.secondary" mt={0.5}>
+                  Available to withdraw: $4,232.5
+                </Typography>
+                <Button
+                  variant="outlined"
+                  fullWidth
+                  startIcon={<AccountBalanceIcon />}
+                  sx={{
+                    mt: 1,
+                    borderRadius: 2,
+                    color: '#000',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  Withdraw to bank
+                </Button>
+              </Box>
+            </>
+          }
+        />
+        <BgCard
+          content={
+            <>
+              <Box
+                sx={{
+                  width: '100%',
+                }}>
+                <Typography variant="h6" fontWeight="bold" mb={1}>
+                  This Month
+                </Typography>
+                <Box display="flex" justifyContent="space-between" mb={0.5}>
+                  <Typography variant="body2">Money in</Typography>
+                  <Typography variant="body2" color="success.main">+$3,650.00</Typography>
+                </Box>
+                <Box display="flex" justifyContent="space-between" mb={0.5}>
+                  <Typography variant="body2">Money out</Typography>
+                  <Typography variant="body2" color="error.main">-$3,850.00</Typography>
+                </Box>
+                <Box display="flex" justifyContent="space-between" mb={0.5}>
+                  <Typography variant="body2">Fees paid</Typography>
+                  <Typography variant="body2">$125.00</Typography>
+                </Box>
+                <Divider sx={{ mt: 2, mb: 2, opacity: 0.6 }} />
+                <Box display="flex" justifyContent="space-between" mt={1}>
+                  <Typography variant="body2" fontWeight="bold">Net change</Typography>
+                  <Typography variant="body2" color="success.main" fontWeight="bold">+$450.00</Typography>
+                </Box>
+              </Box>
+            </>
+          }
+        />
       </Box>
     </>
   );
