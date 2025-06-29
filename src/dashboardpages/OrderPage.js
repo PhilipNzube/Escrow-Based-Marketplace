@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import {
   Box,
   Typography,
-  Button
 } from "@mui/material";
 import AnalyticsCard from "../components/AnalyticsCard.js";
 import { usePageMetadata } from "../PageContext.js";
@@ -10,7 +9,6 @@ import ListIcon from '@mui/icons-material/List';
 import InventoryIcon from '@mui/icons-material/Inventory2';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
-import AddIcon from '@mui/icons-material/Add';
 import BgCard from "../components/BgCard.js";
 import OrderCard from "../components/OrderCard.js";
 

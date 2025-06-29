@@ -3,8 +3,6 @@ import {
     Box,
     Typography,
     Button,
-    useMediaQuery,
-    useTheme
 } from "@mui/material";
 import AnalyticsCard from "../components/AnalyticsCard.js";
 import { usePageMetadata } from "../PageContext.js";
