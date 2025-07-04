@@ -16,16 +16,14 @@ import {
     ListItemIcon,
     ListItemText,
 } from "@mui/material";
-import Button from "../components/Button.js";
 import { usePageMetadata } from "../PageContext.js";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import BgCard from "../components/BgCard.js";
 
 const CreateOfferPage = () => {
-    const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const { setPageMetadata } = usePageMetadata();
 
     // Set page metadata when component mounts
@@ -55,7 +53,9 @@ const CreateOfferPage = () => {
                 <Box sx={{ p: 4, backgroundColor: "#f8f8f8", minHeight: "100vh" }}>
                     <Grid container spacing={4}>
                         {/* Left side form */}
-                        <Grid item xs={12} md={8}>
+                        <Grid
+                            item xs={12}
+                            md={8}>
                             <BgCard
                                 content={
                                     <>
@@ -167,60 +167,120 @@ const CreateOfferPage = () => {
                         </Grid>
 
                         {/* Right side summary */}
-                        <Grid item xs={12} md={4}>
+                        <Grid item xs={12} md={4} width="100%">
                             <BgCard
                                 content={
                                     <>
-                                        <Typography variant="h6">Offer Summary</Typography>
-                                        <Divider sx={{ my: 1 }} />
-                                        <Typography variant="body2">Type: <b>Not Selected</b></Typography>
-                                        <Typography variant="body2">Amount: <b>$0.00</b></Typography>
-                                        <Typography variant="body2">Duration: <b>Not Set</b></Typography>
-                                        <Typography variant="body2">
-                                            Escrow Fee: <b sx={{ color: "primary.main" }}>$0.00</b>
+                                        {/* Offer Summary */}
+                                        <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                                            Offer Summary
                                         </Typography>
-                                        <Typography variant="body2" sx={{ mt: 1 }}>
-                                            Total: <b>$0.00</b>
-                                        </Typography>
-                                        <Divider sx={{ my: 2 }} />
-                                        <Paper variant="outlined" sx={{ p: 2, backgroundColor: "#fafafa" }}>
-                                            <Typography variant="body2" sx={{ mb: 1 }}>
-                                                Escrow Protection
-                                            </Typography>
-                                            <List dense>
-                                                {[
-                                                    "Secure payment processing",
-                                                    "Dispute resolution services",
-                                                    "Money-back guarantee",
-                                                    "24/7 Customer Support",
-                                                ].map((text) => (
-                                                    <ListItem key={text}>
-                                                        <ListItemIcon>
-                                                            <CheckCircleIcon color="success" />
-                                                        </ListItemIcon>
-                                                        <ListItemText primary={text} />
-                                                    </ListItem>
-                                                ))}
-                                            </List>
-                                        </Paper>
-                                        <Button
-                                            variant="contained"
-                                            color="primary"
-                                            fullWidth
-                                            sx={{ mt: 2 }}
+                                        <Box
+                                            sx={{ mb: 1 }}
+                                             width="100%"
                                         >
-                                            Create Offer
-                                        </Button>
-                                        <Button
-                                            variant="outlined"
-                                            fullWidth
-                                            sx={{ mt: 1 }}
-                                        >
-                                            Save as draft
-                                        </Button>
+                                            <Box display="flex" justifyContent="space-between" mb={0.5}>
+                                                <Typography
+                                                    variant="body2"
+                                                    sx={{
+                                                        color: "text.secondary"
+                                                    }}
+                                                >Type</Typography>
+                                                <Typography variant="body2" color="success.main">+$3,650.00</Typography>
+                                            </Box>
+                                            <Box display="flex" justifyContent="space-between" mb={0.5}>
+                                                <Typography
+                                                    variant="body2"
+                                                    sx={{
+                                                        color: "text.secondary"
+                                                    }}
+                                                >Amount</Typography>
+                                                <Typography variant="body2" color="error.main">-$3,850.00</Typography>
+                                            </Box>
+                                            <Box display="flex" justifyContent="space-between" mb={0.5}>
+                                                <Typography
+                                                    variant="body2"
+                                                    sx={{
+                                                        color: "text.secondary"
+                                                    }}
+                                                >Duration</Typography>
+                                                <Typography variant="body2">$125.00</Typography>
+                                            </Box>
+                                            <Box display="flex" justifyContent="space-between" mb={0.5}>
+                                                <Typography
+                                                    variant="body2"
+                                                    sx={{
+                                                        color: "text.secondary"
+                                                    }}
+                                                >Escrow Fee</Typography>
+                                                <Typography variant="body2">$125.00</Typography>
+                                            </Box>
+                                            <Divider sx={{ mt: 2, mb: 2, opacity: 0.6 }} />
+                                            <Box display="flex" justifyContent="space-between" mt={1}>
+                                                <Typography variant="body2" fontWeight="bold">Total:</Typography>
+                                                <Typography variant="body2" color="success.main" fontWeight="bold">+$0.00</Typography>
+                                            </Box>
+                                        </Box>
                                     </>
                                 }
                             />
+                            {/* Escrow Protection */}
+                            <BgCard
+                                content={
+                                    <>
+                                        <Typography
+                                            variant="body2"
+                                            sx={{ fontWeight: 600, display: "flex", alignItems: "center", mb: 1 }}
+                                        >
+                                            <CheckCircleIcon/>
+                                            Escrow Protection
+                                        </Typography>
+                                        <List dense>
+                                            {[
+                                                "Secure payment processing",
+                                                "Dispute resolution service",
+                                                "Money-back guarantee",
+                                                "24/7 Customer Support",
+                                            ].map((text) => (
+                                                <ListItem disableGutters key={text}>
+                                                    <ListItemIcon>
+                                                        <CheckCircleIcon sx={{ color: "green", fontSize: 16 }} />
+                                                    </ListItemIcon>
+                                                    <ListItemText primary={text} />
+                                                </ListItem>
+                                            ))}
+                                        </List>
+                                    </>
+                                }
+                            />
+
+                            {/* Buttons */}
+                            <Button
+                                variant="contained"
+                                fullWidth
+                                sx={{
+                                    mt: 2,
+                                    bgcolor: "#000",
+                                    color: "#fff",
+                                    "&:hover": { bgcolor: "#333" },
+                                    borderRadius: 1,
+                                }}
+                            >
+                                Create Offer
+                            </Button>
+                            <Button
+                                variant="outlined"
+                                fullWidth
+                                sx={{
+                                    mt: 1,
+                                    borderColor: "#ddd",
+                                    color: "#888",
+                                    backgroundColor: "#f5f5f5",
+                                    borderRadius: 1,
+                                }}
+                            >
+                                Save as draft
+                            </Button>
                         </Grid>
                     </Grid>
                 </Box>
