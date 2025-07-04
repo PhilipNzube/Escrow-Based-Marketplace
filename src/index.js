@@ -18,6 +18,7 @@ import UserProfile from './dashboardpages/UserProfile.js';
 import ChatPage from './dashboardpages/ChatPage.js';
 import ListingPage from './dashboardpages/ListingPage.js';
 import CreateListing from './dashboardpages/CreateListing.js';
+import CreateOfferPage from './dashboardpages/CreateOffer.js';
 import './index.css';
 import './fonts/fonts.css';
 import { SnackbarProvider } from 'notistack';
@@ -59,6 +60,7 @@ function START() {
                                 <Route path="messages" element={<ChatPage />} />
                                 <Route path="listing" element={<ListingPage />} />
                                 <Route path="create-listing" element={<CreateListing />} />
+                                <Route path="create-offer" element={<CreateOfferPage />} />
                                 <Route path="wallet" element={<WalletPage />} />
                                 <Route path="orders" element={<OrderPage />} />
                             </Route>
