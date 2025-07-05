@@ -21,6 +21,7 @@ import AttachFileIcon from "@mui/icons-material/AttachFile";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import ListIcon from '@mui/icons-material/Receipt';
 import BgCard from "../components/BgCard.js";
 
 const CreateOfferPage = () => {
@@ -50,7 +51,6 @@ const CreateOfferPage = () => {
                     justifyContent: "center",
                     alignItems: "flex-start",
                 }}>
-                <Box sx={{ p: 4, backgroundColor: "#f8f8f8", minHeight: "100vh" }}>
                     <Grid container spacing={4}>
                         {/* Left side form */}
                         <Grid
@@ -232,7 +232,7 @@ const CreateOfferPage = () => {
                                             variant="body2"
                                             sx={{ fontWeight: 600, display: "flex", alignItems: "center", mb: 1 }}
                                         >
-                                            <CheckCircleIcon/>
+                                            <ListIcon/>
                                             Escrow Protection
                                         </Typography>
                                         <List dense>
@@ -283,9 +283,6 @@ const CreateOfferPage = () => {
                             </Button>
                         </Grid>
                     </Grid>
-                </Box>
-
-
             </Box>
         </>
     );
