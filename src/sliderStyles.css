@@ -1,0 +1,10 @@
+.slick-slide-custom {
+  opacity: 0.5;
+  transform: scale(0.9);
+  transition: all 0.3s ease-in-out;
+}
+
+.slick-center .slick-slide-custom {
+  opacity: 1;
+  transform: scale(1.05);
+}

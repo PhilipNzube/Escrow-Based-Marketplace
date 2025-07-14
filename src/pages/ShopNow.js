@@ -6,6 +6,7 @@ import {
   Button,
   useMediaQuery,
   useTheme,
+  IconButton,
 } from "@mui/material";
 import { styled } from "@mui/system";
 import ResponsiveNavBar from "../components/ResponsiveNavBar";
@@ -17,10 +18,38 @@ import Model1 from "../images/Model_1.png";
 import Model2 from "../images/Model_2.png";
 import Model3 from "../images/Model_3.png";
 import Model4 from "../images/Model_4.png";
+import DealModel1 from "../images/deal_model1.png";
+import DealModel2 from "../images/deal_model2.png";
 import UltimateText from "../images/ultimate.png";
 import SaleText from "../images/sale.png";
 import NewCollectionText from "../images/NEW COLLECTION.png";
 import BrandGrid from "../components/BrandGrid";
+import Slider from "react-slick";
+import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
+
+const DigitalText = styled(Typography)(({ theme }) => ({
+  fontFamily: "monospace",
+  fontWeight: "bold",
+  fontSize: "1.5rem",
+  letterSpacing: "0.1em",
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "1.2rem",
+  },
+}));
+
+const carouselItems = [
+  {
+    img: DealModel1,
+    label: "01 — Spring Sale",
+    offer: "30% OFF",
+  },
+  {
+    img: DealModel2,
+  },
+  {
+    img: DealModel1,
+  },
+];
 
 const ShopNow = () => {
   const navigate = useNavigate();
@@ -44,14 +73,51 @@ const ShopNow = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const BrandLogo = styled(Typography)(({ theme }) => ({
-    fontWeight: "bold",
-    textAlign: "center",
-    fontSize: "1.1rem",
-    [theme.breakpoints.down("sm")]: {
-      fontSize: "0.9rem",
-    },
-  }));
+  const CustomNextArrow = ({ onClick }) => (
+    <IconButton
+      onClick={onClick}
+      sx={{ position: "absolute", right: -30, top: "40%", color: "#000" }}
+    >
+      <ArrowForwardIos />
+    </IconButton>
+  );
+
+  const CustomPrevArrow = ({ onClick }) => (
+    <IconButton
+      onClick={onClick}
+      sx={{ position: "absolute", left: -30, top: "40%", color: "#000" }}
+    >
+      <ArrowBackIos />
+    </IconButton>
+  );
+
+  const carouselSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 2,
+    centerMode: true,
+    centerPadding: "0px",
+    arrows: true,
+    nextArrow: <CustomNextArrow />,
+    prevArrow: <CustomPrevArrow />,
+    responsive: [
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 1,
+          centerMode: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          centerMode: true,
+        },
+      },
+    ],
+  };
 
   return (
     <Box sx={{ position: "relative", minHeight: "100vh", width: "100%" }}>
@@ -151,6 +217,113 @@ const ShopNow = () => {
 
         {/* Brands */}
         <BrandGrid />
+
+        {/* Deals Of The Month Section */}
+        <Box
+          sx={{
+            mt: 10,
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", md: "1fr 2fr" },
+            gap: 4,
+            alignItems: "center",
+          }}
+        >
+          {/* Text Content */}
+          <Box>
+            <Typography variant="h4" color="#484848" fontWeight="bold" mb={2}>
+              Deals Of The Month
+            </Typography>
+            <Typography variant="body1" color="text.secondary" mb={3}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Scelerisque duis ultrices sollicitudin aliquam sem. Scelerisque
+              duis ultrices sollicitudin
+            </Typography>
+            <Button
+              variant="contained"
+              sx={{ bgcolor: "#7B3F00", borderRadius: 2 }}
+            >
+              Explore all items →
+            </Button>
+
+            <Box mt={6}>
+              <Typography variant="h6" fontWeight="bold" mb={2}>
+                Hurry, Before It’s Too Late!
+              </Typography>
+              <Box sx={{ display: "flex", gap: 2 }}>
+                {[
+                  { label: "Days", value: "02" },
+                  { label: "Hr", value: "06" },
+                  { label: "Mins", value: "05" },
+                  { label: "Sec", value: "30" },
+                ].map((item, i) => (
+                  <Box
+                    key={i}
+                    textAlign="center"
+                    sx={{ boxShadow: 3, p: 2, borderRadius: 2 }}
+                  >
+                    <DigitalText>{item.value}</DigitalText>
+                    <Typography variant="body2">{item.label}</Typography>
+                  </Box>
+                ))}
+              </Box>
+            </Box>
+          </Box>
+
+          {/* Carousel */}
+          <Box
+            sx={{
+              width: { xs: "100%", sm: "90%", md: "100%" },
+              maxWidth: { xs: 260, sm: 400, md: 900 },
+              mx: "auto",
+            }}
+          >
+            <Slider {...carouselSettings}>
+              {carouselItems.map((item, index) => (
+                <Box
+                  key={index}
+                  className="slick-slide-custom"
+                  sx={{
+                    px: 1,
+                    position: "relative",
+                    aspectRatio: "3 / 4",
+                    overflow: "hidden",
+                    borderRadius: 2,
+                  }}
+                >
+                  <Box
+                    component="img"
+                    src={item.img}
+                    alt={`Deal ${index + 1}`}
+                    sx={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                  {item.label && (
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        bottom: 16,
+                        left: 16,
+                        bgcolor: "#fff",
+                        px: 2,
+                        py: 1,
+                        borderRadius: 1,
+                        boxShadow: 2,
+                      }}
+                    >
+                      <Typography variant="caption">{item.label}</Typography>
+                      <Typography variant="h6" fontWeight="bold">
+                        {item.offer}
+                      </Typography>
+                    </Box>
+                  )}
+                </Box>
+              ))}
+            </Slider>
+          </Box>
+        </Box>
       </Box>
     </Box>
   );

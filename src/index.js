@@ -22,6 +22,7 @@ import CreateListing from "./dashboardpages/CreateListing.js";
 import CreateOfferPage from "./dashboardpages/CreateOffer.js";
 import "./index.css";
 import "./fonts/fonts.css";
+import "./sliderStyles.css";
 import { SnackbarProvider } from "notistack";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
