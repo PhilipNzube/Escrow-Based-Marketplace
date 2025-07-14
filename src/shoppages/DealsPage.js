@@ -38,6 +38,12 @@ import DenimImg6 from "../images/Denim6.png";
 import DenimImg7 from "../images/Denim7.png";
 import MainDenimImg from "../images/MainDenimJacket.png";
 import LogoIcon from "../images/Logo.png";
+import TinyRightArrow from "../images/tiny_right_arrow.png";
+import FashionAlignButton from "../images/FashionAlignButton.png";
+import FashionAlignButton2 from "../images/FashionAlignButton2.png";
+import FashionAlignButton3 from "../images/FashionAlignButton3.png";
+import FashionAlignButton4 from "../images/FashionAlignButton4.png";
+import FashionAlignButton5 from "../images/FashionAlignButton5.png";
 
 const products = [
   {
@@ -166,6 +172,14 @@ const categoryLabels = [
   "Discount Deals",
 ];
 
+const imageList = [
+  { src: FashionAlignButton, alt: "Align1" },
+  { src: FashionAlignButton2, alt: "Align2" },
+  { src: FashionAlignButton3, alt: "Align3" },
+  { src: FashionAlignButton4, alt: "Align4" },
+  { src: FashionAlignButton5, alt: "Align5" },
+];
+
 const DealsPage = () => {
   const navigate = useNavigate();
   const [tabIndex, setTabIndex] = useState(1);
@@ -227,9 +241,29 @@ const DealsPage = () => {
         <Typography variant="h3" sx={{ mt: 15, color: "#764D2E" }}>
           Fashion
         </Typography>
-        <Typography variant="body2" sx={{ mt: 5, color: "#764D2E" }}>
-          Home &gt; Fashion
-        </Typography>
+        <Box
+          sx={{
+            mt: 5,
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 1.5,
+          }}
+        >
+          <Typography variant="body2" sx={{ color: "#764D2E" }}>
+            Home
+          </Typography>
+          <Box
+            component="img"
+            src={TinyRightArrow}
+            alt="tiny_arrow"
+            sx={{ width: 10, height: 10 }}
+          />
+          <Typography variant="body2" sx={{ color: "#764D2E" }}>
+            Fashion
+          </Typography>
+        </Box>
       </Box>
       <Box
         sx={{
@@ -249,21 +283,26 @@ const DealsPage = () => {
               display: "flex",
               justifyContent: "flex-end",
               alignItems: "center",
+              gap: 1,
+              flexWrap: "wrap",
               mb: 4,
             }}
           >
-            <Box sx={{ display: "flex", gap: 1 }}>
-              <Button variant="outlined" size="small">
-                👆
-              </Button>
-              <Button variant="outlined" size="small">
-                👉
-              </Button>
-              <Button variant="outlined" size="small">
-                👇
-              </Button>
-            </Box>
+            {imageList.map((img, index) => (
+              <Box
+                key={index}
+                component="img"
+                src={img.src}
+                alt={img.alt}
+                sx={{
+                  width: { xs: 40, sm: 50 },
+                  height: "auto",
+                  borderRadius: 1,
+                }}
+              />
+            ))}
           </Box>
+
           <Box
             sx={{
               display: "flex",
