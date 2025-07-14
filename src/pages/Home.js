@@ -282,6 +282,7 @@ const HomePage = () => {
               backgroundColor: "#764d2e"
             }
           }}
+          onClick={()=>{navigate(`/shop-now`)}}
         >
           Shop Now
         </Button>
