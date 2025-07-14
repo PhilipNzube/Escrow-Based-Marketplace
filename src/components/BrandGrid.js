@@ -42,7 +42,7 @@ function BrandGrid() {
           sm: "normal",
         },
         "&::-webkit-scrollbar": {
-          xs: { height: "8px" },
+          xs: { height: 5 },
           sm: { display: "none" },
         },
         "&::-webkit-scrollbar-thumb": {

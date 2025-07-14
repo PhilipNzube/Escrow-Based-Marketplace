@@ -8,6 +8,7 @@ import {
   useTheme,
   IconButton,
   Divider,
+  TextField,
 } from "@mui/material";
 import { styled } from "@mui/system";
 import ResponsiveNavBar from "../components/ResponsiveNavBar";
@@ -42,6 +43,8 @@ import SellerImg from "../images/Top_Sellers_1.png";
 import SellerImg2 from "../images/Top_Sellers_2.png";
 import SellerImg3 from "../images/Top_Sellers_3.png";
 import TestimonialCard from "../components/TestimonialCard";
+import NewsLetterModel from "../images/NewsLetterModel.png";
+import NewsLetterModel2 from "../images/NewsLetterModel2.png";
 
 const DigitalText = styled(Typography)(({ theme }) => ({
   fontFamily: "monospace",
@@ -124,7 +127,7 @@ const testimonialData = [
   {
     image: SellerImg2,
     body: "Smooth delivery and seamless buying experience.",
-    position: "Daniel Ekong",
+    position: "Elena Flyod",
     position2: "Online Entrepreneur",
   },
   {
@@ -646,7 +649,7 @@ const ShopNow = () => {
         </Box>
       </Box>
 
-      <Box sx={{ px: 4, pt: 18 }}>
+      <Box sx={{ mt: 40, px: { xs: 2, sm: 4 } }}>
         <Box sx={{ display: "flex", justifyContent: "center", pb: 10 }}>
           <Box
             sx={{
@@ -707,6 +710,244 @@ const ShopNow = () => {
             <Divider sx={{ mt: 5, borderColor: "#000", width: "100%" }} />
           </Box>
         </Box>
+      </Box>
+
+      <Box
+        sx={{
+          mt: 40,
+          px: { xs: 2, sm: 4 },
+          width: "100%",
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+          alignItems: "center",
+          justifyContent: "center",
+          gap: { xs: 4, md: 8 },
+        }}
+      >
+        <Box
+          component="img"
+          src={NewsLetterModel}
+          alt="Model 1"
+          sx={{
+            maxWidth: { xs: "100%", md: "300px" },
+            height: "auto",
+            objectFit: "contain",
+          }}
+        />
+        <Box
+          sx={{
+            textAlign: "center",
+            maxWidth: { xs: "100%", md: "800px" },
+          }}
+        >
+          <Typography
+            variant="h3"
+            sx={{
+              fontSize: { xs: "2rem", md: "3rem" },
+              fontWeight: "bold",
+              color: "#764D2E",
+              mb: 2,
+            }}
+          >
+            Subscribe To Our Newsletter
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              color: "#8A8A8A",
+              mb: 4,
+            }}
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque
+            duis ultrices sollicitudin aliquam sem. Scelerisque duis ultrices
+            sollicitudin
+          </Typography>
+          <TextField
+            variant="outlined"
+            placeholder="theodoreogala@gmail.com"
+            sx={{
+              mb: 2,
+              width: "100%",
+              "& .MuiOutlinedInput-root": {
+                borderRadius: 1,
+                "& fieldset": {
+                  borderColor: "transparent", // remove border normally
+                },
+                "&:hover fieldset": {
+                  borderColor: "transparent", // no border on hover
+                },
+                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)", // Adds a shadow below
+                "&:hover": {
+                  boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Optional: Enhance shadow on hover
+                },
+                "&.Mui-focused": {
+                  boxShadow: "0 4px 6px rgba(0, 0, 0, 0.2)", // Enhance shadow when focused
+                  "& fieldset": {
+                    borderColor: "transparent", // still no border on focus
+                  },
+                },
+              },
+            }}
+          />
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "#764D2E",
+              color: "#fff",
+              padding: "10px 30px",
+              borderRadius: 2,
+              "&:hover": {
+                backgroundColor: "#4e362c",
+              },
+            }}
+          >
+            Subscribe Now
+          </Button>
+        </Box>
+        <Box
+          component="img"
+          src={NewsLetterModel2}
+          alt="Model 2"
+          sx={{
+            maxWidth: { xs: "100%", md: "300px" },
+            height: "auto",
+            objectFit: "contain",
+          }}
+        />
+      </Box>
+
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          mt: 40,
+          mb: 4,
+        }}
+      >
+        <Box
+          sx={{
+            py: 4,
+            backgroundColor: "#fff",
+            width: "100%",
+            borderTop: "1px solid #e0e0e0",
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            alignItems: { xs: "center", md: "flex-start" },
+            justifyContent: { xs: "center", md: "space-between" },
+            gap: { xs: 2, md: 0 },
+            px: { xs: 2, md: 4 },
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              mb: { xs: 2, md: 0 },
+            }}
+          >
+            <Box
+              component="img"
+              src={LogoIcon}
+              alt="logo"
+              sx={{
+                height: 25, // or auto
+                width: "auto", // maintain aspect ratio
+                mr: 1,
+                objectFit: "contain",
+              }}
+            />
+            <Typography
+              variant="h6"
+              sx={{
+                color: "#764D2E",
+                fontWeight: "bold",
+              }}
+            >
+              TrustPay
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              alignItems: "center",
+              gap: { xs: 1, md: 4 },
+              mb: { xs: 2, md: 0 },
+            }}
+          >
+            <Typography
+              variant="body2"
+              sx={{
+                color: "#484848",
+                cursor: "pointer",
+                "&:hover": { textDecoration: "underline" },
+              }}
+            >
+              Support Center
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                color: "#484848",
+                cursor: "pointer",
+                "&:hover": { textDecoration: "underline" },
+              }}
+            >
+              Invoicing
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                color: "#484848",
+                cursor: "pointer",
+                "&:hover": { textDecoration: "underline" },
+              }}
+            >
+              Contract
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                color: "#484848",
+                cursor: "pointer",
+                "&:hover": { textDecoration: "underline" },
+              }}
+            >
+              Careers
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                color: "#484848",
+                cursor: "pointer",
+                "&:hover": { textDecoration: "underline" },
+              }}
+            >
+              Blog
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                color: "#484848",
+                cursor: "pointer",
+                "&:hover": { textDecoration: "underline" },
+              }}
+            >
+              FAQs
+            </Typography>
+          </Box>
+        </Box>
+        <Typography
+          variant="body2"
+          sx={{
+            fontSize: 10,
+            color: "#484848",
+            mt: { xs: 2, md: 0 },
+          }}
+        >
+          Copyright © 2025 TrustPay. All Rights Reserved.
+        </Typography>
       </Box>
     </Box>
   );
