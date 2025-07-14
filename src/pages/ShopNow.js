@@ -221,7 +221,7 @@ const ShopNow = () => {
         {/* Deals Of The Month Section */}
         <Box
           sx={{
-            mt: 10,
+            mt: 40,
             display: "grid",
             gridTemplateColumns: { xs: "1fr", md: "1fr 2fr" },
             gap: 4,
@@ -230,7 +230,7 @@ const ShopNow = () => {
         >
           {/* Text Content */}
           <Box>
-            <Typography variant="h4" color="#484848" fontWeight="bold" mb={2}>
+            <Typography variant="h3" color="#484848" fontWeight="bold" mb={2}>
               Deals Of The Month
             </Typography>
             <Typography variant="body1" color="text.secondary" mb={3}>
