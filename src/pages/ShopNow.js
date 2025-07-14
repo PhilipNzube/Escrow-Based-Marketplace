@@ -7,6 +7,7 @@ import {
   useMediaQuery,
   useTheme,
   IconButton,
+  Divider,
 } from "@mui/material";
 import { styled } from "@mui/system";
 import ResponsiveNavBar from "../components/ResponsiveNavBar";
@@ -32,6 +33,15 @@ import newArrival3 from "../images/new-arrival3.png";
 import newArrival4 from "../images/new-arrival4.png";
 import newArrival5 from "../images/new-arrival5.png";
 import newArrival6 from "../images/new-arrival6.png";
+import InstaPost from "../images/InstaPost.png";
+import InstaPost2 from "../images/InstaPost2.png";
+import InstaPost3 from "../images/InstaPost3.png";
+import InstaPost4 from "../images/InstaPost4.png";
+import InstaPost5 from "../images/InstaPost5.png";
+import SellerImg from "../images/Top_Sellers_1.png";
+import SellerImg2 from "../images/Top_Sellers_2.png";
+import SellerImg3 from "../images/Top_Sellers_3.png";
+import TestimonialCard from "../components/TestimonialCard";
 
 const DigitalText = styled(Typography)(({ theme }) => ({
   fontFamily: "monospace",
@@ -94,6 +104,35 @@ const categoryLabels = [
   "Women Accessories",
   "Men Accessories",
   "Discount Deals",
+];
+
+const images = [
+  { src: InstaPost, alt: "Instagram Post 1" },
+  { src: InstaPost2, alt: "Instagram Post 2" },
+  { src: InstaPost3, alt: "Instagram Post 3" },
+  { src: InstaPost4, alt: "Instagram Post 4" },
+  { src: InstaPost5, alt: "Instagram Post 5" },
+];
+
+const testimonialData = [
+  {
+    image: SellerImg,
+    body: "My experience with TrustPay is a complete success...",
+    position: "Leona Paul",
+    position2: "Businesswoman and CEO",
+  },
+  {
+    image: SellerImg2,
+    body: "Smooth delivery and seamless buying experience.",
+    position: "Daniel Ekong",
+    position2: "Online Entrepreneur",
+  },
+  {
+    image: SellerImg3,
+    body: "TrustPay helped me scale my shop within 2 months.",
+    position: "Amina Yusuf",
+    position2: "Retail Business Owner",
+  },
 ];
 
 const ShopNow = () => {
@@ -178,7 +217,7 @@ const ShopNow = () => {
           bg="#fff"
         />
       </Box>
-      <Box sx={{ mt: 3, px: { xs: 2, sm: 4 } }}>
+      <Box sx={{ mt: 10, px: { xs: 2, sm: 4 } }}>
         <Box
           sx={{
             display: "flex",
@@ -388,14 +427,24 @@ const ShopNow = () => {
           px: { xs: 2, sm: 4 },
         }}
       >
-        <Typography variant="h4" textAlign="center" fontWeight="bold" mb={2}>
+        <Typography
+          variant="h3"
+          textAlign="center"
+          fontWeight="bold"
+          color="#764D2E"
+          mb={2}
+        >
           New Arrivals
         </Typography>
         <Typography
           variant="body1"
-          textAlign="center"
-          color="text.secondary"
-          mb={4}
+          sx={{
+            color: "#8A8A8A",
+            mb: 4,
+            maxWidth: "600px",
+            margin: "0 auto",
+            textAlign: "center",
+          }}
         >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque
           duis ultrices sollicitudin aliquam sem. Scelerisque duis ultrices
@@ -409,6 +458,7 @@ const ShopNow = () => {
             justifyContent: "center",
             overflowX: "auto",
             gap: 2,
+            mt: 6,
             mb: 5,
             pb: 1,
             px: 1,
@@ -509,6 +559,153 @@ const ShopNow = () => {
               </Box>
             </Box>
           ))}
+        </Box>
+        <Box
+          sx={{
+            mt: 5,
+            display: "flex",
+            justifyContent: "center",
+            width: "100%",
+          }}
+        >
+          <Button
+            variant="contained"
+            sx={{
+              height: 50,
+              width: 185,
+              bgcolor: "#764D2E",
+              borderRadius: 2,
+            }}
+          >
+            View More
+          </Button>
+        </Box>
+      </Box>
+
+      <Box
+        sx={{
+          mt: 40,
+          px: { xs: 2, sm: 4 },
+          textAlign: "center",
+          backgroundColor: "#fff",
+          width: "100%",
+        }}
+      >
+        <Typography
+          variant="h3"
+          sx={{
+            fontWeight: "bold",
+            color: "#764D2E",
+            mb: 2,
+          }}
+        >
+          Follow Us On Instagram
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{
+            color: "#8A8A8A",
+            mb: 4,
+            maxWidth: "600px",
+            margin: "0 auto",
+          }}
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque
+          duis ultrices sollicitudin aliquam sem. Scelerisque duis ultrices
+          sollicitudin
+        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            mt: 15,
+            "& > *": {
+              flex: "0 0 auto",
+              maxWidth: { xs: "100%", md: "200px" },
+              width: "100%",
+              objectFit: "cover",
+              borderRadius: 0,
+            },
+          }}
+        >
+          {images.map((image, index) => (
+            <Box
+              component="img"
+              key={index}
+              src={image.src}
+              alt={image.alt}
+              sx={{
+                height: { xs: "auto", md: index % 2 === 0 ? "400px" : "300px" },
+                aspectRatio: "1 / 1",
+              }}
+            />
+          ))}
+        </Box>
+      </Box>
+
+      <Box sx={{ px: 4, pt: 18 }}>
+        <Box sx={{ display: "flex", justifyContent: "center", pb: 10 }}>
+          <Box
+            sx={{
+              width: "100%",
+              maxWidth: 600,
+              position: "relative",
+              textAlign: "center",
+            }}
+          >
+            <Typography
+              variant="h3"
+              textAlign="center"
+              fontWeight="bold"
+              color="#764D2E"
+              mb={2}
+            >
+              Testimonials
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                color: "#8A8A8A",
+                mb: 4,
+                maxWidth: "600px",
+                margin: "0 auto",
+                textAlign: "center",
+              }}
+            >
+              Over 15,000 happy customers
+            </Typography>
+
+            <Box
+              sx={{
+                mt: 6,
+              }}
+            >
+              <Slider
+                dots={false}
+                infinite={true}
+                speed={500}
+                slidesToShow={1}
+                slidesToScroll={1}
+                nextArrow={<CustomNextArrow />}
+                prevArrow={<CustomPrevArrow />}
+              >
+                {testimonialData.map((item, i) => (
+                  <Box key={i} px={2}>
+                    <TestimonialCard
+                      image={item.image}
+                      body={item.body}
+                      position={item.position}
+                      position2={item.position2}
+                    />
+                  </Box>
+                ))}
+              </Slider>
+            </Box>
+            <Divider sx={{ mt: 5, borderColor: "#000", width: "100%" }} />
+          </Box>
         </Box>
       </Box>
     </Box>
