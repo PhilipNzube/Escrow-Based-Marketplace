@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/Home.js";
-import ShopNow from "./pages/ShopNow.js";
+import ShopNow from "./shoppages/ShopNow.js";
 import LoginPage from "./authpages/Login.js";
 import RegisterPage from "./authpages/Register.js";
 import Step1 from "./authpages/steps/Step1";
@@ -33,6 +33,10 @@ import NotFoundPage from "./pages/NotFoundPage.js";
 import { PageProvider } from "./PageContext.js";
 import WalletPage from "./dashboardpages/WalletPage.js";
 import OrderPage from "./dashboardpages/OrderPage.js";
+import ShopHomePage from "./shoppages/ShopHomePage.js";
+import DealsPage from "./shoppages/DealsPage.js";
+import NewArrivalsPage from "./shoppages/NewArrivalsPage.js";
+import PackagesPage from "./shoppages/PackagesPage.js";
 
 function START() {
   return (
@@ -43,7 +47,12 @@ function START() {
             <CssBaseline />
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/shop-now" element={<ShopNow />} />
+              <Route path="/shop-now" element={<ShopNow />}>
+                <Route index element={<ShopHomePage />} />
+                <Route path="deals" element={<DealsPage />} />
+                <Route path="new-arrival" element={<NewArrivalsPage />} />
+                <Route path="packages" element={<PackagesPage />} />
+              </Route>
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />}>
                 <Route index element={<Step1 />} />

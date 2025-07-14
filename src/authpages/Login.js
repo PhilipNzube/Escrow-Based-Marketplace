@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Box, Typography, TextField, Button, Paper, Alert } from "@mui/material";
+import {
+  Box,
+  Typography,
+  TextField,
+  Button,
+  Paper,
+  Alert,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import LogoIcon from "../images/Logo.png";
 import ResponsiveNavBar from "../components/ResponsiveNavBar";
@@ -8,7 +15,11 @@ import AuthField from "../components/AuthField";
 import RoleSelector from "../components/RoleSelector";
 
 const centerNavItems = [
-  { text: "How it works", fontWeight: "bold", onClick: () => console.log("Home clicked") },
+  {
+    text: "How it works",
+    fontWeight: "bold",
+    onClick: () => console.log("Home clicked"),
+  },
   { text: "Why TrustPay", onClick: () => console.log("Buy clicked") },
   { text: "Pricing", onClick: () => console.log("Sell clicked") },
   { text: "Resources", onClick: () => console.log("Categories clicked") },
@@ -17,21 +28,24 @@ const centerNavItems = [
 const LoginPage = () => {
   const navigate = useNavigate();
   return (
-    <Box sx={{
-      display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-      alignItems: "center",
-      mt: 9,
-      position: "relative",
-      minHeight: "100vh",
-      width: "100%"
-    }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        mt: 9,
+        position: "relative",
+        minHeight: "100vh",
+        width: "100%",
+      }}
+    >
       <Box sx={{ position: "fixed", top: 0, width: "100%", zIndex: 10 }}>
         <ResponsiveNavBar
           title="TrustPay"
           logo={LogoIcon}
           centerItems={centerNavItems}
+          rightIcons={null}
           logoutFunc={() => navigate(`/register`)}
           bg="#fff"
         />
@@ -40,16 +54,20 @@ const LoginPage = () => {
         sx={{
           px: 4,
           width: {
-            xs: '100%',
-            sm: '380px',
+            xs: "100%",
+            sm: "380px",
           },
           minHeight: "100vh",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-        }}>
-        <Typography variant="h6" sx={{ fontWeight: "bold", color: "#000", whiteSpace: "nowrap" }}>
+        }}
+      >
+        <Typography
+          variant="h6"
+          sx={{ fontWeight: "bold", color: "#000", whiteSpace: "nowrap" }}
+        >
           Log In or Sign Up to TrustPay
         </Typography>
         <AuthButton
@@ -74,7 +92,16 @@ const LoginPage = () => {
           hovertextColor="#fff"
         />
 
-        <Typography variant="body1" sx={{ mt: 3, mb: 2, fontWeight: "bold", color: "#000", whiteSpace: "nowrap" }}>
+        <Typography
+          variant="body1"
+          sx={{
+            mt: 3,
+            mb: 2,
+            fontWeight: "bold",
+            color: "#000",
+            whiteSpace: "nowrap",
+          }}
+        >
           Or use your email address
         </Typography>
 
@@ -82,13 +109,8 @@ const LoginPage = () => {
           labelText="Email Address"
           placeholderText="Enter your email address"
         />
-        <AuthField
-          labelText="Password"
-          placeholderText="Enter your password"
-        />
-        <RoleSelector
-          defaultText="Buyer"
-        />
+        <AuthField labelText="Password" placeholderText="Enter your password" />
+        <RoleSelector defaultText="Buyer" />
         <AuthButton
           text="Log In"
           bg="#764D2E"
@@ -103,13 +125,13 @@ const LoginPage = () => {
           variant="body2"
           sx={{
             mt: 5,
-            textDecoration: 'underline',
-            color: '#000',
-            cursor: 'pointer',
+            textDecoration: "underline",
+            color: "#000",
+            cursor: "pointer",
             fontWeight: 500,
-            '&:hover': {
-              color: '#5d3c24',
-            }
+            "&:hover": {
+              color: "#5d3c24",
+            },
           }}
           onClick={() => {
             navigate(`/register`);
@@ -122,13 +144,13 @@ const LoginPage = () => {
           variant="body2"
           sx={{
             mt: 2,
-            textDecoration: 'underline',
-            color: '#000',
-            cursor: 'pointer',
+            textDecoration: "underline",
+            color: "#000",
+            cursor: "pointer",
             fontWeight: 500,
-            '&:hover': {
-              color: '#5d3c24',
-            }
+            "&:hover": {
+              color: "#5d3c24",
+            },
           }}
           onClick={() => {
             // Your navigation or action here

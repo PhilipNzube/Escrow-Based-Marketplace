@@ -86,7 +86,7 @@ const ResponsiveNavBar = ({
                   sx={{
                     cursor: "pointer",
                     borderBottom:
-                      rightIcons == null && selectedCenterIndex === index
+                      rightIcons != null && selectedCenterIndex === index
                         ? "2px solid #764D2E"
                         : "none",
                     pb: 0.5,

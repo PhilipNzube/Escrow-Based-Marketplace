@@ -11,11 +11,7 @@ import {
   TextField,
 } from "@mui/material";
 import { styled } from "@mui/system";
-import ResponsiveNavBar from "../components/ResponsiveNavBar";
 import LogoIcon from "../images/Logo.png";
-import SearchIcon from "../images/Search.png";
-import CartIcon from "../images/Cart.png";
-import UserIcon from "../images/User.png";
 import Model1 from "../images/Model_1.png";
 import Model2 from "../images/Model_2.png";
 import Model3 from "../images/Model_3.png";
@@ -138,26 +134,10 @@ const testimonialData = [
   },
 ];
 
-const ShopNow = () => {
+const PackagesPage = () => {
   const navigate = useNavigate();
 
   const [tabIndex, setTabIndex] = useState(1);
-
-  const centerNavItems = [
-    { text: "Home", onClick: () => console.log("Home clicked") },
-    { text: "Deals", onClick: () => console.log("Deals clicked") },
-    {
-      text: "New Arrivals",
-      onClick: () => console.log("New Arrivals clicked"),
-    },
-    { text: "Packages", onClick: () => console.log("Packages clicked") },
-  ];
-
-  const rightIcons = [
-    { src: SearchIcon, alt: "Search", onClick: () => console.log("Search") },
-    { src: CartIcon, alt: "Cart", onClick: () => console.log("Cart") },
-    { src: UserIcon, alt: "User", onClick: () => navigate(`/login`) },
-  ];
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -210,16 +190,6 @@ const ShopNow = () => {
 
   return (
     <Box sx={{ position: "relative", minHeight: "100vh", width: "100%" }}>
-      {/* Transparent AppBar */}
-      <Box sx={{ position: "fixed", top: 0, width: "100%", zIndex: 10 }}>
-        <ResponsiveNavBar
-          title="TrustPay"
-          logo={LogoIcon}
-          centerItems={centerNavItems}
-          rightIcons={rightIcons}
-          bg="#fff"
-        />
-      </Box>
       <Box sx={{ mt: 10, px: { xs: 2, sm: 4 } }}>
         <Box
           sx={{
@@ -953,4 +923,4 @@ const ShopNow = () => {
   );
 };
 
-export default ShopNow;
+export default PackagesPage;
