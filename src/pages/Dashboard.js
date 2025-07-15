@@ -8,16 +8,16 @@ import {
   Typography,
   InputBase,
   useMediaQuery,
-  useTheme
+  useTheme,
 } from "@mui/material";
-import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
-import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
-import MenuIcon from '@mui/icons-material/Menu';
+import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import NotificationsIcon from '@mui/icons-material/Notifications';
+import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Outlet } from "react-router-dom";
-import LeftSidebar from "../components/LeftSidebar";
-import RightSidebar from "../components/RightSidebar";
+import LeftSidebar from "../components/LeftSidebar.js";
+import RightSidebar from "../components/RightSidebar.js";
 import { usePageMetadata } from "../PageContext.js";
 
 const DashboardLayout = () => {
@@ -26,7 +26,7 @@ const DashboardLayout = () => {
   const hasClosedRightForMobile = useRef(false);
 
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const topNavRef = useRef();
 
@@ -37,7 +37,7 @@ const DashboardLayout = () => {
     if (el) {
       const observer = new ResizeObserver(() => {
         if (el.scrollWidth > el.clientWidth) {
-          el.style.scrollBehavior = 'smooth';
+          el.style.scrollBehavior = "smooth";
         }
       });
       observer.observe(el);
@@ -75,10 +75,10 @@ const DashboardLayout = () => {
         sx={{
           width: 260,
           flexShrink: 0,
-          display: leftOpen ? 'block' : 'none',
-          '& .MuiDrawer-paper': {
+          display: leftOpen ? "block" : "none",
+          "& .MuiDrawer-paper": {
             width: 260,
-            boxSizing: 'border-box',
+            boxSizing: "border-box",
             p: 2,
           },
         }}
@@ -92,8 +92,8 @@ const DashboardLayout = () => {
           flexGrow: 1,
           display: "flex",
           flexDirection: "column",
-          width: '100%',
-          transition: 'margin 0.3s ease',
+          width: "100%",
+          transition: "margin 0.3s ease",
         }}
       >
         {/* Top Nav */}
@@ -110,32 +110,52 @@ const DashboardLayout = () => {
             backgroundColor: "#fff",
             overflowX: "auto",
             scrollbarWidth: "none",
-            '&::-webkit-scrollbar': { display: 'none' },
-            position: 'relative',
-            maskImage: 'linear-gradient(to right, black 90%, transparent)',
-            WebkitMaskImage: 'linear-gradient(to right, black 90%, transparent)'
+            "&::-webkit-scrollbar": { display: "none" },
+            position: "relative",
+            maskImage: "linear-gradient(to right, black 90%, transparent)",
+            WebkitMaskImage:
+              "linear-gradient(to right, black 90%, transparent)",
           }}
         >
-          <Box sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 1,
-            flexShrink: 0
-          }}>
-            <IconButton onClick={() => setLeftOpen(prev => !prev)}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 1,
+              flexShrink: 0,
+            }}
+          >
+            <IconButton onClick={() => setLeftOpen((prev) => !prev)}>
               {leftOpen ? <KeyboardDoubleArrowLeftIcon /> : <MenuIcon />}
             </IconButton>
             <Box sx={{}}>
-              <Typography variant="h5" fontWeight={600} color="#764D2E" fontSize="1.2rem">
+              <Typography
+                variant="h5"
+                fontWeight={600}
+                color="#764D2E"
+                fontSize="1.2rem"
+              >
                 {pageMetadata.title}
               </Typography>
-              <Typography variant="subtitle2" color="grey.600" fontSize="0.875rem">
-                {pageMetadata.subtitle || 'Manage your content here'}
+              <Typography
+                variant="subtitle2"
+                color="grey.600"
+                fontSize="0.875rem"
+              >
+                {pageMetadata.subtitle || "Manage your content here"}
               </Typography>
             </Box>
           </Box>
 
-          <Box sx={{ display: "flex", alignItems: "center", gap: 2, flexGrow: 1, justifyContent: "flex-end" }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 2,
+              flexGrow: 1,
+              justifyContent: "flex-end",
+            }}
+          >
             {/* <Box
               sx={{
                 display: "flex",
@@ -151,13 +171,16 @@ const DashboardLayout = () => {
             </Box> */}
 
             {/* Right Sidebar Toggle */}
-            <IconButton onClick={() => setRightOpen(prev => !prev)}>
-              {rightOpen ? <KeyboardDoubleArrowRightIcon /> : <IconButton aria-label="notifications">
-                <Badge badgeContent={4} color="error">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
-              }
+            <IconButton onClick={() => setRightOpen((prev) => !prev)}>
+              {rightOpen ? (
+                <KeyboardDoubleArrowRightIcon />
+              ) : (
+                <IconButton aria-label="notifications">
+                  <Badge badgeContent={4} color="error">
+                    <NotificationsIcon />
+                  </Badge>
+                </IconButton>
+              )}
             </IconButton>
           </Box>
         </Box>
@@ -176,10 +199,10 @@ const DashboardLayout = () => {
         sx={{
           width: 300,
           flexShrink: 0,
-          display: rightOpen ? 'block' : 'none',
-          '& .MuiDrawer-paper': {
+          display: rightOpen ? "block" : "none",
+          "& .MuiDrawer-paper": {
             width: 300,
-            boxSizing: 'border-box',
+            boxSizing: "border-box",
             p: 2,
           },
         }}

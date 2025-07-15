@@ -10,13 +10,22 @@ const ShopNow = () => {
   const navigate = useNavigate();
 
   const centerNavItems = [
-    { text: "Home", onClick: () => navigate(`/shop-now`) },
-    { text: "Deals", onClick: () => navigate(`/shop-now/deals`) },
+    { text: "Home", to: "/shop-now", onClick: () => navigate(`/shop-now`) },
+    {
+      text: "Deals",
+      to: "/shop-now/deals",
+      onClick: () => navigate(`/shop-now/deals`),
+    },
     {
       text: "New Arrivals",
+      to: "/shop-now/new-arrival",
       onClick: () => navigate(`/shop-now/new-arrival`),
     },
-    { text: "Packages", onClick: () => navigate(`/shop-now/packages`) },
+    {
+      text: "Packages",
+      to: "/shop-now/packages",
+      onClick: () => navigate(`/shop-now/packages`),
+    },
   ];
 
   const rightIcons = [
@@ -35,6 +44,7 @@ const ShopNow = () => {
           centerItems={centerNavItems}
           rightIcons={rightIcons}
           bg="#fff"
+          GoHomeFunc={() => navigate(`/`)}
         />
       </Box>
       <Outlet />

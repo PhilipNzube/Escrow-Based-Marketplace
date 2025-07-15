@@ -3,13 +3,13 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/Home.js";
 import ShopNow from "./shoppages/ShopNow.js";
-import LoginPage from "./authpages/Login.js";
-import RegisterPage from "./authpages/Register.js";
-import Step1 from "./authpages/steps/Step1";
-import Step2 from "./authpages/steps/Step2";
-import Step3 from "./authpages/steps/Step3";
-import Step4 from "./authpages/steps/Step4";
-import Dashboard from "./dashboardpages/Dashboard.js";
+import LoginPage from "./pages/Login.js";
+import RegisterPage from "./pages/Register.js";
+import Step1 from "./steps/Step1.js";
+import Step2 from "./steps/Step2.js";
+import Step3 from "./steps/Step3.js";
+import Step4 from "./steps/Step4.js";
+import Dashboard from "./pages/Dashboard.js";
 import MainDashboardPage from "./dashboardpages/MainDashboardPage.js";
 import ActivePage from "./dashboardpages/ActivePage.js";
 import PendingPage from "./dashboardpages/PendingPage.js";
@@ -38,6 +38,11 @@ import ShopHomePage from "./shoppages/ShopHomePage.js";
 import DealsPage from "./shoppages/DealsPage.js";
 import NewArrivalsPage from "./shoppages/NewArrivalsPage.js";
 import PackagesPage from "./shoppages/PackagesPage.js";
+import MainHomePage from "./homepages/MainHomePage.js";
+import BuyPage from "./homepages/BuyPage.js";
+import SellPage from "./homepages/SellPage.js";
+import HomeCategoriesPage from "./homepages/HomeCategoriesPage.js";
+import HomeDealsPage from "./homepages/HomeDealsPage.js";
 
 function START() {
   return (
@@ -47,7 +52,13 @@ function START() {
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <Routes>
-              <Route path="/" element={<HomePage />} />
+              <Route path="/" element={<HomePage />}>
+                <Route index element={<MainHomePage />} />
+                <Route path="buy" element={<BuyPage />} />
+                <Route path="sell" element={<SellPage />} />
+                <Route path="categories" element={<HomeCategoriesPage />} />
+                <Route path="deals" element={<HomeDealsPage />} />
+              </Route>
               <Route path="/shop-now" element={<ShopNow />}>
                 <Route index element={<ShopHomePage />} />
                 <Route path="deals" element={<DealsPage />} />

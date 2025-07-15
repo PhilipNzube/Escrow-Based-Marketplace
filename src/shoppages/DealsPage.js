@@ -925,7 +925,7 @@ const DealsPage = () => {
               sx={{
                 backgroundColor: tabIndex === index ? "#764D2E" : "#FAFAFA",
                 "&:hover": {
-                  backgroundColor: "#764d2e6b",
+                  backgroundColor: "#764D2E",
                 },
                 color: tabIndex === index ? "#FFF" : "#8A8A8A",
                 whiteSpace: "nowrap",

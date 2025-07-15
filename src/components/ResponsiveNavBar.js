@@ -13,6 +13,7 @@ import {
   useMediaQuery,
   Button,
 } from "@mui/material";
+import { NavLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 
 const ResponsiveNavBar = ({
@@ -22,24 +23,22 @@ const ResponsiveNavBar = ({
   rightIcons = [],
   logoutFunc,
   bg,
+  GoHomeFunc,
 }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [selectedCenterIndex, setSelectedCenterIndex] = useState(0);
   const [selectedRightIndex, setSelectedRightIndex] = useState(null);
 
   const toggleDrawer = () => setDrawerOpen(!drawerOpen);
 
-  const handleCenterItemClick = (item, index) => {
-    setSelectedCenterIndex(index);
+  const handleCenterItemClick = (item) => {
     setSelectedRightIndex(null); // clear right selection
     item.onClick?.();
   };
 
   const handleRightItemClick = (item, index) => {
     setSelectedRightIndex(index);
-    setSelectedCenterIndex(null); // clear center selection
     item.onClick?.();
   };
 
@@ -48,15 +47,22 @@ const ResponsiveNavBar = ({
       <AppBar position="static" sx={{ bgcolor: bg }}>
         <Toolbar sx={{ justifyContent: "space-between" }}>
           {/* Left: Logo + Title */}
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box
+            onClick={GoHomeFunc}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              cursor: GoHomeFunc != null ? "pointer" : "default",
+            }}
+          >
             {logo && (
               <Box
                 component="img"
                 src={logo}
                 alt="logo"
                 sx={{
-                  height: 25, // or auto
-                  width: "auto", // maintain aspect ratio
+                  height: 25,
+                  width: "auto",
                   mr: 1,
                   objectFit: "contain",
                 }}
@@ -79,23 +85,28 @@ const ResponsiveNavBar = ({
           {!isMobile && (
             <Box sx={{ display: "flex", gap: 3 }}>
               {centerItems.map((item, index) => (
-                <Typography
-                  color="#764D2E"
+                <NavLink
                   key={index}
-                  variant="button"
-                  sx={{
-                    cursor: "pointer",
-                    borderBottom:
-                      rightIcons != null && selectedCenterIndex === index
-                        ? "2px solid #764D2E"
-                        : "none",
-                    pb: 0.5,
-                    fontWeight: item.fontWeight ?? "normal",
-                  }}
-                  onClick={() => handleCenterItemClick(item, index)}
+                  to={item.to}
+                  style={{ textDecoration: "none" }}
+                  end
+                  onClick={() => handleCenterItemClick(item)}
                 >
-                  {item.text}
-                </Typography>
+                  {({ isActive }) => (
+                    <Typography
+                      color="#764D2E"
+                      variant="button"
+                      sx={{
+                        cursor: "pointer",
+                        borderBottom: isActive ? "2px solid #764D2E" : "none",
+                        pb: 0.5,
+                        fontWeight: item.fontWeight ?? "normal",
+                      }}
+                    >
+                      {item.text}
+                    </Typography>
+                  )}
+                </NavLink>
               ))}
             </Box>
           )}
@@ -150,7 +161,7 @@ const ResponsiveNavBar = ({
             )}
 
             {isMobile && (
-              <IconButton onClick={toggleDrawer} color="#764D2E">
+              <IconButton onClick={toggleDrawer} sx={{ color: "#764D2E" }}>
                 <MenuIcon />
               </IconButton>
             )}
@@ -160,7 +171,7 @@ const ResponsiveNavBar = ({
 
       {/* Drawer for Mobile */}
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer}>
-        <Box color="#764D2E" sx={{ width: 250, p: 2 }} onClick={toggleDrawer}>
+        <Box sx={{ width: 250, p: 2, color: "#764D2E" }}>
           <Typography variant="h6" sx={{ mb: 2 }}>
             {title}
           </Typography>
@@ -169,38 +180,20 @@ const ResponsiveNavBar = ({
               <ListItem
                 button
                 key={index}
-                selected={selectedCenterIndex === index}
-                onClick={() => handleCenterItemClick(item, index)}
+                component={NavLink}
+                to={item.to}
+                end
+                onClick={() => handleCenterItemClick(item)}
                 sx={{
-                  borderLeft:
-                    rightIcons == null && selectedCenterIndex === index
-                      ? "4px solid #764D2E"
-                      : "4px solid transparent",
-                  pl: 2, // padding to align text nicely
+                  borderLeft: ({ isActive }) =>
+                    isActive ? "4px solid #764D2E" : "4px solid transparent",
+                  pl: 2,
                 }}
               >
                 <ListItemText primary={item.text} />
               </ListItem>
             ))}
 
-            {rightIcons == null && (
-              <Button
-                onClick={logoutFunc}
-                variant="contained"
-                sx={{
-                  px: 4,
-                  py: 1,
-                  color: "#764D2E",
-                  backgroundColor: "transparent",
-                  borderColor: "#764D2E",
-                  "&:hover": {
-                    backgroundColor: "#764d2e",
-                  },
-                }}
-              >
-                Sign Up
-              </Button>
-            )}
             {rightIcons == null || rightIcons.length === 0 ? (
               <Button
                 onClick={logoutFunc}

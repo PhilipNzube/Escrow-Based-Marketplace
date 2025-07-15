@@ -48,6 +48,7 @@ const LoginPage = () => {
           rightIcons={null}
           logoutFunc={() => navigate(`/register`)}
           bg="#fff"
+          GoHomeFunc={() => navigate(`/`)}
         />
       </Box>
       <Box
