@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/Home.js";
-import ShopNow from "./shoppages/ShopNow.js";
+import ShopNow from "./pages/ShopNow.js";
 import LoginPage from "./pages/Login.js";
 import RegisterPage from "./pages/Register.js";
 import Step1 from "./steps/Step1.js";

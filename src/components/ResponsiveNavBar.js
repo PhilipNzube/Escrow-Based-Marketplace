@@ -24,6 +24,7 @@ const ResponsiveNavBar = ({
   logoutFunc,
   bg,
   GoHomeFunc,
+  underlineTab = "true",
 }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -98,7 +99,10 @@ const ResponsiveNavBar = ({
                       variant="button"
                       sx={{
                         cursor: "pointer",
-                        borderBottom: isActive ? "2px solid #764D2E" : "none",
+                        borderBottom:
+                          underlineTab === "true" && isActive
+                            ? "2px solid #764D2E"
+                            : "none",
                         pb: 0.5,
                         fontWeight: item.fontWeight ?? "normal",
                       }}
@@ -177,21 +181,34 @@ const ResponsiveNavBar = ({
           </Typography>
           <List>
             {centerItems.map((item, index) => (
-              <ListItem
-                button
+              <NavLink
                 key={index}
-                component={NavLink}
                 to={item.to}
+                style={{ textDecoration: "none" }}
                 end
                 onClick={() => handleCenterItemClick(item)}
-                sx={{
-                  borderLeft: ({ isActive }) =>
-                    isActive ? "4px solid #764D2E" : "4px solid transparent",
-                  pl: 2,
-                }}
               >
-                <ListItemText primary={item.text} />
-              </ListItem>
+                {({ isActive }) => {
+                  console.log(`${item.text} isActive: ${isActive}`);
+                  return (
+                    <ListItem
+                      button
+                      sx={{
+                        borderLeft:
+                          underlineTab === "true" && isActive
+                            ? "4px solid #764D2E"
+                            : "4px solid transparent",
+                        pl: 2,
+                      }}
+                    >
+                      <ListItemText
+                        primary={item.text}
+                        sx={{ color: "#764D2E" }}
+                      />
+                    </ListItem>
+                  );
+                }}
+              </NavLink>
             ))}
 
             {rightIcons == null || rightIcons.length === 0 ? (

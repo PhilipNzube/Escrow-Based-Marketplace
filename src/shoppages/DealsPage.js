@@ -875,6 +875,7 @@ const DealsPage = () => {
           justifyContent: "center",
           mt: 40,
           px: { xs: 2, sm: 4 },
+          width: "100%",
         }}
       >
         <Typography

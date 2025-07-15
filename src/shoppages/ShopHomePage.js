@@ -398,6 +398,7 @@ const ShopHomePage = () => {
           justifyContent: "center",
           mt: 40,
           px: { xs: 2, sm: 4 },
+          width: "100%",
         }}
       >
         <Typography
@@ -619,7 +620,7 @@ const ShopHomePage = () => {
         </Box>
       </Box>
 
-      <Box sx={{ mt: 40, px: { xs: 2, sm: 4 } }}>
+      <Box sx={{ mt: 40, px: { xs: 4, sm: 4 } }}>
         <Box sx={{ display: "flex", justifyContent: "center", pb: 10 }}>
           <Box
             sx={{

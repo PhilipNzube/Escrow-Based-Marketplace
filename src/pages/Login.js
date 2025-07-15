@@ -1,12 +1,4 @@
-import React, { useState } from "react";
-import {
-  Box,
-  Typography,
-  TextField,
-  Button,
-  Paper,
-  Alert,
-} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import LogoIcon from "../images/Logo.png";
 import ResponsiveNavBar from "../components/ResponsiveNavBar";
@@ -45,10 +37,10 @@ const LoginPage = () => {
           title="TrustPay"
           logo={LogoIcon}
           centerItems={centerNavItems}
-          rightIcons={null}
           logoutFunc={() => navigate(`/register`)}
           bg="#fff"
           GoHomeFunc={() => navigate(`/`)}
+          underlineTab="false"
         />
       </Box>
       <Box
