@@ -7,6 +7,7 @@ import {
   Checkbox,
   IconButton,
   TextField,
+  Divider,
 } from "@mui/material";
 import { styled } from "@mui/system";
 import newArrival1 from "../images/new-arrival.png";
@@ -44,6 +45,14 @@ import FashionAlignButton2 from "../images/FashionAlignButton2.png";
 import FashionAlignButton3 from "../images/FashionAlignButton3.png";
 import FashionAlignButton4 from "../images/FashionAlignButton4.png";
 import FashionAlignButton5 from "../images/FashionAlignButton5.png";
+import VisibilityIcon from "@mui/icons-material/VisibilityOutlined";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
+import PaymentIcons from "../images/Payment-Methods.png";
+import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import ShareIcon from "@mui/icons-material/Share";
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import StoreIcon from "@mui/icons-material/Store";
 
 const products = [
   {
@@ -295,8 +304,8 @@ const DealsPage = () => {
                 src={img.src}
                 alt={img.alt}
                 sx={{
-                  width: { xs: 40, sm: 50 },
-                  height: "auto",
+                  width: 40,
+                  height: 40,
                   borderRadius: 1,
                 }}
               />
@@ -393,7 +402,7 @@ const DealsPage = () => {
           }}
         >
           <ProductImage src={MainDenimImg} alt="Denim Jacket" />
-          <Box sx={{ display: "flex", mt: 2 }}>
+          <Box sx={{ display: "flex", mt: 2, gap: 1, flexWrap: "wrap" }}>
             {thumbnails.map((thumb) => (
               <Thumbnail key={thumb.id} src={thumb.src} alt={thumb.alt} />
             ))}
@@ -402,53 +411,135 @@ const DealsPage = () => {
 
         {/* Product Details Section */}
         <Box sx={{ flex: 1, display: "flex", flexDirection: "column", gap: 2 }}>
-          <Typography variant="h4" sx={{ color: "#764D2E" }}>
-            Denim Jacket
-          </Typography>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <Typography variant="body2">★★★★☆ (3)</Typography>
-            <IconButton size="small">
-              <span role="img" aria-label="favorite">
-                ⭐
-              </span>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="h5" sx={{ fontWeight: 600 }}>
+              Denim Jacket
+            </Typography>
+            <IconButton
+              sx={{
+                border: "1px solid #e0e0e0",
+                borderRadius: "50%",
+                padding: 1,
+              }}
+            >
+              <StarBorderIcon sx={{ color: "#000" }} />
             </IconButton>
           </Box>
-          <Typography variant="h5" sx={{ color: "#764D2E" }}>
-            $39.00{" "}
-            <span style={{ textDecoration: "line-through", color: "#888" }}>
+
+          <Typography variant="body2">★★★★☆ (3)</Typography>
+
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <Typography variant="h6" sx={{ color: "#000" }}>
+              $39.00
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{ textDecoration: "line-through", color: "#888" }}
+            >
               $59.00
-            </span>{" "}
-            <span style={{ color: "green", fontSize: "0.8em" }}>SAVE 33%</span>
-          </Typography>
-          <Typography variant="body2">
-            24 people are viewing this right now
-          </Typography>
-          <Box sx={{ bgcolor: "#ffebee", p: 1, borderRadius: 1 }}>
-            <Typography variant="body2" color="error">
-              Hurry up! Sale ends in: {timer.hours}:{timer.minutes}:
-              {timer.seconds}
+            </Typography>
+            <Box sx={{ bgcolor: "#DA3F3F", borderRadius: 2, px: 1, py: 0.2 }}>
+              <Typography sx={{ color: "#fff", fontSize: "0.7rem" }}>
+                SAVE 33%
+              </Typography>
+            </Box>
+          </Box>
+
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <VisibilityIcon sx={{ fontSize: 20, color: "#000" }} />
+            <Typography variant="body2" color="#8A8A8A">
+              24 people are viewing this right now
             </Typography>
           </Box>
-          <Typography variant="body2" color="error">
-            Only 9 item(s) left in stock!
-          </Typography>
-          <Box sx={{ mt: 2 }}>
-            <Typography variant="body1">Size: {selectedSize}</Typography>
+
+          <Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                bgcolor: "#ffebee",
+                p: 1,
+                borderRadius: 1,
+                border: "1px Solid #F8CCCC",
+              }}
+            >
+              <Typography variant="body2" color="#FF706B">
+                Hurry up! Sale ends in:{" "}
+              </Typography>
+              <Typography variant="body2" color="#FF706B">
+                <b>00 : 05 : 59 : 47</b>
+              </Typography>
+            </Box>
+            <Typography
+              variant="body2"
+              color="#000000"
+              sx={{
+                display: "block",
+                verticalAlign: "middle",
+                marginTop: 2,
+              }}
+            >
+              Only <b>9</b> item(s) left in stock!
+            </Typography>
+            <Box
+              sx={{
+                height: "4px",
+                bgcolor: "#e0e0e0",
+                borderRadius: 2,
+                width: "100%",
+                position: "relative",
+                overflow: "hidden",
+                marginTop: 1,
+              }}
+            >
+              <Box
+                sx={{
+                  height: "100%",
+                  bgcolor: "#FF706B",
+                  width: "10%", // Adjust this percentage based on stock level (e.g., 9/100)
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                }}
+              />
+            </Box>
+          </Box>
+
+          <Box>
+            <Typography variant="body1" sx={{ fontWeight: 500 }}>
+              Size: {selectedSize}
+            </Typography>
             <Box sx={{ display: "flex", gap: 1, mt: 1 }}>
               {["M", "L", "XL", "XXL"].map((size) => (
                 <Button
                   key={size}
                   variant={selectedSize === size ? "contained" : "outlined"}
                   onClick={() => setSelectedSize(size)}
-                  sx={{ minWidth: "40px" }}
+                  sx={{
+                    color: selectedSize === size ? "#ffffff" : "#000000",
+                    backgroundColor:
+                      selectedSize === size ? "#000000" : "#ffffff",
+                    borderColor: selectedSize === size ? "#000000" : "#cccccc",
+                    minWidth: 40,
+                  }}
                 >
                   {size}
                 </Button>
               ))}
             </Box>
           </Box>
-          <Box sx={{ mt: 2 }}>
-            <Typography variant="body1">Color: {selectedColor}</Typography>
+
+          <Box>
+            <Typography variant="body1" sx={{ fontWeight: 500 }}>
+              Color: {selectedColor}
+            </Typography>
             <Box sx={{ display: "flex", gap: 1, mt: 1 }}>
               {["blue", "black", "pink"].map((color) => (
                 <ColorCircle
@@ -465,7 +556,15 @@ const DealsPage = () => {
               ))}
             </Box>
           </Box>
-          <Box sx={{ mt: 2, display: "flex", alignItems: "center", gap: 2 }}>
+
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              alignItems: { xs: "flex-start", md: "center" },
+              gap: 2,
+            }}
+          >
             <Typography variant="body1">Quantity</Typography>
             <Box
               sx={{
@@ -479,45 +578,139 @@ const DealsPage = () => {
                 size="small"
                 onClick={() => handleQuantityChange("decrease")}
               >
-                <RemoveIcon />
+                {" "}
+                <RemoveIcon />{" "}
               </IconButton>
               <TextField
                 value={quantity}
                 size="small"
-                sx={{ width: "60px", "& input": { textAlign: "center" } }}
+                sx={{
+                  width: 60,
+                  "& input": { textAlign: "center" },
+                  "& .MuiOutlinedInput-root": {
+                    borderRadius: 1,
+                    "& fieldset": {
+                      borderColor: "transparent", // remove border normally
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "transparent", // no border on hover
+                    },
+
+                    "&.Mui-focused": {
+                      "& fieldset": {
+                        borderColor: "transparent", // still no border on focus
+                      },
+                    },
+                  },
+                }}
                 inputProps={{ readOnly: true }}
               />
               <IconButton
                 size="small"
                 onClick={() => handleQuantityChange("increase")}
               >
-                <AddIcon />
+                {" "}
+                <AddIcon />{" "}
               </IconButton>
             </Box>
             <Button
-              variant="contained"
+              fullWidth
+              variant="outlined"
               onClick={handleAddToCart}
-              sx={{ ml: 2 }}
+              sx={{
+                color: "#000000",
+                borderColor: "#000000",
+              }}
             >
               Add to cart
             </Button>
           </Box>
-          <Box sx={{ display: "flex", gap: 2, mt: 2 }}>
-            <Button variant="outlined">Compare</Button>
-            <Button variant="outlined">Ask a question</Button>
-            <Button variant="outlined">Share</Button>
+
+          <Box sx={{ mt: 5 }}>
+            <Button
+              variant="outlined"
+              startIcon={<CompareArrowsIcon />}
+              sx={{
+                mr: 2,
+                verticalAlign: "middle",
+                color: "black", // text and icon color
+                borderColor: "transparent", // hide initial border
+                "&:hover": {
+                  borderColor: "#cccccc", // show border on hover
+                  backgroundColor: "transparent", // optional: no fill
+                },
+              }}
+            >
+              Compare
+            </Button>
+
+            <Button
+              variant="outlined"
+              startIcon={<HelpOutlineIcon />}
+              sx={{
+                mr: 2,
+                verticalAlign: "middle",
+                color: "black",
+                borderColor: "transparent",
+                "&:hover": {
+                  borderColor: "#cccccc",
+                  backgroundColor: "transparent",
+                },
+              }}
+            >
+              Ask a question
+            </Button>
+
+            <Button
+              variant="outlined"
+              startIcon={<ShareIcon />}
+              sx={{
+                verticalAlign: "middle",
+                color: "black",
+                borderColor: "transparent",
+                "&:hover": {
+                  borderColor: "#cccccc",
+                  backgroundColor: "transparent",
+                },
+              }}
+            >
+              Share
+            </Button>
+
+            <Divider sx={{ mt: 2, borderColor: "#e0e0e0", borderWidth: 1 }} />
           </Box>
-          <Typography variant="body2" sx={{ mt: 2 }}>
-            Estimated Delivery: Jul 30 - Aug 03
-          </Typography>
-          <Typography variant="body2">
-            Free Shipping & Returns: On all orders over $75
-          </Typography>
+
+          <Box>
+            <Typography
+              variant="body2"
+              sx={{
+                display: "block",
+                verticalAlign: "middle",
+                marginBottom: 1,
+              }}
+            >
+              <LocalShippingIcon
+                sx={{ verticalAlign: "middle", marginRight: 1 }}
+              />{" "}
+              <b>Estimated Delivery:</b> Jul 30 - Aug 03
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                display: "block",
+                verticalAlign: "middle",
+              }}
+            >
+              <StoreIcon sx={{ verticalAlign: "middle", marginRight: 1 }} />{" "}
+              <b>Free Shipping & Returns:</b> On all orders over $75
+            </Typography>
+          </Box>
+
           <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
             <img
-              src="/path/to/payment-icons.jpg"
+              src={PaymentIcons}
               alt="Payment methods"
-              style={{ height: "30px" }}
+              style={{ height: "auto", width: "40%" }}
             />
             <Typography variant="body2">
               Guarantee safe & secure checkout
@@ -536,105 +729,141 @@ const DealsPage = () => {
               height: "100%",
               bgcolor: "rgba(0,0,0,0.5)",
               display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
+              justifyContent: "flex-end",
               zIndex: 1000,
             }}
           >
             <Box
               sx={{
+                width: { xs: "100%", sm: "90%", md: "480px" },
                 bgcolor: "#fff",
+                height: "100%",
                 p: 3,
-                borderRadius: 2,
-                width: { xs: "90%", md: "400px" },
+                display: "flex",
+                flexDirection: "column",
                 position: "relative",
               }}
             >
               <IconButton
-                sx={{ position: "absolute", top: 10, right: 10 }}
+                sx={{ position: "absolute", top: 16, right: 16 }}
                 onClick={handleCloseCart}
               >
                 <CloseIcon />
               </IconButton>
-              <Typography variant="h6" sx={{ mb: 2 }}>
+
+              <Typography variant="h5" sx={{ fontWeight: 600, mb: 1 }}>
                 Shopping Cart
               </Typography>
-              <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                Buy $122.35 More And Get Free Shipping
-              </Typography>
-              <Box
-                sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2 }}
+
+              <Typography
+                variant="body2"
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 0.5,
+                  flexDirection: "row",
+                  mb: 3,
+                }}
               >
+                <Typography variant="body2" sx={{ color: "#8A8A8A" }}>
+                  Buy
+                </Typography>{" "}
+                <b>$122.35</b>{" "}
+                <Typography variant="body2" sx={{ color: "#8A8A8A" }}>
+                  More And Get
+                </Typography>{" "}
+                <b>Free Shipping</b>
+              </Typography>
+
+              <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
                 <ProductImage
-                  src="/path/to/main-image.jpg"
+                  src={MainDenimImg}
                   alt="Denim Jacket"
-                  sx={{ width: "80px", height: "100px" }}
+                  sx={{ width: 80, height: 100, objectFit: "cover" }}
                 />
                 <Box>
-                  <Typography variant="body1">Denim Jacket</Typography>
-                  <Typography variant="body2">Color: Red</Typography>
-                  <Typography variant="body2">$14.80</Typography>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 1,
-                      mt: 1,
-                    }}
-                  >
+                  <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+                    Denim Jacket
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Color: Red
+                  </Typography>
+                  <Typography variant="body2" sx={{ mb: 1 }}>
+                    $14.80
+                  </Typography>
+                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                     <IconButton
                       size="small"
+                      sx={{ border: "1px solid #ddd" }}
                       onClick={() => handleQuantityChange("decrease")}
                     >
-                      <RemoveIcon />
+                      <RemoveIcon fontSize="small" />
                     </IconButton>
                     <TextField
                       value={quantity}
                       size="small"
-                      sx={{ width: "60px", "& input": { textAlign: "center" } }}
+                      sx={{ width: 40, "& input": { textAlign: "center" } }}
                       inputProps={{ readOnly: true }}
                     />
                     <IconButton
                       size="small"
+                      sx={{ border: "1px solid #ddd" }}
                       onClick={() => handleQuantityChange("increase")}
                     >
-                      <AddIcon />
+                      <AddIcon fontSize="small" />
                     </IconButton>
                   </Box>
                 </Box>
               </Box>
+
+              <Divider sx={{ my: 2 }} />
+
               <Box
                 sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}
               >
                 <Checkbox />
                 <Typography variant="body2">
-                  For $10.00 Please Wrap The Product
+                  For <b>$10.00</b> Please Wrap The Product
                 </Typography>
               </Box>
-              <Typography variant="h6" sx={{ mt: 2 }}>
-                Subtotal: $100.00
-              </Typography>
+
+              <Divider sx={{ my: 2 }} />
+
+              <Box
+                sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}
+              >
+                <Typography variant="subtitle1">Subtotal</Typography>
+                <Typography variant="subtitle1">$100.00</Typography>
+              </Box>
+
               <Button
                 variant="contained"
-                sx={{ mt: 2, bgcolor: "#764D2E", color: "#fff", width: "100%" }}
+                sx={{
+                  backgroundColor: "#764D2E",
+                  color: "#fff",
+                  textTransform: "none",
+                  py: 1.5,
+                  borderRadius: 1,
+                  fontWeight: 500,
+                }}
+                fullWidth
               >
                 Pay With Escrow
               </Button>
+
               <Button
                 variant="text"
-                sx={{
-                  mt: 1,
-                  color: "#764D2E",
-                  width: "100%",
-                  textAlign: "center",
-                }}
                 onClick={handleCloseCart}
+                sx={{
+                  color: "#000000",
+                  mt: 1,
+                  textTransform: "none",
+                  fontWeight: 500,
+                }}
+                fullWidth
               >
                 View Cart
               </Button>
-              <Typography variant="body2" sx={{ mt: 2, textAlign: "center" }}>
-                Guarantee safe & secure checkout
-              </Typography>
             </Box>
           </Box>
         )}
