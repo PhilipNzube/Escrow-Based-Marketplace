@@ -20,6 +20,7 @@ import ChatPage from "./dashboardpages/ChatPage.js";
 import ListingPage from "./dashboardpages/ListingPage.js";
 import CreateListing from "./dashboardpages/CreateListing.js";
 import CreateOfferPage from "./dashboardpages/CreateOffer.js";
+import SettingsPage from "./dashboardpages/SettingsPage.js";
 import "./index.css";
 import "./fonts/fonts.css";
 import "./sliderStyles.css";
@@ -73,6 +74,7 @@ function START() {
                 <Route path="create-offer" element={<CreateOfferPage />} />
                 <Route path="wallet" element={<WalletPage />} />
                 <Route path="orders" element={<OrderPage />} />
+                <Route path="settings" element={<SettingsPage />} />
               </Route>
               {/* Catch-all route for 404 */}
               <Route path="*" element={<NotFoundPage />} />
