@@ -43,6 +43,8 @@ import BuyPage from "./homepages/BuyPage.js";
 import SellPage from "./homepages/SellPage.js";
 import HomeCategoriesPage from "./homepages/HomeCategoriesPage.js";
 import HomeDealsPage from "./homepages/HomeDealsPage.js";
+import CheckoutPage from "./shoppages/CheckoutPage.js";
+import MainDealsPage from "./shoppages/MainDealsPage.js";
 
 function START() {
   return (
@@ -61,7 +63,10 @@ function START() {
               </Route>
               <Route path="/shop-now" element={<ShopNow />}>
                 <Route index element={<ShopHomePage />} />
-                <Route path="deals" element={<DealsPage />} />
+                <Route path="deals" element={<MainDealsPage />}>
+                  <Route index element={<DealsPage />} />
+                  <Route path="checkout" element={<CheckoutPage />} />
+                </Route>
                 <Route path="new-arrival" element={<NewArrivalsPage />} />
                 <Route path="packages" element={<PackagesPage />} />
               </Route>

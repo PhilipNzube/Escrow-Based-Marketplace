@@ -53,6 +53,7 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import ShareIcon from "@mui/icons-material/Share";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import StoreIcon from "@mui/icons-material/Store";
+import CartModal from "../components/CartModal"; // New component
 
 const products = [
   {
@@ -209,6 +210,7 @@ const DealsPage = () => {
   const [selectedSize, setSelectedSize] = useState("M");
   const [selectedColor, setSelectedColor] = useState("blue");
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [timer, setTimer] = useState({
     days: 0,
     hours: 5,
@@ -236,6 +238,11 @@ const DealsPage = () => {
     { id: 4, src: DenimImg4, alt: "Thumbnail 4" },
     { id: 5, src: DenimImg5, alt: "Thumbnail 5" },
   ];
+
+  const handlePayNow = () => {
+    setIsCartOpen(false);
+    setIsCheckoutOpen(true);
+  };
 
   return (
     <Box sx={{ position: "relative", minHeight: "100vh", width: "100%" }}>
@@ -331,7 +338,6 @@ const DealsPage = () => {
               />
             ))}
           </Box>
-          {/* Responsive MUI Flexbox Pagination Section */}
           <Box
             sx={{
               display: "flex",
@@ -347,7 +353,7 @@ const DealsPage = () => {
               disabled={currentPage === 1}
               onClick={() => handlePageChange(currentPage - 1)}
             >
-              &lt;
+              &lt
             </Button>
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
               <Button
@@ -392,7 +398,6 @@ const DealsPage = () => {
           gap: 4,
         }}
       >
-        {/* Product Image Section */}
         <Box
           sx={{
             flex: 1,
@@ -409,7 +414,6 @@ const DealsPage = () => {
           </Box>
         </Box>
 
-        {/* Product Details Section */}
         <Box sx={{ flex: 1, display: "flex", flexDirection: "column", gap: 2 }}>
           <Box
             sx={{
@@ -503,7 +507,7 @@ const DealsPage = () => {
                 sx={{
                   height: "100%",
                   bgcolor: "#FF706B",
-                  width: "10%", // Adjust this percentage based on stock level (e.g., 9/100)
+                  width: "10%",
                   position: "absolute",
                   top: 0,
                   left: 0,
@@ -578,8 +582,7 @@ const DealsPage = () => {
                 size="small"
                 onClick={() => handleQuantityChange("decrease")}
               >
-                {" "}
-                <RemoveIcon />{" "}
+                <RemoveIcon />
               </IconButton>
               <TextField
                 value={quantity}
@@ -590,15 +593,14 @@ const DealsPage = () => {
                   "& .MuiOutlinedInput-root": {
                     borderRadius: 1,
                     "& fieldset": {
-                      borderColor: "transparent", // remove border normally
+                      borderColor: "transparent",
                     },
                     "&:hover fieldset": {
-                      borderColor: "transparent", // no border on hover
+                      borderColor: "transparent",
                     },
-
                     "&.Mui-focused": {
                       "& fieldset": {
-                        borderColor: "transparent", // still no border on focus
+                        borderColor: "transparent",
                       },
                     },
                   },
@@ -609,8 +611,7 @@ const DealsPage = () => {
                 size="small"
                 onClick={() => handleQuantityChange("increase")}
               >
-                {" "}
-                <AddIcon />{" "}
+                <AddIcon />
               </IconButton>
             </Box>
             <Button
@@ -633,11 +634,11 @@ const DealsPage = () => {
               sx={{
                 mr: 2,
                 verticalAlign: "middle",
-                color: "black", // text and icon color
-                borderColor: "transparent", // hide initial border
+                color: "black",
+                borderColor: "transparent",
                 "&:hover": {
-                  borderColor: "#cccccc", // show border on hover
-                  backgroundColor: "transparent", // optional: no fill
+                  borderColor: "#cccccc",
+                  backgroundColor: "transparent",
                 },
               }}
             >
@@ -717,157 +718,165 @@ const DealsPage = () => {
             </Typography>
           </Box>
         </Box>
+      </Box>
 
-        {/* Shopping Cart Popup */}
-        {isCartOpen && (
+      {/* Shopping Cart Popup */}
+      {isCartOpen && (
+        <Box
+          sx={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            bgcolor: "rgba(0,0,0,0.5)",
+            display: "flex",
+            justifyContent: "flex-end",
+            zIndex: 1000,
+          }}
+        >
           <Box
             sx={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              width: "100%",
+              width: { xs: "100%", sm: "90%", md: "480px" },
+              bgcolor: "#fff",
               height: "100%",
-              bgcolor: "rgba(0,0,0,0.5)",
+              p: 3,
               display: "flex",
-              justifyContent: "flex-end",
-              zIndex: 1000,
+              flexDirection: "column",
+              position: "relative",
             }}
           >
-            <Box
+            <IconButton
+              sx={{ position: "absolute", top: 16, right: 16 }}
+              onClick={handleCloseCart}
+            >
+              <CloseIcon />
+            </IconButton>
+
+            <Typography variant="h5" sx={{ fontWeight: 600, mb: 1 }}>
+              Shopping Cart
+            </Typography>
+
+            <Typography
+              variant="body2"
               sx={{
-                width: { xs: "100%", sm: "90%", md: "480px" },
-                bgcolor: "#fff",
-                height: "100%",
-                p: 3,
                 display: "flex",
-                flexDirection: "column",
-                position: "relative",
+                alignItems: "center",
+                gap: 0.5,
+                flexDirection: "row",
+                mb: 3,
               }}
             >
-              <IconButton
-                sx={{ position: "absolute", top: 16, right: 16 }}
-                onClick={handleCloseCart}
-              >
-                <CloseIcon />
-              </IconButton>
+              <Typography variant="body2" sx={{ color: "#8A8A8A" }}>
+                Buy
+              </Typography>{" "}
+              <b>$122.35</b>{" "}
+              <Typography variant="body2" sx={{ color: "#8A8A8A" }}>
+                More And Get
+              </Typography>{" "}
+              <b>Free Shipping</b>
+            </Typography>
 
-              <Typography variant="h5" sx={{ fontWeight: 600, mb: 1 }}>
-                Shopping Cart
-              </Typography>
-
-              <Typography
-                variant="body2"
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 0.5,
-                  flexDirection: "row",
-                  mb: 3,
-                }}
-              >
-                <Typography variant="body2" sx={{ color: "#8A8A8A" }}>
-                  Buy
-                </Typography>{" "}
-                <b>$122.35</b>{" "}
-                <Typography variant="body2" sx={{ color: "#8A8A8A" }}>
-                  More And Get
-                </Typography>{" "}
-                <b>Free Shipping</b>
-              </Typography>
-
-              <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
-                <ProductImage
-                  src={MainDenimImg}
-                  alt="Denim Jacket"
-                  sx={{ width: 80, height: 100, objectFit: "cover" }}
-                />
-                <Box>
-                  <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
-                    Denim Jacket
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Color: Red
-                  </Typography>
-                  <Typography variant="body2" sx={{ mb: 1 }}>
-                    $14.80
-                  </Typography>
-                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                    <IconButton
-                      size="small"
-                      sx={{ border: "1px solid #ddd" }}
-                      onClick={() => handleQuantityChange("decrease")}
-                    >
-                      <RemoveIcon fontSize="small" />
-                    </IconButton>
-                    <TextField
-                      value={quantity}
-                      size="small"
-                      sx={{ width: 40, "& input": { textAlign: "center" } }}
-                      inputProps={{ readOnly: true }}
-                    />
-                    <IconButton
-                      size="small"
-                      sx={{ border: "1px solid #ddd" }}
-                      onClick={() => handleQuantityChange("increase")}
-                    >
-                      <AddIcon fontSize="small" />
-                    </IconButton>
-                  </Box>
+            <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
+              <ProductImage
+                src={MainDenimImg}
+                alt="Denim Jacket"
+                sx={{ width: 80, height: 100, objectFit: "cover" }}
+              />
+              <Box>
+                <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+                  Denim Jacket
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Color: Red
+                </Typography>
+                <Typography variant="body2" sx={{ mb: 1 }}>
+                  $14.80
+                </Typography>
+                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                  <IconButton
+                    size="small"
+                    sx={{ border: "1px solid #ddd" }}
+                    onClick={() => handleQuantityChange("decrease")}
+                  >
+                    <RemoveIcon fontSize="small" />
+                  </IconButton>
+                  <TextField
+                    value={quantity}
+                    size="small"
+                    sx={{ width: 40, "& input": { textAlign: "center" } }}
+                    inputProps={{ readOnly: true }}
+                  />
+                  <IconButton
+                    size="small"
+                    sx={{ border: "1px solid #ddd" }}
+                    onClick={() => handleQuantityChange("increase")}
+                  >
+                    <AddIcon fontSize="small" />
+                  </IconButton>
                 </Box>
               </Box>
-
-              <Divider sx={{ my: 2 }} />
-
-              <Box
-                sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}
-              >
-                <Checkbox />
-                <Typography variant="body2">
-                  For <b>$10.00</b> Please Wrap The Product
-                </Typography>
-              </Box>
-
-              <Divider sx={{ my: 2 }} />
-
-              <Box
-                sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}
-              >
-                <Typography variant="subtitle1">Subtotal</Typography>
-                <Typography variant="subtitle1">$100.00</Typography>
-              </Box>
-
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundColor: "#764D2E",
-                  color: "#fff",
-                  textTransform: "none",
-                  py: 1.5,
-                  borderRadius: 1,
-                  fontWeight: 500,
-                }}
-                fullWidth
-              >
-                Pay With Escrow
-              </Button>
-
-              <Button
-                variant="text"
-                onClick={handleCloseCart}
-                sx={{
-                  color: "#000000",
-                  mt: 1,
-                  textTransform: "none",
-                  fontWeight: 500,
-                }}
-                fullWidth
-              >
-                View Cart
-              </Button>
             </Box>
+
+            <Divider sx={{ my: 2 }} />
+
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}>
+              <Checkbox />
+              <Typography variant="body2">
+                For <b>$10.00</b> Please Wrap The Product
+              </Typography>
+            </Box>
+
+            <Divider sx={{ my: 2 }} />
+
+            <Box
+              sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}
+            >
+              <Typography variant="subtitle1">Subtotal</Typography>
+              <Typography variant="subtitle1">$100.00</Typography>
+            </Box>
+
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: "#764D2E",
+                color: "#fff",
+                textTransform: "none",
+                py: 1.5,
+                borderRadius: 1,
+                fontWeight: 500,
+              }}
+              fullWidth
+              onClick={handlePayNow}
+            >
+              Pay Now
+            </Button>
+
+            <Button
+              variant="text"
+              onClick={handleCloseCart}
+              sx={{
+                color: "#000000",
+                mt: 1,
+                textTransform: "none",
+                fontWeight: 500,
+              }}
+              fullWidth
+            >
+              View Cart
+            </Button>
           </Box>
-        )}
-      </Box>
+        </Box>
+      )}
+
+      {/* Checkout Modal */}
+      {isCheckoutOpen && (
+        <CartModal
+          open={isCheckoutOpen}
+          onClose={() => setIsCheckoutOpen(false)}
+        />
+      )}
+
       <Box
         sx={{
           display: "flex",
@@ -902,7 +911,6 @@ const DealsPage = () => {
           sollicitudin
         </Typography>
 
-        {/* Tabs Section */}
         <Box
           sx={{
             display: "flex",
@@ -941,7 +949,6 @@ const DealsPage = () => {
           ))}
         </Box>
 
-        {/* Cards Section */}
         <Box
           sx={{
             display: "flex",
@@ -1011,139 +1018,6 @@ const DealsPage = () => {
             </Box>
           ))}
         </Box>
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          mt: 40,
-          mb: 4,
-        }}
-      >
-        <Box
-          sx={{
-            py: 4,
-            backgroundColor: "#fff",
-            width: "100%",
-            borderTop: "1px solid #e0e0e0",
-            display: "flex",
-            flexDirection: { xs: "column", md: "row" },
-            alignItems: { xs: "center", md: "flex-start" },
-            justifyContent: { xs: "center", md: "space-between" },
-            gap: { xs: 2, md: 0 },
-            px: { xs: 2, md: 4 },
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              mb: { xs: 2, md: 0 },
-            }}
-          >
-            <Box
-              component="img"
-              src={LogoIcon}
-              alt="logo"
-              sx={{
-                height: 25, // or auto
-                width: "auto", // maintain aspect ratio
-                mr: 1,
-                objectFit: "contain",
-              }}
-            />
-            <Typography
-              variant="h6"
-              sx={{
-                color: "#764D2E",
-                fontWeight: "bold",
-              }}
-            >
-              TrustPay
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: { xs: "column", md: "row" },
-              alignItems: "center",
-              gap: { xs: 1, md: 4 },
-              mb: { xs: 2, md: 0 },
-            }}
-          >
-            <Typography
-              variant="body2"
-              sx={{
-                color: "#484848",
-                cursor: "pointer",
-                "&:hover": { textDecoration: "underline" },
-              }}
-            >
-              Support Center
-            </Typography>
-            <Typography
-              variant="body2"
-              sx={{
-                color: "#484848",
-                cursor: "pointer",
-                "&:hover": { textDecoration: "underline" },
-              }}
-            >
-              Invoicing
-            </Typography>
-            <Typography
-              variant="body2"
-              sx={{
-                color: "#484848",
-                cursor: "pointer",
-                "&:hover": { textDecoration: "underline" },
-              }}
-            >
-              Contract
-            </Typography>
-            <Typography
-              variant="body2"
-              sx={{
-                color: "#484848",
-                cursor: "pointer",
-                "&:hover": { textDecoration: "underline" },
-              }}
-            >
-              Careers
-            </Typography>
-            <Typography
-              variant="body2"
-              sx={{
-                color: "#484848",
-                cursor: "pointer",
-                "&:hover": { textDecoration: "underline" },
-              }}
-            >
-              Blog
-            </Typography>
-            <Typography
-              variant="body2"
-              sx={{
-                color: "#484848",
-                cursor: "pointer",
-                "&:hover": { textDecoration: "underline" },
-              }}
-            >
-              FAQs
-            </Typography>
-          </Box>
-        </Box>
-        <Typography
-          variant="body2"
-          sx={{
-            fontSize: 10,
-            color: "#484848",
-            mt: { xs: 2, md: 0 },
-          }}
-        >
-          Copyright © 2025 TrustPay. All Rights Reserved.
-        </Typography>
       </Box>
     </Box>
   );
