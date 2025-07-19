@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Box, Typography, Button, Checkbox, TextField } from "@mui/material";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import LogoIcon from "../images/Logo.png";
 
 const CheckoutPage = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [country, setCountry] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -42,9 +43,39 @@ const CheckoutPage = () => {
           }}
         >
           <Box sx={{ flex: 1, mr: { md: 2 }, mb: { xs: 2, md: 0 } }}>
-            <Typography variant="h5" gutterBottom>
-              Contact
-            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <Typography variant="h5" gutterBottom>
+                Contact
+              </Typography>
+
+              <Box
+                color="#484848"
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  flexDirection: "row",
+                  gap: 1,
+                }}
+              >
+                Don't have an account?
+                <Box color="#1456FF" variant="span">
+                  <Button
+                    variant="text"
+                    onClick={() => {
+                      navigate(`/register`);
+                    }}
+                  >
+                    Create Account
+                  </Button>
+                </Box>
+              </Box>
+            </Box>
             <TextField
               fullWidth
               margin="normal"
@@ -177,11 +208,6 @@ const CheckoutPage = () => {
             </Button>
           </Box>
           <Box sx={{ flex: 1, minWidth: { md: "300px" } }}>
-            <Box sx={{ textAlign: "right", mb: 2 }}>
-              <Button variant="text" href="#">
-                Have an account? Create Account
-              </Button>
-            </Box>
             <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
               <Box
                 sx={{
