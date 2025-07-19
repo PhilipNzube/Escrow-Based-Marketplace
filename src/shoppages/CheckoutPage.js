@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Typography, Button, Checkbox, TextField } from "@mui/material";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import DenimImg from "../images/MainDenimJacket.png";
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
@@ -58,22 +59,21 @@ const CheckoutPage = () => {
                 color="#484848"
                 sx={{
                   display: "flex",
-                  alignItems: "center",
-                  flexDirection: "row",
+                  alignItems: { xs: "flex-end", md: "center" },
+                  flexDirection: { xs: "column", md: "row" },
                   gap: 1,
                 }}
               >
-                Don't have an account?
-                <Box color="#1456FF" variant="span">
-                  <Button
-                    variant="text"
-                    onClick={() => {
-                      navigate(`/register`);
-                    }}
-                  >
-                    Create Account
-                  </Button>
-                </Box>
+                <Typography variant="body2">Don't have an account?</Typography>
+                <Typography
+                  variant="body2"
+                  sx={{ cursor: "pointer", color: "#1456FF" }}
+                  onClick={() => {
+                    navigate(`/register`);
+                  }}
+                >
+                  Create Account
+                </Typography>
               </Box>
             </Box>
             <TextField
@@ -198,9 +198,13 @@ const CheckoutPage = () => {
             <Button
               variant="contained"
               sx={{
+                backgroundColor: "#764D2E",
+                color: "#fff",
+                textTransform: "none",
+                py: 1.5,
+                borderRadius: 1,
+                fontWeight: 500,
                 mt: 2,
-                backgroundColor: "#4A2C2A",
-                "&:hover": { backgroundColor: "#3A1C1A" },
               }}
               fullWidth
             >
@@ -210,17 +214,33 @@ const CheckoutPage = () => {
           <Box sx={{ flex: 1, minWidth: { md: "300px" } }}>
             <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
               <Box
+                component="img"
+                src={DenimImg}
                 sx={{
-                  width: "80px",
-                  height: "80px",
-                  backgroundColor: "#f0f0f0",
+                  width: "100px",
+                  height: "100px",
+                  bgcolor: "#f0f0f0",
+                  flexShrink: 0,
                   mr: 2,
                 }}
-              ></Box>
+              />
               <Box>
                 <Typography>1 Mini Dress With Ruffled Straps</Typography>
-                <Typography color="text.secondary">Red</Typography>
-                <Typography>$100.00</Typography>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    gap: 1,
+                    color: "#484848",
+                  }}
+                >
+                  <Typography variant="body2" color="text.secondary">
+                    Red
+                  </Typography>
+                  <Typography variant="body2">$100.00</Typography>
+                </Box>
               </Box>
             </Box>
             <TextField fullWidth margin="normal" label="Discount code" />
@@ -235,12 +255,29 @@ const CheckoutPage = () => {
             >
               Apply
             </Button>
-            <Box sx={{ mt: 2 }}>
-              <Typography>Subtotal: $100.00</Typography>
-              <Typography>Shipping: $40.00</Typography>
-              <Typography variant="h6" sx={{ mt: 1 }}>
-                Total: $140.00
-              </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                mt: 2,
+                color: "#484848",
+                gap: 1,
+              }}
+            >
+              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                <Typography variant="body2">Subtotal:</Typography>
+                <Typography variant="body2">$100.00</Typography>
+              </Box>
+              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                <Typography variant="body2">Shipping:</Typography>
+                <Typography variant="body2">$40.00</Typography>
+              </Box>
+              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                <Typography variant="body2">Total:</Typography>
+                <Typography color="#000000" variant="body2">
+                  $140.00
+                </Typography>
+              </Box>
             </Box>
           </Box>
         </Box>
